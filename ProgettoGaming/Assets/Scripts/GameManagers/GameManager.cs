@@ -45,7 +45,8 @@ namespace GameManagers
         void InitGame()
         {
             //Call the SetupScene function of the BoardManager script
-
+            MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
+            m.generate();
         }
 
         public BaseInputController PrimaryInputController
@@ -67,8 +68,8 @@ namespace GameManagers
         //Update is called every frame.
         void Update()
         {
-            myPrimaryInputController.CheckInput();
-            mySecondaryInputController.CheckInput();
+           // myPrimaryInputController.CheckInput();
+            //mySecondaryInputController.CheckInput();
 
         }
 

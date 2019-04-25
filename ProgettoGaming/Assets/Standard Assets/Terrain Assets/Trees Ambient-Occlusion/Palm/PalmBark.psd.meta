@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c528fec5d95e4ac28cf46399b887662
+guid: f7d5f039a8e7848e889e1546d37dc39e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -23,7 +23,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  grayScaleToAlpha: 0
+  grayScaleToAlpha: 1
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
@@ -34,9 +34,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -48,7 +48,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 2
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0

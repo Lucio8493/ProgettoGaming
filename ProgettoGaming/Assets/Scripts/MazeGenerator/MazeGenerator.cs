@@ -18,6 +18,7 @@ public class MazeGenerator: MonoBehaviour
     public int RandomSeed = 12345;
     public GameObject Floor = null;
     public GameObject Wall = null;
+    public GameObject FowPlane = null;
     public int Rows = 5;
     public int Columns = 5;
     public float CellWidth = 5;
@@ -52,6 +53,14 @@ public class MazeGenerator: MonoBehaviour
                 break;
         }
         mMazeGenerator.GenerateMaze();
+
+        ///GameObject tmp1;
+
+        //creazione del velo di FOW
+        //tmp1 = Instantiate(FowPlane, new Vector3(0, 3, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
+        //tmp1.transform.parent = transform;
+        //tmp1.transform.localScale = new Vector3(Columns * CellWidth, 0, Rows * CellHeight);
+        
         for (int row = 0; row < Rows; row++)
         {
             for (int column = 0; column < Columns; column++)
@@ -62,6 +71,8 @@ public class MazeGenerator: MonoBehaviour
                 GameObject tmp;
                 tmp = Instantiate(Floor, new Vector3(x, 0, z), Quaternion.Euler(0, 0, 0)) as GameObject;
                 tmp.transform.parent = transform;
+
+
                 if (cell.WallRight)
                 {
                     tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right

@@ -12,6 +12,7 @@ namespace GameManagers
         protected static GameManager instance;
         protected BaseInputController myPrimaryInputController;
         protected BaseInputController mySecondaryInputController;
+        protected FogOfWarScript fow;
 
         public GameManager Instance
         {
@@ -47,6 +48,7 @@ namespace GameManagers
             //Call the SetupScene function of the BoardManager script
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             m.generate();
+            fow = GameObject.Find("FOWCamera").GetComponent<FogOfWarScript>();
         }
 
         public BaseInputController PrimaryInputController
@@ -68,9 +70,9 @@ namespace GameManagers
         //Update is called every frame.
         void Update()
         {
-           // myPrimaryInputController.CheckInput();
+            // myPrimaryInputController.CheckInput();
             //mySecondaryInputController.CheckInput();
-
+            fow.UpdateFOW();
         }
 
     }

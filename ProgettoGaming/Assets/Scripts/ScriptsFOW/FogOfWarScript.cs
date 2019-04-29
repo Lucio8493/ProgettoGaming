@@ -29,7 +29,7 @@ public class FogOfWarScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateFOW()
     {
         // creiamo un raycast che punti dalla telecamera al giocatore
         Ray ray = new Ray(transform.position, m_player.position - transform.position);

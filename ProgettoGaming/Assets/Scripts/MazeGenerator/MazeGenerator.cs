@@ -54,12 +54,7 @@ public class MazeGenerator: MonoBehaviour
         }
         mMazeGenerator.GenerateMaze();
 
-        ///GameObject tmp1;
-
-        //creazione del velo di FOW
-        //tmp1 = Instantiate(FowPlane, new Vector3(0, 3, 0), Quaternion.Euler(0, 0, 0)) as GameObject;
-        //tmp1.transform.parent = transform;
-        //tmp1.transform.localScale = new Vector3(Columns * CellWidth, 0, Rows * CellHeight);
+        
         
         for (int row = 0; row < Rows; row++)
         {
@@ -102,5 +97,13 @@ public class MazeGenerator: MonoBehaviour
                 }
             }
         }
+
+        GameObject tmp1;
+        //creazione del velo di FOW
+        tmp1 = GameObject.Find("FOW");
+        tmp1.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
+        
+        tmp1.transform.localScale = new Vector3((Columns * CellWidth)/10+ ((Columns * CellWidth) / 10*0.1F), 1 , (Rows * CellHeight)/ 10+( (Rows * CellHeight) / 10*0.1F));
+        
     }
 }

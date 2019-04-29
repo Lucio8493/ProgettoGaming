@@ -14,15 +14,12 @@ namespace Character
         protected bool isMoving;
         protected bool isRotating;
         protected bool isGrounded;
-        protected bool isCaptured;
-
-        //temporaneamente sono stringhe poi definiamo meglio che cacchio di oggetto utilizzare
-        protected string prey;
-        protected string hunter;
+        protected bool isJumping;
 
         protected float movement;
         protected float rotation;
 
+        protected  Vector3 headMovement;
 
 
         public bool IsRunning{
@@ -38,6 +35,11 @@ namespace Character
 
         }
 
+        public bool IsJumping
+        {
+            get { return isJumping; }
+
+        }
 
         public bool IsRotating
         {
@@ -61,40 +63,34 @@ namespace Character
             get { return rotation; }
         }
 
-        public bool IsCaptured
-        {
-            get { return isCaptured; }
 
+        public Vector3 HeadMovement
+        {
+            get { return headMovement; }
         }
 
-        public string Prey
-        {
-            get { return prey; }
-        }
-
-        public string Hunter
-        {
-            get { return hunter; }
-        }
 
         void Start()
         {
             gameManagerRef = GameObject.Find("GameManagerObject").GetComponent<GameManager>().Instance;
  
             isGrounded = true;
-            isCaptured = false;
         }
 
         // Update is called once per frame
 
         void Update()
         {
-            //checkGrounded();
+            checkGrounded();
             CollectInputs();
         }
 
         protected void CollectInputs()
         {
+
+
+            headMovement = gameManagerRef.SecondaryInputController.GetMovementDirectionVector();
+            //Debug.Log("Head " + headMovement.z);
 
             Vector3 ctrlMoves = gameManagerRef.PrimaryInputController.GetMovementDirectionVector();
             movement = ctrlMoves.z;
@@ -105,27 +101,28 @@ namespace Character
 
             isRunning = isMoving && gameManagerRef.PrimaryInputController.GetFire(1);
 
+            isJumping = isGrounded && gameManagerRef.PrimaryInputController.GetFire(2);
+            print("is jumping" + isJumping);
+
         }
 
+        protected void checkGrounded()
+        {
 
-        ///Forse per noi e' inutile non credo il personaggio saltera'
-//        protected void checkGrounded()
-//        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f)
+                && hit.collider.CompareTag("Floor"))
+                {
+                    isGrounded = true;
+//                Debug.Log("grounded");
+                }
+                else
+                {
+                    isGrounded = false;
+            //    Debug.Log("not grounded");
+                }
 
-//            RaycastHit hit;
-//            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f)
-//                && hit.collider.CompareTag("floor"))
-//                {
-//                    isGrounded = true;
-////                Debug.Log("grounded");
-//                }
-//                else
-//                {
-//                    isGrounded = false;
-//            //    Debug.Log("not grounded");
-//                }
-
-//        }
+        }
 
     }
 }

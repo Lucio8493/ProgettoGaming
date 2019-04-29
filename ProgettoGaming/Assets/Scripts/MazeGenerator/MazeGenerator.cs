@@ -101,9 +101,13 @@ public class MazeGenerator: MonoBehaviour
         GameObject tmp1;
         //creazione del velo di FOW
         tmp1 = GameObject.Find("FOW");
+        //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
         tmp1.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
-        
-        tmp1.transform.localScale = new Vector3((Columns * CellWidth)/10+ ((Columns * CellWidth) / 10*0.1F), 1 , (Rows * CellHeight)/ 10+( (Rows * CellHeight) / 10*0.1F));
-        
+
+        //tmp1.transform.localScale = new Vector3((Columns * CellWidth)/10+ ((Columns * CellWidth) / 10*0.1F), 1 , (Rows * CellHeight)/ 10+( (Rows * CellHeight) / 10*0.1F));
+        tmp1.transform.localScale = new Vector3((Columns * CellWidth)+ (Columns * CellWidth)*0.1f, (Rows * CellHeight)+ (Rows * CellHeight)*0.1f, 1);
+        tmp1.GetComponent<ProceduralPlane>().xSegments = Columns;
+        tmp1.GetComponent<ProceduralPlane>().ySegments = Rows;
+        tmp1.GetComponent<ProceduralPlane>().Rebuild();
     }
 }

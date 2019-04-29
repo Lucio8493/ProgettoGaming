@@ -40,7 +40,7 @@ namespace GameManagers
             instance.mySecondaryInputController = new MouseInput();
 
             //Call the InitGame function to initialize the level
-          //  InitGame();
+            //InitGame();
         }
 
         void InitGame()
@@ -72,7 +72,7 @@ namespace GameManagers
         {
             myPrimaryInputController.CheckInput();
             mySecondaryInputController.CheckInput();
-           //fow.UpdateFOW();
+            //fow.UpdateFOW();
         }
 
     }

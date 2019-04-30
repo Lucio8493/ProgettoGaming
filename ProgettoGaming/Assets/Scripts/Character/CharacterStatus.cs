@@ -103,7 +103,7 @@ namespace Character
             isRunning = isMoving && gameManagerRef.PrimaryInputController.GetFire(1);
 
             isJumping = isGrounded && gameManagerRef.PrimaryInputController.GetFire(2);
-            print("is jumping" + isJumping);
+            //print("is jumping" + isJumping);
 
         }
 

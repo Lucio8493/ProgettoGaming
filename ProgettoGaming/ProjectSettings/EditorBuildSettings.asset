@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LucioScene.unity
     guid: 82702d093373d3c48bfaf688cee777e5
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/ArrowScene.unity
     guid: db8c728c9fcb42c40bf236daac26e894
   m_configObjects: {}

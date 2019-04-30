@@ -103,9 +103,9 @@ public class MazeGenerator: MonoBehaviour
         tmp1 = GameObject.Find("FOW");
         //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
         tmp1.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
-
-        //tmp1.transform.localScale = new Vector3((Columns * CellWidth)/10+ ((Columns * CellWidth) / 10*0.1F), 1 , (Rows * CellHeight)/ 10+( (Rows * CellHeight) / 10*0.1F));
+        //settaggio delle dimenzioni del pannello della fow (ampiezza del labirinto piu' un 10% da mettere esternamente)
         tmp1.transform.localScale = new Vector3((Columns * CellWidth)+ (Columns * CellWidth)*0.1f, (Rows * CellHeight)+ (Rows * CellHeight)*0.1f, 1);
+        //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido
         tmp1.GetComponent<ProceduralPlane>().xSegments = Columns;
         tmp1.GetComponent<ProceduralPlane>().ySegments = Rows;
         tmp1.GetComponent<ProceduralPlane>().Rebuild();

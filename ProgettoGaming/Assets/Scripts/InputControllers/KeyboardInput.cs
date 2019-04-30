@@ -19,7 +19,7 @@ namespace InputControllers
 
         public override void CheckInput()
         {
-            Debug.Log("checking input");
+            //Debug.Log("checking input");
 
             horz = Input.GetAxis("Horizontal");
             vert = Input.GetAxis("Vertical");

@@ -63,11 +63,12 @@ namespace Character
             get { return rotation; }
         }
 
-
+        /*
         public Vector3 HeadMovement
         {
             get { return headMovement; }
         }
+        */
 
 
         void Start()
@@ -89,7 +90,7 @@ namespace Character
         {
 
 
-            headMovement = gameManagerRef.SecondaryInputController.GetMovementDirectionVector();
+            //headMovement = gameManagerRef.SecondaryInputController.GetMovementDirectionVector();
             //Debug.Log("Head " + headMovement.z);
 
             Vector3 ctrlMoves = gameManagerRef.PrimaryInputController.GetMovementDirectionVector();

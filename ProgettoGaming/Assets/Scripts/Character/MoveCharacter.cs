@@ -61,8 +61,8 @@ namespace Character
             {
                 if (status.IsMoving || status.IsJumping)
                 {
-                    vertMovement = status.Movement * walkSpeed;
-                    orizMovement = status.Rotation * walkSpeed;
+                    vertMovement = status.Movement * walkSpeed; //asse verticale
+                    orizMovement = status.Rotation * walkSpeed; //asse orizzontale
 
 
                     if (status.IsRunning)
@@ -81,16 +81,8 @@ namespace Character
                         xSpeed = orizMovement;
                     }
 
-
-
                     //quando premo un pulsante direzionale devo direzionarmi in base alla telecamera
-                    m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                    Vector3 m_Move;
-                    m_Move = vertMovement * m_CamForward + orizMovement * m_Cam.right;
-                    //gira il personaggio in base a dove deve andare
-                    transform.forward = m_Move;
-
-                    _charController.Move(m_Move * Time.deltaTime);
+                
 
 
                 }
@@ -107,23 +99,26 @@ namespace Character
                 ySpeed += gravity * Time.deltaTime;
             }
 
-            movement.y += ySpeed * Time.deltaTime;
+
+
+            //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
+            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 m_move;
+            m_move = zSpeed * m_CamForward + xSpeed * m_Cam.right;
+            //gira il personaggio in base a dove deve andare
+               transform.forward = m_move;
+           // _charController.Move(m_Move * Time.deltaTime);
+
+            /*
+            movement.y = ySpeed * Time.deltaTime;
             movement.z += zSpeed * Time.deltaTime;
             movement.x += xSpeed * Time.deltaTime;
+            */
 
-
-
-
-
-
-
-            // movement = transform.TransformDirection(movement);
-            // _charController.Move(movement);
-
-            if (status.IsRotating)
-            {
-            //    transform.Rotate(0, status.Rotation * rotationSensitivity, 0);
-            }
+            Debug.Log(m_move);
+            m_move.y = ySpeed;
+            Debug.Log(m_move);
+            _charController.Move(m_move*Time.deltaTime);
 
         }
     }

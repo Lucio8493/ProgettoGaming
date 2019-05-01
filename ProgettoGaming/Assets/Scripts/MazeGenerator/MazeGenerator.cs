@@ -98,16 +98,15 @@ public class MazeGenerator: MonoBehaviour
             }
         }
 
-        GameObject tmp1;
+        
         //creazione del velo di FOW
-        tmp1 = GameObject.Find("FOW");
         //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
-        tmp1.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 2.5f, ((Rows * CellHeight) / 2)-2.5F);
-        //settaggio delle dimenzioni del pannello della fow (ampiezza del labirinto piu' un 10% da mettere esternamente)
-        tmp1.transform.localScale = new Vector3((Columns * CellWidth)+ (Columns * CellWidth)*0.1f, (Rows * CellHeight)+ (Rows * CellHeight)*0.1f, 1);
+        FowPlane.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
+        //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 3 colonne e 3 righe da mettere esternamente)
+        FowPlane.transform.localScale = new Vector3((Columns + 3) * CellWidth, (Rows + 3) * CellHeight, 1);
         //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido
-        tmp1.GetComponent<ProceduralPlane>().xSegments = Columns;
-        tmp1.GetComponent<ProceduralPlane>().ySegments = Rows;
-        tmp1.GetComponent<ProceduralPlane>().Rebuild();
+        FowPlane.GetComponent<ProceduralPlane>().xSegments = Columns;
+        FowPlane.GetComponent<ProceduralPlane>().ySegments = Rows;
+        FowPlane.GetComponent<ProceduralPlane>().Rebuild();
     }
 }

@@ -5,9 +5,9 @@ using GameManagers;
 
 namespace Character
 {
-    public class CharacterStatus : MonoBehaviour
+    public class OldCharacterStatus : MonoBehaviour
     {
-    
+
         protected GameManager gameManagerRef;
 
         protected bool isRunning;
@@ -19,14 +19,15 @@ namespace Character
         protected float movement;
         protected float rotation;
 
-        protected  Vector3 headMovement;
+        protected Vector3 headMovement;
 
 
-        public bool IsRunning{
-              get { return isRunning;}
+        public bool IsRunning
+        {
+            get { return isRunning; }
 
-            }
-            
+        }
+
 
 
         public bool IsMoving
@@ -74,7 +75,7 @@ namespace Character
         void Start()
         {
             gameManagerRef = GameObject.Find("GameManagerObject").GetComponent<GameManager>().Instance;
- 
+
             isGrounded = true;
         }
 
@@ -97,9 +98,8 @@ namespace Character
             movement = ctrlMoves.z;
             rotation = ctrlMoves.x;
 
-            isMoving = isGrounded && (gameManagerRef.PrimaryInputController.Down || gameManagerRef.PrimaryInputController.Up
-                || gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
-           // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
+            isMoving = isGrounded && (gameManagerRef.PrimaryInputController.Down || gameManagerRef.PrimaryInputController.Up);
+            isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
             isRunning = isMoving && gameManagerRef.PrimaryInputController.GetFire(1);
 
@@ -114,15 +114,15 @@ namespace Character
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f)
                 && hit.collider.CompareTag("Floor"))
-                {
-                    isGrounded = true;
-//                Debug.Log("grounded");
-                }
-                else
-                {
-                    isGrounded = false;
-            //    Debug.Log("not grounded");
-                }
+            {
+                isGrounded = true;
+                //                Debug.Log("grounded");
+            }
+            else
+            {
+                isGrounded = false;
+                //    Debug.Log("not grounded");
+            }
 
         }
 

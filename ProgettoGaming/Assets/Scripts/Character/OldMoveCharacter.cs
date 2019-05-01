@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public class MoveCharacter : MonoBehaviour
+    public class OldMoveCharacter : MonoBehaviour
     {
         protected CharacterController _charController;
         protected CharacterStatus status;
@@ -15,39 +15,13 @@ namespace Character
         [SerializeField] protected float rotationSensitivity = 9.0f;
         [SerializeField] protected float jumpSpeed = 5.0f;
 
-
-        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
-        private Vector3 m_CamForward;             // The current forward direction of the camera
-
-
         protected float ySpeed = 0;
         protected float zSpeed = 0;
-        protected float xSpeed = 0;
 
         void Start()
         {
             _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
-
-
-
-
-            // get the transform of the main camera
-            if (Camera.main != null)
-            {
-                m_Cam = Camera.main.transform;
-            }
-            else
-            {
-                Debug.LogWarning(
-                    "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
-                // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
-            }
-
-       
-
-
-
         }
 
 
@@ -55,20 +29,17 @@ namespace Character
         {
             Vector3 movement = new Vector3(0, 0, 0);
             float vertMovement = 0;
-            float orizMovement = 0;
 
             if (status.IsGrounded)
             {
                 if (status.IsMoving || status.IsJumping)
                 {
                     vertMovement = status.Movement * walkSpeed;
-                    orizMovement = status.Rotation * walkSpeed;
 
 
                     if (status.IsRunning)
                     {
                         vertMovement *= runBoost;
-                        orizMovement *= runBoost;
                     }
                     if (status.IsJumping)
                     {
@@ -78,28 +49,13 @@ namespace Character
                     else
                     {
                         zSpeed = vertMovement;
-                        xSpeed = orizMovement;
                     }
-
-
-
-                    //quando premo un pulsante direzionale devo direzionarmi in base alla telecamera
-                    m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                    Vector3 m_Move;
-                    m_Move = vertMovement * m_CamForward + orizMovement * m_Cam.right;
-                    //gira il personaggio in base a dove deve andare
-                    transform.forward = m_Move;
-
-                    _charController.Move(m_Move * Time.deltaTime);
-
-
                 }
                 else
                 {
                     ySpeed = 0;
                     zSpeed = 0;
                 }
-
 
             }
             else
@@ -109,20 +65,14 @@ namespace Character
 
             movement.y += ySpeed * Time.deltaTime;
             movement.z += zSpeed * Time.deltaTime;
-            movement.x += xSpeed * Time.deltaTime;
 
 
-
-
-
-
-
-            // movement = transform.TransformDirection(movement);
-            // _charController.Move(movement);
+            movement = transform.TransformDirection(movement);
+            _charController.Move(movement);
 
             if (status.IsRotating)
             {
-            //    transform.Rotate(0, status.Rotation * rotationSensitivity, 0);
+                transform.Rotate(0, status.Rotation * rotationSensitivity, 0);
             }
 
         }

@@ -48,7 +48,7 @@ namespace GameManagers
             //Call the SetupScene function of the BoardManager script
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             m.generate();
-            fow = GameObject.Find("FOWCamera").GetComponent<FogOfWarScript>();
+            fow = GameObject.Find("FOWObject").GetComponent<FogOfWarScript>();
         }
 
         public BaseInputController PrimaryInputController

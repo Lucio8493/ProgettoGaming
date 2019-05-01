@@ -61,8 +61,8 @@ namespace Character
             {
                 if (status.IsMoving || status.IsJumping)
                 {
-                    vertMovement = status.Movement * walkSpeed; //asse verticale
-                    orizMovement = status.Rotation * walkSpeed; //asse orizzontale
+                    vertMovement = status.VerticalMovement * walkSpeed; //asse verticale
+                    orizMovement = status.OrizontalMovement * walkSpeed; //asse orizzontale
 
 
                     if (status.IsRunning)

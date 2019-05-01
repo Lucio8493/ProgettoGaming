@@ -16,12 +16,12 @@ namespace Character
         protected bool isGrounded;
         protected bool isJumping;
 
-        protected float movement;
-        protected float rotation;
+        protected float verticalMovement;
+        protected float orizontalMovement;
 
         protected  Vector3 headMovement;
 
-
+      
         public bool IsRunning{
               get { return isRunning;}
 
@@ -41,6 +41,7 @@ namespace Character
 
         }
 
+        //forse isRotating non lo useremo più perchè il personaggio non ruota su se stesso con gli assi orizzontali, ma cammina
         public bool IsRotating
         {
             get { return isRotating; }
@@ -53,14 +54,14 @@ namespace Character
 
         }
 
-        public float Movement
+        public float VerticalMovement
         {
-            get { return movement; }
+            get { return verticalMovement; }
         }
 
-        public float Rotation
+        public float OrizontalMovement
         {
-            get { return rotation; }
+            get { return orizontalMovement; }
         }
 
         /*
@@ -94,8 +95,8 @@ namespace Character
             //Debug.Log("Head " + headMovement.z);
 
             Vector3 ctrlMoves = gameManagerRef.PrimaryInputController.GetMovementDirectionVector();
-            movement = ctrlMoves.z;
-            rotation = ctrlMoves.x;
+            verticalMovement = ctrlMoves.z;
+            orizontalMovement = ctrlMoves.x;
 
             isMoving = isGrounded && (gameManagerRef.PrimaryInputController.Down || gameManagerRef.PrimaryInputController.Up
                 || gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);

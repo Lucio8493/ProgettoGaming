@@ -34,7 +34,7 @@ namespace Character
             {
                 if (status.IsMoving || status.IsJumping)
                 {
-                    vertMovement = status.Movement * walkSpeed;
+                    vertMovement = status.VerticalMovement * walkSpeed;
 
 
                     if (status.IsRunning)
@@ -72,7 +72,7 @@ namespace Character
 
             if (status.IsRotating)
             {
-                transform.Rotate(0, status.Rotation * rotationSensitivity, 0);
+                transform.Rotate(0, status.OrizontalMovement * rotationSensitivity, 0);
             }
 
         }

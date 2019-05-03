@@ -31,7 +31,7 @@ namespace Character
 
 
 
-
+            // ** ATTENZIONE ** la gestione della camera forse è meglio metterla nel game manager invece che in move character, che dovrebbe solo fare qualcosa del tipo GameManager.getCamera
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -90,6 +90,7 @@ namespace Character
                 {
                     ySpeed = 0;
                     zSpeed = 0;
+                    xSpeed = 0;
                 }
 
 

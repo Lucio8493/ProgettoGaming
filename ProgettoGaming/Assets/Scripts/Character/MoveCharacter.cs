@@ -12,7 +12,6 @@ namespace Character
         [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
         [SerializeField] protected float gravity = -9.8f;
-        [SerializeField] protected float rotationSensitivity = 9.0f;
         [SerializeField] protected float jumpSpeed = 5.0f;
 
 

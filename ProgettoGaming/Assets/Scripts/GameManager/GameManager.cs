@@ -11,7 +11,6 @@ namespace GameManagers
 
         protected static GameManager instance;
         protected BaseInputController myPrimaryInputController;
-        protected BaseInputController mySecondaryInputController;
         protected FogOfWarScript fow;
 
         public GameManager Instance
@@ -37,7 +36,6 @@ namespace GameManagers
             DontDestroyOnLoad(gameObject);
 
             instance.myPrimaryInputController = new KeyboardInput();
-            instance.mySecondaryInputController = new MouseInput();
 
             //Call the InitGame function to initialize the level
            InitGame();
@@ -59,19 +57,12 @@ namespace GameManagers
             }
         }
 
-        public BaseInputController SecondaryInputController
-        {
-            get
-            {
-                return mySecondaryInputController;
-            }
-        }
+  
 
         //Update is called every frame.
         void Update()
         {
             myPrimaryInputController.CheckInput();
-            mySecondaryInputController.CheckInput();
             fow.UpdateFOW();
         }
 

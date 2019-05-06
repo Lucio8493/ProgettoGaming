@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Pointing : MonoBehaviour
 {
-    [SerializeField]
-    protected GameObject target;
+    //[SerializeField]
+    private GameObject target;
     private Rigidbody rb;
+
+    public GameObject Target { get => target; set => target = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +17,12 @@ public class Pointing : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    
+    public void Point()
     {
         if (target)
         {
-            rb.transform.LookAt(target.transform.position);
+            rb.transform.LookAt(Target.transform.position);
         }
         else
         {

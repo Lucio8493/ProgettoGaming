@@ -8,7 +8,7 @@ namespace Character
     public class CharacterStatus : MonoBehaviour
     {
     
-        protected GameManager gameManagerRef;
+        protected PlayerManager playerManagerRef;
 
         protected bool isRunning;
         protected bool isMoving;
@@ -63,7 +63,7 @@ namespace Character
 
         void Start()
         {
-            gameManagerRef = GameObject.Find("GameManagerObject").GetComponent<GameManager>().Instance;
+            playerManagerRef = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
  
             isGrounded = true;
         }
@@ -86,15 +86,15 @@ namespace Character
             verticalMovement = ctrlMoves.z;
             orizontalMovement = ctrlMoves.x;*/
 
-            verticalMovement = gameManagerRef.PrimaryInputController.GetVertical();
-            orizontalMovement = gameManagerRef.PrimaryInputController.GetHorizontal();
+            verticalMovement = playerManagerRef.PrimaryInputController.GetVertical();
+            orizontalMovement = playerManagerRef.PrimaryInputController.GetHorizontal();
 
 
-            isMoving = isGrounded && (gameManagerRef.PrimaryInputController.Down || gameManagerRef.PrimaryInputController.Up
-                || gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
+            isMoving = isGrounded && (playerManagerRef.PrimaryInputController.Down || playerManagerRef.PrimaryInputController.Up
+                || playerManagerRef.PrimaryInputController.Left || playerManagerRef.PrimaryInputController.Right);
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
-            isRunning = isMoving && gameManagerRef.PrimaryInputController.useBonus;
+            isRunning = isMoving && playerManagerRef.PrimaryInputController.useBonus;
 
 
         }

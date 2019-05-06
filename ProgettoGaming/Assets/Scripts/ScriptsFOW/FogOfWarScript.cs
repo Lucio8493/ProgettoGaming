@@ -32,7 +32,7 @@ public class FogOfWarScript : MonoBehaviour
     public void UpdateFOW()
     {
         // creiamo un raycast che punti dalla telecamera al giocatore
-        Ray ray = new Ray(transform.position, m_player.position - transform.position);
+        Ray ray = new Ray(overPlayer(), m_player.position - overPlayer() );
         // creiamo una variabile raycast hit per memorizzare l'info del punto in cui viene colpita la fowa dal raycast
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, m_fogLayer, QueryTriggerInteraction.Collide))
@@ -60,6 +60,12 @@ public class FogOfWarScript : MonoBehaviour
             UpdateColor();
         }
    
+    }
+
+    //Metodo per ottenere la verticale del mio player
+    private Vector3 overPlayer()
+    {
+        return new Vector3(m_player.position.x, m_player.position.y + 20, m_player.position.z);
     }
 
     void Initialize()

@@ -33,7 +33,7 @@ public class MazeGenerator: MonoBehaviour
     {
         if (!FullRandom)
         {
-            Random.seed = RandomSeed;
+            Random.InitState(RandomSeed);
         }
         switch (Algorithm)
         {
@@ -108,8 +108,8 @@ public class MazeGenerator: MonoBehaviour
         //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 5 colonne e 5 righe da mettere esternamente)
         FowPlane.transform.localScale = new Vector3((Columns + 5) * CellWidth, (Rows + 5) * CellHeight, 1);
         //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido
-        FowPlane.GetComponent<ProceduralPlane>().xSegments = Columns;
-        FowPlane.GetComponent<ProceduralPlane>().ySegments = Rows;
+        FowPlane.GetComponent<ProceduralPlane>().xSegments = Columns*3;
+        FowPlane.GetComponent<ProceduralPlane>().ySegments = Rows*3;
         FowPlane.GetComponent<ProceduralPlane>().Rebuild();
     }
 }

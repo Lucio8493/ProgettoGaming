@@ -10,8 +10,6 @@ namespace GameManagers
     {
 
         protected static GameManager instance;
-        protected BaseInputController myPrimaryInputController;
-        protected FogOfWarScript fow;
 
         public GameManager Instance
         {
@@ -34,36 +32,15 @@ namespace GameManagers
 
             //Sets this to not be destroyed when reloading scene
             DontDestroyOnLoad(gameObject);
+            
 
-            instance.myPrimaryInputController = new KeyboardInputController();
-
-            //Call the InitGame function to initialize the level
-           InitGame();
+           
         }
-
-        void InitGame()
-        {
-            //Call the SetupScene function of the BoardManager script
-            MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
-            m.generate();
-            fow = GameObject.Find("FOWObject").GetComponent<FogOfWarScript>();
-        }
-
-        public BaseInputController PrimaryInputController
-        {
-            get
-            {
-                return myPrimaryInputController;
-            }
-        }
-
-  
 
         //Update is called every frame.
         void Update()
         {
-            myPrimaryInputController.CheckInput();
-            fow.UpdateFOW();
+
         }
 
     }

@@ -6,8 +6,10 @@ namespace Character
 {
     public class MoveCharacter : MonoBehaviour
     {
-        protected CharacterController _charController;
+       // protected CharacterController _charController;
         protected CharacterStatus status;
+        public Rigidbody rb;
+
 
         [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
@@ -24,8 +26,11 @@ namespace Character
 
         void Start()
         {
-            _charController = GetComponent<CharacterController>();
+         //   _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
+
+            rb = GetComponent<Rigidbody>();
+
 
 
 
@@ -74,6 +79,32 @@ namespace Character
                     xSpeed = orizMovement;
 
 
+
+
+                    //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
+                    m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                    Vector3 m_move;
+                    m_move = zSpeed * m_CamForward + xSpeed * m_Cam.right;
+                    //gira il personaggio in base a dove deve andare
+                    transform.forward = m_move;
+                    // _charController.Move(m_Move * Time.deltaTime);
+
+                    /*
+                    movement.y = ySpeed * Time.deltaTime;
+                    movement.z += zSpeed * Time.deltaTime;
+                    movement.x += xSpeed * Time.deltaTime;
+                    */
+
+                    // Debug.Log(m_move);
+                    //  m_move.y = ySpeed;
+                    // Debug.Log(m_move);
+                    // _charController.Move(m_move*Time.deltaTime);
+                    rb.MovePosition(transform.position + transform.forward * Time.deltaTime * walkSpeed); // muovi davanti
+
+
+
+
+
                 }
                 else
                 {
@@ -91,24 +122,7 @@ namespace Character
 
 
 
-            //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
-            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-            Vector3 m_move;
-            m_move = zSpeed * m_CamForward + xSpeed * m_Cam.right;
-            //gira il personaggio in base a dove deve andare
-               transform.forward = m_move;
-           // _charController.Move(m_Move * Time.deltaTime);
 
-            /*
-            movement.y = ySpeed * Time.deltaTime;
-            movement.z += zSpeed * Time.deltaTime;
-            movement.x += xSpeed * Time.deltaTime;
-            */
-
-            Debug.Log(m_move);
-            m_move.y = ySpeed;
-            Debug.Log(m_move);
-            _charController.Move(m_move*Time.deltaTime);
 
         }
     }

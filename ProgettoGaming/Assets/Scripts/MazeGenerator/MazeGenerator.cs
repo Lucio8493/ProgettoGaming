@@ -99,13 +99,14 @@ public class MazeGenerator: MonoBehaviour
             }
         }
 
+        //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 
         //creazione del velo di FOW
         //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
         FowPlane.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
-        //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 3 colonne e 3 righe da mettere esternamente)
-        FowPlane.transform.localScale = new Vector3((Columns + 3) * CellWidth, (Rows + 3) * CellHeight, 1);
+        //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 5 colonne e 5 righe da mettere esternamente)
+        FowPlane.transform.localScale = new Vector3((Columns + 5) * CellWidth, (Rows + 5) * CellHeight, 1);
         //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido
         FowPlane.GetComponent<ProceduralPlane>().xSegments = Columns;
         FowPlane.GetComponent<ProceduralPlane>().ySegments = Rows;

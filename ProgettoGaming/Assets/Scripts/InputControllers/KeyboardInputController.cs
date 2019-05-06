@@ -12,8 +12,8 @@ namespace InputControllers
         public override void CheckInput()
         {
             // override with your own code to deal with input
-            horz = Input.GetAxis("Horizontal");
-            vert = Input.GetAxis("Vertical");
+            horz = Input.GetAxisRaw("Horizontal");
+            vert = Input.GetAxisRaw("Vertical");
 
             Up = (vert > 0);
             Down = (vert < 0);

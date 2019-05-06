@@ -12,7 +12,6 @@ namespace Character
         [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
         [SerializeField] protected float gravity = -9.8f;
-        [SerializeField] protected float jumpSpeed = 5.0f;
 
 
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
@@ -58,7 +57,7 @@ namespace Character
 
             if (status.IsGrounded)
             {
-                if (status.IsMoving || status.IsJumping)
+                if (status.IsMoving )
                 {
                     vertMovement = status.VerticalMovement * walkSpeed; //asse verticale
                     orizMovement = status.OrizontalMovement * walkSpeed; //asse orizzontale
@@ -69,19 +68,10 @@ namespace Character
                         vertMovement *= runBoost;
                         orizMovement *= runBoost;
                     }
-                    if (status.IsJumping)
-                    {
-                        ySpeed += jumpSpeed;
-                        zSpeed = transform.InverseTransformDirection(_charController.velocity).z;
-                    }
-                    else
-                    {
-                        zSpeed = vertMovement;
-                        xSpeed = orizMovement;
-                    }
+                 
 
-                    //quando premo un pulsante direzionale devo direzionarmi in base alla telecamera
-                
+                    zSpeed = vertMovement;
+                    xSpeed = orizMovement;
 
 
                 }

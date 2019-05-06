@@ -18,11 +18,7 @@ namespace Character
 
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
-
-
-        protected float ySpeed = 0;
-        protected float zSpeed = 0;
-        protected float xSpeed = 0;
+ 
 
         void Start()
         {
@@ -59,48 +55,29 @@ namespace Character
             Vector3 movement = new Vector3(0, 0, 0);
             float vertMovement = 0;
             float orizMovement = 0;
+            float speed = walkSpeed;
 
             if (status.IsGrounded)
             {
                 if (status.IsMoving )
                 {
-                    vertMovement = status.VerticalMovement * walkSpeed; //asse verticale
-                    orizMovement = status.OrizontalMovement * walkSpeed; //asse orizzontale
+                    vertMovement = status.VerticalMovement; //asse verticale
+                    orizMovement = status.OrizontalMovement;//asse orizzontale
 
 
                     if (status.IsRunning)
                     {
-                        vertMovement *= runBoost;
-                        orizMovement *= runBoost;
+                        speed *= runBoost;
                     }
                  
-
-                    zSpeed = vertMovement;
-                    xSpeed = orizMovement;
-
-
-
 
                     //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
                     m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
                     Vector3 m_move;
-                    m_move = zSpeed * m_CamForward + xSpeed * m_Cam.right;
+                    m_move = vertMovement * m_CamForward + orizMovement * m_Cam.right;
                     //gira il personaggio in base a dove deve andare
                     transform.forward = m_move;
-                    // _charController.Move(m_Move * Time.deltaTime);
-
-                    /*
-                    movement.y = ySpeed * Time.deltaTime;
-                    movement.z += zSpeed * Time.deltaTime;
-                    movement.x += xSpeed * Time.deltaTime;
-                    */
-
-                    // Debug.Log(m_move);
-                    //  m_move.y = ySpeed;
-                    // Debug.Log(m_move);
-                    // _charController.Move(m_move*Time.deltaTime);
-                    rb.MovePosition(transform.position + transform.forward * Time.deltaTime * walkSpeed); // muovi davanti
-
+                    rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
 
 
 
@@ -108,17 +85,17 @@ namespace Character
                 }
                 else
                 {
-                    ySpeed = 0;
-                    zSpeed = 0;
-                    xSpeed = 0;
+                    vertMovement = 0;
+                    orizMovement = 0;
+                    speed = 0;
                 }
 
 
             }
-            else
-            {
-                ySpeed += gravity * Time.deltaTime;
-            }
+
+
+
+
 
 
 

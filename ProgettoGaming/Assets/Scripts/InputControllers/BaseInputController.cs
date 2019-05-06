@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace InputControllers
 {
-    public class BaseInputController
+    public  class BaseInputController
     {
 
         // directional buttons
@@ -16,12 +16,12 @@ namespace InputControllers
 
 
         // fire/action buttons
-        public bool[] Fire;
+        public bool useBonus; // usa il bonus ottenuto
+
 
         public float vert;
         public float horz;
 
-        public Vector3 TEMPVec3;
 
 
         public virtual void CheckInput()
@@ -30,6 +30,9 @@ namespace InputControllers
             horz = Input.GetAxis("Horizontal");
             vert = Input.GetAxis("Vertical");
         }
+
+
+        // ottengo i due assi
         public virtual float GetHorizontal()
         {
             return horz;
@@ -40,29 +43,8 @@ namespace InputControllers
         }
 
 
-        public virtual bool GetFire(int num)
-        {
-            if (num <= Fire.Length)
-            {
-                return Fire[num-1];
-            }
-            else
-            {
-                return false;
-            }
-        }
 
 
-
-        public virtual Vector3 GetMovementDirectionVector()
-        {
-
-            TEMPVec3.x = horz;
-
-            TEMPVec3.z = vert;
-
-            return TEMPVec3;
-        }
 
 
     }

@@ -80,17 +80,21 @@ namespace Character
         {
 
 
-        
 
+            /*
             Vector3 ctrlMoves = gameManagerRef.PrimaryInputController.GetMovementDirectionVector();
             verticalMovement = ctrlMoves.z;
-            orizontalMovement = ctrlMoves.x;
+            orizontalMovement = ctrlMoves.x;*/
+
+            verticalMovement = gameManagerRef.PrimaryInputController.GetVertical();
+            orizontalMovement = gameManagerRef.PrimaryInputController.GetHorizontal();
+
 
             isMoving = isGrounded && (gameManagerRef.PrimaryInputController.Down || gameManagerRef.PrimaryInputController.Up
                 || gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
-            isRunning = isMoving && gameManagerRef.PrimaryInputController.GetFire(1);
+            isRunning = isMoving && gameManagerRef.PrimaryInputController.useBonus;
 
 
         }

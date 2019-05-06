@@ -35,7 +35,7 @@ namespace GameManagers
             //Sets this to not be destroyed when reloading scene
             DontDestroyOnLoad(gameObject);
 
-            instance.myPrimaryInputController = new KeyboardInput();
+            instance.myPrimaryInputController = new KeyboardInputController();
 
             //Call the InitGame function to initialize the level
            InitGame();

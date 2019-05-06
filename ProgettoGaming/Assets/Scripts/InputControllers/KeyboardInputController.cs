@@ -20,20 +20,11 @@ namespace InputControllers
             Left = (horz < 0);
             Right = (horz > 0);
 
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                useBonus = true;
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                useBonus = false;
-            }
+            useBonus = Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0); //  è il pulsante sinistro del mouse
 
 
 
-            Debug.Log(useBonus);
+
 
         }
 

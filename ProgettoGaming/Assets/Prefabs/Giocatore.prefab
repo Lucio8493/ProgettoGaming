@@ -1368,7 +1368,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &587511559550547763
 SphereCollider:
@@ -2813,6 +2813,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: PreyArrow
+      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2868,11 +2873,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: PreyArrow
-      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: target
@@ -2909,6 +2909,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: HunterArrow
+      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2963,11 +2968,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: HunterArrow
       objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
@@ -3077,6 +3077,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928289386031559}
     m_Modifications:
+    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
+      propertyPath: m_Name
+      value: Magic fire pro orange
+      objectReference: {fileID: 0}
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3120,10 +3124,6 @@ PrefabInstance:
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
-      propertyPath: m_Name
-      value: Magic fire pro orange
       objectReference: {fileID: 0}
     - target: {fileID: 4404365773844742, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalScale.x

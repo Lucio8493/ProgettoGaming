@@ -425,7 +425,7 @@ MonoBehaviour:
   FullRandom: 0
   RandomSeed: 12345
   Floor: {fileID: 2135401465745572770, guid: b0ec37bf081def745b7d7ed376c79d52, type: 3}
-  Wall: {fileID: 1775078386584616738, guid: 9202ae03d63427540a98214e92acc32c, type: 3}
+  Wall: {fileID: 144206, guid: 9de82ec743bb24449a99f5cf1e325d61, type: 3}
   FowPlane: {fileID: 986924102}
   Rows: 50
   Columns: 50
@@ -1208,11 +1208,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290615008437665338, guid: 1457ad2866c72d74f8aa321a867ad860,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 3750618765606362934, guid: 1457ad2866c72d74f8aa321a867ad860,
         type: 3}

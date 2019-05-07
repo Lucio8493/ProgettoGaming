@@ -26,10 +26,11 @@ namespace InputControllers
 
         public virtual void CheckInput()
         {
-            // override with your own code to deal with input
-            horz = Input.GetAxis("Horizontal");
-            vert = Input.GetAxis("Vertical");
+            // override con il codice per gestire l'input
+        
         }
+
+
 
 
         // ottengo i due assi

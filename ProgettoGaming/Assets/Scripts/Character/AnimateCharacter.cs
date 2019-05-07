@@ -22,7 +22,7 @@ namespace Character
         // Update is called once per frame
         void Update()
         {
-            if (status.IsMoving)
+            if (status.IsMoving && !status.IsFacing)
             {
                 anim.SetInteger("speed", 1);
             } else

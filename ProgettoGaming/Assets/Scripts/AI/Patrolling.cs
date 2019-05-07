@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class Patrolling : MonoBehaviour
 {
-
+    // togliere i public e mettere i protected
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
+    
 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
         // approaches a destination point).
@@ -43,7 +47,16 @@ public class Patrolling : MonoBehaviour
     {
         // Choose the next destination point when the agent gets
         // close to the current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        //if (!agent.pathPending && agent.remainingDistance < 0.5f)
             GotoNextPoint();
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bonus"))
+        {
+            collision.gameObject.SetActive(false);
+            Debug.Log("Nemico complimenti, hai preso il bonus");
+        }
     }
 }

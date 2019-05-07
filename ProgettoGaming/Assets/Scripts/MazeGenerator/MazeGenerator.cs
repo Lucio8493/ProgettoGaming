@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class MazeGenerator: MonoBehaviour
 {
@@ -28,12 +29,16 @@ public class MazeGenerator: MonoBehaviour
 
     private BasicMazeGenerator mMazeGenerator = null;
 
+    private int randomInt;
+    System.Random rnd = new System.Random();
+    int bonusN = 0;
+
 
     public void generate()
     {
         if (!FullRandom)
         {
-            Random.InitState(RandomSeed);
+            UnityEngine.Random.InitState(RandomSeed);
         }
         switch (Algorithm)
         {
@@ -90,15 +95,20 @@ public class MazeGenerator: MonoBehaviour
                     tmp.transform.parent = transform;
                 }
 
-                //lo tengo cosi' possiamo pensare di gestire l'aggiunta dei bonus con questa informazione
-                if (cell.IsGoal && GoalPrefab != null)
+                randomInt = rnd.Next(1, 20);
+                if (randomInt > 12)
                 {
-                    tmp = Instantiate(GoalPrefab, new Vector3(x, 1, z), Quaternion.Euler(0, 0, 0)) as GameObject;
-                    tmp.transform.parent = transform;
+                    //lo tengo cosi' possiamo pensare di gestire l'aggiunta dei bonus con questa informazione
+                    if (cell.IsGoal && GoalPrefab != null)
+                    {
+                        bonusN++;
+                        tmp = Instantiate(GoalPrefab, new Vector3(x, 1, z), Quaternion.Euler(0, 0, 0)) as GameObject;
+                        tmp.transform.parent = transform;
+                    }
                 }
             }
         }
-
+        Debug.Log("Ho creato " + bonusN + " Bonus");
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 

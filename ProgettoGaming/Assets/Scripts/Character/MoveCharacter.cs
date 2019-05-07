@@ -22,16 +22,12 @@ namespace Character
 
         private int numBonus = 0;
 
-        [SerializeField] protected Text scoreText;
-
         void Start()
         {
          //   _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
 
-            rb = GetComponent<Rigidbody>();
-
-            SetScoreText();
+            rb = GetComponent<Rigidbody>();           
 
             // @@ ATTENZIONE la gestione della camera forse è meglio metterla nel game manager invece che in move character, che dovrebbe solo fare qualcosa del tipo GameManager.getCamera
             // o forse la gestione degli assi rispetto alla telecamera è una questione di input, qui non dovrebbe esserci
@@ -98,14 +94,8 @@ namespace Character
                 numBonus++;
                 collision.gameObject.SetActive(false);
                 Debug.Log("Player complimenti, hai preso il bonus. Hai collezionato " + numBonus + " bonus");
-                SetScoreText();
             }
         }
 
-        // @@ è solo per prova
-        void SetScoreText()
-        {
-            scoreText.text = "Bonus raccolti: " + numBonus.ToString();
-        }
     }
 }

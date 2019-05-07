@@ -8,12 +8,11 @@ namespace Character
     {
        // protected CharacterController _charController;
         protected CharacterStatus status;
-        public Rigidbody rb;
+        private Rigidbody rb;
 
 
         [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
-        [SerializeField] protected float gravity = -9.8f;
 
 
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
@@ -30,7 +29,8 @@ namespace Character
 
 
 
-            // ** ATTENZIONE ** la gestione della camera forse è meglio metterla nel game manager invece che in move character, che dovrebbe solo fare qualcosa del tipo GameManager.getCamera
+            // @@ ATTENZIONE la gestione della camera forse è meglio metterla nel game manager invece che in move character, che dovrebbe solo fare qualcosa del tipo GameManager.getCamera
+                // o forse la gestione degli assi rispetto alla telecamera è una questione di input, qui non dovrebbe esserci
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -77,10 +77,11 @@ namespace Character
                     m_move = vertMovement * m_CamForward + orizMovement * m_Cam.right;
                     //gira il personaggio in base a dove deve andare
                     transform.forward = m_move;
-                    rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
 
-
-
+                    if (!status.IsFacing)
+                    {
+                        rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
+                    }
 
                 }
                 else

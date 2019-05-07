@@ -14,6 +14,7 @@ namespace Character
         protected bool isMoving;
         protected bool isRotating;
         protected bool isGrounded;
+        protected bool isFacing;
 
         protected float verticalMovement;
         protected float orizontalMovement;
@@ -49,6 +50,11 @@ namespace Character
 
         }
 
+        public bool IsFacing
+        {
+            get { return isFacing; }
+        }
+
         public float VerticalMovement
         {
             get { return verticalMovement; }
@@ -66,6 +72,7 @@ namespace Character
             playerManagerRef = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
  
             isGrounded = true;
+            isFacing = false;
         }
 
         // Update is called once per frame
@@ -73,6 +80,7 @@ namespace Character
         void Update()
         {
             checkGrounded();
+            checkFacing();
             CollectInputs();
         }
 
@@ -94,6 +102,7 @@ namespace Character
                 || playerManagerRef.PrimaryInputController.Left || playerManagerRef.PrimaryInputController.Right);
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
+            // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
             isRunning = isMoving && playerManagerRef.PrimaryInputController.useBonus;
 
 
@@ -116,6 +125,26 @@ namespace Character
                 }
 
         }
+
+        // @@ i valori raw sono un problema
+        //mi dice se il personaggio sta di fronte a qualcosa @@ aggiungere eventuale contrllo per il muro
+        protected void checkFacing()
+        {
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f)
+                )
+            {
+                isFacing = true;
+            }
+            else
+            {
+                isFacing = false;
+                    //Debug.Log("not facing");
+            }
+
+        }
+
 
     }
 }

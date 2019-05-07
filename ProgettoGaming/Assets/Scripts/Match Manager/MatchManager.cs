@@ -6,10 +6,10 @@ public class MatchManager : MonoBehaviour
 {
     //parte del nemico
     protected GameObject[] enemy;
-    protected Dictionary<string, string> hunterPrey = new Dictionary<string, string>(); // associazione tag_hunter al tag_prey
+    protected Dictionary<int, int> hunterPrey = new Dictionary<int, int>(); // associazione tag_hunter al tag_prey
     // ?chiedere se fare Dictionary<string, string> o Dictionary<GameObject, GameObject>?
-    protected int enemyNumber;
-    
+    private int enemyNumber;
+
 
 
     // parte del bonus
@@ -25,22 +25,28 @@ public class MatchManager : MonoBehaviour
     //parte del player
     protected GameObject player;
 
+
+
     // parte dello score
     // ogni personaggio mantiene il suo punteggio e lo comunica quando muore per la classifica finale.
     // ?invece di fare la classifica si può fare un riepilogo quando il giocatore muore che gli dice il numero di bonus presi
     // e il numero di giocatori catturati?
-    
 
+    protected int EnemyNumber { get => enemyNumber; set => enemyNumber = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        bonus = GameObject.FindGameObjectsWithTag("Bonus");
         
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         
     }
+
 }

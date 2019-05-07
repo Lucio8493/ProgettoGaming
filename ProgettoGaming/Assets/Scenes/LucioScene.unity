@@ -1299,6 +1299,11 @@ PrefabInstance:
       propertyPath: m_Range
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895541, guid: 1457ad2866c72d74f8aa321a867ad860,
+        type: 3}
+      propertyPath: runBoost
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4290615009905218854, guid: 1457ad2866c72d74f8aa321a867ad860, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1457ad2866c72d74f8aa321a867ad860, type: 3}

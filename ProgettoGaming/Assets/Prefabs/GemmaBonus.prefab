@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8189371491170289077}
   - component: {fileID: 8178733375667810233}
   - component: {fileID: 8202173826483332075}
+  - component: {fileID: 1051057671135166256}
   m_Layer: 0
   m_Name: GemmaBonus
-  m_TagString: Untagged
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,3 +98,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &1051057671135166256
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202630048040354531}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.39
+  m_Center: {x: 0, y: 0.1, z: 0}

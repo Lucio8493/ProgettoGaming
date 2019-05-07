@@ -8,6 +8,7 @@ TagManager:
   - FOWPlane
   - Fire
   - Wall
+  - Bonus
   layers:
   - Default
   - TransparentFX

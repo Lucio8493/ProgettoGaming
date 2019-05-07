@@ -5,14 +5,7 @@ using UnityEngine;
 namespace InputControllers
 {
     public  class BaseInputController
-    {
-
-        // directional buttons
-        public bool Up;
-        public bool Down;
-
-        public bool Left;
-        public bool Right;
+    {       
 
 
         // fire/action buttons

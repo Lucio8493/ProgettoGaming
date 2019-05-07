@@ -98,8 +98,7 @@ namespace Character
             orizontalMovement = playerManagerRef.PrimaryInputController.GetHorizontal();
 
 
-            isMoving = isGrounded && (playerManagerRef.PrimaryInputController.Down || playerManagerRef.PrimaryInputController.Up
-                || playerManagerRef.PrimaryInputController.Left || playerManagerRef.PrimaryInputController.Right);
+            isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0);
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
             // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso

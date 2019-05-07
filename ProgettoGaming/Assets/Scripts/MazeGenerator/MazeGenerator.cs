@@ -108,7 +108,9 @@ public class MazeGenerator: MonoBehaviour
                 }
             }
         }
+        // @@ è solo per la demo
         Debug.Log("Ho creato " + bonusN + " Bonus");
+
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 

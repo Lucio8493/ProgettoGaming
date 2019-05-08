@@ -11,17 +11,22 @@ namespace GameManagers
     {
         protected BaseInputController myPrimaryInputController;
 
-        
+        protected GameObject player;
         protected Pointing HunterArrow;
         protected Pointing PreyArrow;
 
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             myPrimaryInputController = new KeyboardInputController();
+            player = GameObject.FindGameObjectWithTag("Player");
             HunterArrow = GameObject.Find("HunterArrow").GetComponent<Pointing>();
             PreyArrow = GameObject.Find("PreyArrow").GetComponent<Pointing>();
+        }
+
+        private void Start()
+        {
             setTarget();
         }
 
@@ -63,6 +68,16 @@ namespace GameManagers
         {
             changeHunter(GameObject.Find("Hunter"));
             changePrey(GameObject.Find("Prey"));
+        }
+
+        public void moveCharacter(Vector3 offset)
+        {
+            player.transform.position = player.transform.position + offset;
+        }
+
+        public Vector3 getPosition()
+        {
+            return player.transform.position;
         }
     }
 }

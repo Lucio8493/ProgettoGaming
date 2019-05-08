@@ -31,14 +31,8 @@ public class MazeGenerator: MonoBehaviour
     private const float cellWidth = 5;
     private const float cellHeight = 5;
 
-
-    //public GameObject GoalPrefab = null;
-
     private BasicMazeGenerator mMazeGenerator = null;
 
-    ////private int randomInt;
-   ///// System.Random rnd = new System.Random();
-    //int bonusN = 0;
 
     public BasicMazeGenerator MMazeGenerator { get => mMazeGenerator;}
 
@@ -125,15 +119,7 @@ public class MazeGenerator: MonoBehaviour
             }
         }
 
-        /*
-<<<<<<< Updated upstream
-        // @@ è solo per la demo
-        Debug.Log("Ho creato " + bonusN + " Bonus");
-=======
-        //Debug.Log("Ho creato " + bonusN + " Bonus");
 
->>>>>>> Stashed changes
-*/
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 

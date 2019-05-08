@@ -16,7 +16,6 @@ namespace GameManagers
         public NumberOfPlayers Players = NumberOfPlayers.four;
         public GameObject goalPrefab = null;
         public GameObject enemyPlayerPrefab = null;
-        private GameObject myPlayer = null;
 
 
         private MazeGenerator myMazeGenerator = null;
@@ -24,13 +23,13 @@ namespace GameManagers
         private GameObject[] enemylist;
         private const int BONUSES = 4;
         private System.Random rnd = new System.Random();
+        private PlayerManager playerManager;
 
 
-        // Start is called before the first frame update
         public void Set()
         {
+            playerManager = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
             myMazeGenerator = GameObject.Find("Maze").GetComponent<MazeGenerator>();
-            myPlayer = GameObject.FindGameObjectWithTag("Player");
             switch (Players)
             {
                 case NumberOfPlayers.four:
@@ -76,20 +75,16 @@ namespace GameManagers
                 ///Nel caso mi trovassi nell'ultima zona e il player non fosse stato ancora creato lo creo
                 if (!playerCreated && rnd.Next()%2==1 || !playerCreated && i==numberOfZones.Length-1)
                 {
-                    //vettore per spostare la camera
-                    Vector3 oldPosiiton = myPlayer.GetComponent<Transform>().position;
-                    
-
-                    myPlayer.GetComponent<Transform>().position = new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth);
-                    myPlayer.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+                    //scegliamo la nuova posizione
+                    Vector3 newPosition = new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth);
+                    //procediamo a spostare il player e calcoliamo lo spostamento da fare
+                    Vector3 offset = newPosition - playerManager.getPosition();
+                    playerManager.moveCharacter(offset);
+                    //procedo a spostare la telecamera di conseguenza
+                    CameraController cameraController = Camera.main.GetComponent<CameraController>();
+                    cameraController.moveCamera(offset);
+                    cameraController.SetOffset();
                     playerCreated = true;
-
-                    //@@la telecamera va gestita in maniera diversa
-                    Vector3 offset = myPlayer.GetComponent<Transform>().position + oldPosiiton;
-                    Camera camera = Camera.main;
-                    Vector3 cameraPosition = camera.transform.position;
-                    camera.transform.position = camera.transform.position + offset;
-                    camera.GetComponent<CameraController>().SetOffset();
                 }
                 ///altrimenti creo un nemico al centro della zona prevista e lo aggiungo alla lista dei nemici
                 else if ( playerCreated && i == numberOfZones.Length - 1)
@@ -124,7 +119,8 @@ namespace GameManagers
                     {
                         break;
                     }
-                    else if (rnd.Next() % 2 == 1 && getCell(row, column).IsGoal)
+                    //crea un bonus in quella cella con una possibilita' su 30
+                    else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
                         z.addBonus(tmp);
@@ -191,7 +187,8 @@ namespace GameManagers
                 bonuses[lastBonus] = bonus;
                 lastBonus++;
             }
-            else
+            
+            if(lastBonus==bonuses.Length)
             {
                 isFull = true;
                 Debug.Log("Max Bonus");

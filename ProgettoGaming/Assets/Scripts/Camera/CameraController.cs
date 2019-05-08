@@ -30,4 +30,10 @@ public class CameraController : MonoBehaviour
         // Quindi, quando settiamo la posizione della camera, noi sappiamo certamente che il player si è mosso in quel frame
         transform.position = player.transform.position + offset;
     }
+
+
+    public void moveCamera(Vector3 move)
+    {
+        this.transform.position = this.transform.position + move;
+    }
 }

@@ -9,24 +9,19 @@ public class FogOfWarScript : MonoBehaviour
     [SerializeField]
     protected GameObject m_fogOfWarPlane;
     [SerializeField]
-    protected Transform m_player;
-    [SerializeField]
     protected LayerMask m_fogLayer;
     [SerializeField]
     protected float m_radius = 5f; // dimensione attorno al giocatore che verrà rivelata
 
     private float m_radiusSqr { get { return m_radius * m_radius; } }
 
+    public Transform Player { get => m_player; set => m_player = value; }
+
+    private Transform m_player;
     private Mesh m_mesh;
     private Vector3[] m_vertices;
     private Color[] m_coloros;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialize();
-    }
+    
 
     // Update is called once per frame
     public void UpdateFOW()
@@ -68,7 +63,7 @@ public class FogOfWarScript : MonoBehaviour
         return new Vector3(m_player.position.x, m_player.position.y + 20, m_player.position.z);
     }
 
-    void Initialize()
+    public void Initialize()
     {
         m_mesh = m_fogOfWarPlane.GetComponent<MeshFilter>().mesh; // accediamo al mesh filter del fow plane e alla sua mesh
         m_vertices = m_mesh.vertices;

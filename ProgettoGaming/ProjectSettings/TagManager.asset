@@ -9,6 +9,15 @@ TagManager:
   - Fire
   - Wall
   - Bonus
+  - Enemy
+  - Enemy0
+  - Enemy1
+  - Enemy2
+  - Enemy3
+  - Enemy4
+  - Enemy5
+  - Enemy6
+  - Enemy7
   layers:
   - Default
   - TransparentFX

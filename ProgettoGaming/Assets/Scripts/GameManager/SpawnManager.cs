@@ -20,10 +20,13 @@ namespace GameManagers
 
         private MazeGenerator myMazeGenerator = null;
         private Zone[] numberOfZones;
-        private GameObject[] enemylist;
+        public GameObject[] enemylist;
         private const int BONUSES = 4;
         private System.Random rnd = new System.Random();
         private PlayerManager playerManager;
+
+        private int id_bonus = 0;
+        private int id_enemy = 0;
 
 
         public void Set()
@@ -90,11 +93,15 @@ namespace GameManagers
                 else if ( playerCreated && i == numberOfZones.Length - 1)
                 {
                     tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    tmp.name = tmp.name + id_enemy;
+                    id_enemy++;
                     enemylist[i-1] = tmp;
                 }
                 else
                 {
                     tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    tmp.name = tmp.name + id_enemy;
+                    id_enemy++;
                     enemylist[i] = tmp;
                 }
                 ///in ogni caso in ogni zona procedo a creare tutti i bonus previsti all'interno della zona
@@ -123,6 +130,8 @@ namespace GameManagers
                     else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                        tmp.name = tmp.name + id_bonus;
+                        id_bonus++;
                         z.addBonus(tmp);
                         break;
                     }

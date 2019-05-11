@@ -24,6 +24,10 @@ public class Patrolling : MonoBehaviour
         // approaches a destination point).
         agent.autoBraking = false;
 
+        //dico al navmesh che non deve muoversi da solo
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+
         GotoNextPoint();
     }
 
@@ -36,6 +40,13 @@ public class Patrolling : MonoBehaviour
 
         // Set the agent to go to the currently selected destination.
         agent.destination = points[destPoint].position;
+
+        //nextPosition mi restituisce la prossima posizione da raggiungere
+
+        transform.forward = new Vector3(agent.nextPosition.x.CompareTo(transform.position.x), 0, agent.nextPosition.z.CompareTo(transform.position.z));
+
+        //@@ è un inputcontroller
+        GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * Time.deltaTime * 6); // muovi davanti
 
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.

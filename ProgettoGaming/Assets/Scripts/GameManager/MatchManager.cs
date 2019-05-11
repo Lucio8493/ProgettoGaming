@@ -6,27 +6,18 @@ using UnityEngine;
 namespace GameManagers {
     public class MatchManager : MonoBehaviour
     {
-        // info dallo spawner
-        private SpawnManager spnMng;
-
         //parte del nemico
         protected GameObject[] enemy;
+        protected List<GameObject> enemyList;
         protected Dictionary<string, string> hunterPrey = new Dictionary<string, string>(); // associazione nome_hunter con nome_hunter
         protected Dictionary<string, string> test = new Dictionary<string, string>();
         private int mexicanStallValue = 3;
         
-
         // parte del bonus
         protected GameObject[] bonus;
-        protected int bonusNumber; // indica il numero di bonus che devono spawnare anche questo deve essere in base alla dimensione del labirinto
-        protected Dictionary<GameObject, GameObject> bonusTarget = new Dictionary<GameObject, GameObject>(); // associazione del bonus al target
-                                                                                                             // dove il target può essere il cacciatore,
-                                                                                                             // la preda o il giocatore
-
+        
         //parte del player
         protected GameObject player;
-
-
 
         // parte dello score
         // ogni personaggio mantiene il suo punteggio e lo comunica quando muore per la classifica finale.
@@ -37,15 +28,16 @@ namespace GameManagers {
         void Start()
         {
             enemy = GameObject.FindGameObjectsWithTag("Enemy");
+            enemyList = new List<GameObject>(enemy);
             player = GameObject.FindGameObjectWithTag("Player");
 
             Debug.Log("Numero di nemici: " + enemy.Length);
-            /* per test
+            // per test
             // il primo for mi serve solo per vedere se riuscivo ad accedere al nome dell'oggetto
             for (int i = 0; i < enemy.Length; i++) {
                 Debug.Log("MatchManager dice -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
             }
-            
+            /*
             // per testare se riempie correttamente
             test = AssociatesHunterWithPrey();
             foreach(KeyValuePair<string, string> el in test)
@@ -53,10 +45,24 @@ namespace GameManagers {
                 Debug.Log("" + el.Key + " -> " + el.Value);
             }
             */
-            AssociatesHunterWithPrey();
+            AssociatesHunterWithPrey(enemy);
             // per test
             Debug.Log("La preda di Hunter(Clone)2 è: "+GetMyPrey("Hunter(Clone)2"));
             //
+
+            /*
+            // test
+            TargetCaptured(enemy[1]);
+            for (int i = 0; i < enemy.Length; i++)
+            {
+                Debug.Log("Dopo il remove -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
+            }
+            foreach (KeyValuePair<string, string> el in hunterPrey)
+            {
+                Debug.Log("Dopo la rimozione");
+                Debug.Log("" + el.Key + " -> " + el.Value);
+            }
+            */
         }
 
         // Update is called once per frame
@@ -66,19 +72,19 @@ namespace GameManagers {
         }
 
         // associo l'hunter alla preda
-        //private Dictionary<string, string> AssociatesHunterWithPrey() 
-        private void AssociatesHunterWithPrey()
+        //private Dictionary<string, string> AssociatesHunterWithPrey(GameObject[] target) 
+        private void AssociatesHunterWithPrey(GameObject[] target)
         {
-            for(int i = 0; i <= enemy.Length; i++)
+            for(int i = 0; i <= target.Length; i++)
             {
                 // @@ trovare un modo migliore se possibile
-                if(i == enemy.Length - 1)
+                if(i == target.Length - 1)
                 {
-                    hunterPrey.Add(enemy[i].name, player.name);
-                    hunterPrey.Add(player.name, enemy[0].name);
+                    hunterPrey.Add(target[i].name, player.name);
+                    hunterPrey.Add(player.name, target[0].name);
                     break;
                 }
-                hunterPrey.Add(enemy[i].name, enemy[i + 1].name);
+                hunterPrey.Add(target[i].name, target[i + 1].name);
             }
             // per testare se associo correttamente.
             //return hunterPrey;
@@ -95,10 +101,14 @@ namespace GameManagers {
         }
 
         // rimuove il valore in base alla chiave hunter passato
-        public Dictionary<string, string> TargetCaptured(GameObject hunter)
+        // @@ vedere se si può migliorare questo metodo
+        public void TargetCaptured(GameObject hunter)
         {
             hunterPrey.Remove(hunter.name);
-            return hunterPrey;
+            enemyList.Remove(hunter);
+            enemy = enemyList.ToArray();
+            hunterPrey.Clear();
+            AssociatesHunterWithPrey(enemy);
         }
 
         // prendo la preda che mi è stata associata
@@ -107,5 +117,7 @@ namespace GameManagers {
             string namePrey = hunterPrey[nameHunter];
             return namePrey;
         }
+
+
     }
 }

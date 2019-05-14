@@ -26,6 +26,7 @@ public class MazeGenerator: MonoBehaviour
     private int rows = 5;
     [SerializeField]
     private int columns = 5;
+    private const int FowHeight = 3;
 
 
     private const float cellWidth = 5;
@@ -125,7 +126,7 @@ public class MazeGenerator: MonoBehaviour
 
         //creazione del velo di FOW
         //il meno e' un offset legato alla creazione del maze, che pone le mura nella parte esterna rispetto rispetto al centro posizione della cella        
-        FowPlane.transform.position = new Vector3(((Columns * cellWidth) / 2)-cellWidth/2, 3, ((Rows * cellHeight) / 2)-cellHeight/2);
+        FowPlane.transform.position = new Vector3(((Columns * cellWidth) / 2)-cellWidth/2, FowHeight, ((Rows * cellHeight) / 2)-cellHeight/2);
         //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 5 colonne e 5 righe da mettere esternamente)
         FowPlane.transform.localScale = new Vector3((Columns + 5) * cellWidth, (Rows + 5) * cellHeight, 1);
         //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido

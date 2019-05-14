@@ -350,8 +350,8 @@ MonoBehaviour:
   Floor: {fileID: 2135401465745572770, guid: b0ec37bf081def745b7d7ed376c79d52, type: 3}
   Wall: {fileID: 144206, guid: 9de82ec743bb24449a99f5cf1e325d61, type: 3}
   FowPlane: {fileID: 986924102}
-  rows: 40
-  columns: 40
+  rows: 50
+  columns: 50
 --- !u!4 &693426506
 Transform:
   m_ObjectHideFlags: 0
@@ -413,12 +413,16 @@ MonoBehaviour:
     type: 3}
   enemyPlayerPrefab: {fileID: 3797126801742604879, guid: 6758cca1bac877740a5184e4f9dcc0b6,
     type: 3}
+  myMazeGenerator: {fileID: 0}
   enemylist:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerManager: {fileID: 0}
+  id_bonus: 0
+  id_enemy: 0
 --- !u!1 &758473867
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,15 +723,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1410278314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99781995a80e0254a9e44bc05009f291, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c3fda67be0d5324fb3e0624d6f991d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Players: 0
+  Players: 1
   goalPrefab: {fileID: 8202630048040354531, guid: 6575ee05b7cce1341b890f07301d5362,
     type: 3}
   enemyPlayerPrefab: {fileID: 3797126801742604879, guid: 6758cca1bac877740a5184e4f9dcc0b6,
     type: 3}
-  enemylist: []
 --- !u!114 &1410278319
 MonoBehaviour:
   m_ObjectHideFlags: 0

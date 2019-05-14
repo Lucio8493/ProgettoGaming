@@ -20,13 +20,12 @@ namespace GameManagers
 
         private MazeGenerator myMazeGenerator = null;
         private Zone[] numberOfZones;
-        public GameObject[] enemylist;
+        private GameObject[] enemylist;
         private const int BONUSES = 4;
         private System.Random rnd = new System.Random();
         private PlayerManager playerManager;
-
-        private int id_bonus = 0;
         private int id_enemy = 0;
+        
 
 
         public void Set()
@@ -130,8 +129,6 @@ namespace GameManagers
                     else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
-                        tmp.name = tmp.name + id_bonus;
-                        id_bonus++;
                         z.addBonus(tmp);
                         break;
                     }

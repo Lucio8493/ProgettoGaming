@@ -24,6 +24,7 @@ namespace GameManagers {
         // ?invece di fare la classifica si può fare un riepilogo quando il giocatore muore che gli dice il numero di bonus presi
         // e il numero di giocatori catturati?
 
+        public void MatchSet()
         {
             enemy = GameObject.FindGameObjectsWithTag("Enemy");
             enemyList = new List<GameObject>(enemy);

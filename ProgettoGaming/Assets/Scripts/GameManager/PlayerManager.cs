@@ -15,7 +15,7 @@ namespace GameManagers
         protected Pointing HunterArrow;
         protected Pointing PreyArrow;
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
-        
+        GameObject player; // il giocatore controllato dall'utente
 
         // Start is called before the first frame update
         void Start()
@@ -36,6 +36,7 @@ namespace GameManagers
                 {
                     controllers.Add(p, new KeyboardInputController());
                     p.GetComponent<NavMeshAgent>().enabled = false; // @@soluzione temporanea
+                    player = p;
                 }
                 if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.AI)
                 {
@@ -89,5 +90,17 @@ namespace GameManagers
             changeHunter(GameObject.Find("Hunter"));
             changePrey(GameObject.Find("Prey"));
         }
+
+        public void moveCharacter(Vector3 offset)
+        {
+            player.transform.position = player.transform.position + offset;
+        }
+
+        public Vector3 getPosition()
+        {
+            return player.transform.position;
+        }
+
+
     }
 }

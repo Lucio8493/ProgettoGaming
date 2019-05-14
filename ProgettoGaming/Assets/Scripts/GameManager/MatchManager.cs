@@ -24,8 +24,7 @@ namespace GameManagers {
         // ?invece di fare la classifica si può fare un riepilogo quando il giocatore muore che gli dice il numero di bonus presi
         // e il numero di giocatori catturati?
 
-        // Start is called before the first frame update
-        void Start()
+        public void MatchSet()
         {
             enemy = GameObject.FindGameObjectsWithTag("Enemy");
             enemyList = new List<GameObject>(enemy);

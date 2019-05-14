@@ -12,16 +12,13 @@ namespace GameManagers
         protected FogOfWarScript fow;
         protected SpawnManager spawnManager;
 
-        // Start is called before the first frame update
-        void Awake()
+       //Metedo utilizzato per inizializzare l'ambiente
+        public void GenerateEnviroment()
         {
 
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             m.generate();
             fow = this.GetComponent<FogOfWarScript>();
-            spawnManager = this.GetComponent<SpawnManager>();
-            spawnManager.Set();
-
             fow.Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             fow.Initialize();
         }

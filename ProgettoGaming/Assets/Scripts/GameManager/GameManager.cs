@@ -37,6 +37,14 @@ namespace GameManagers
            
         }
 
+        private void Start()
+        {
+            this.GetComponentInChildren<MazeManager>().GenerateEnviroment();
+            this.GetComponentInChildren<SpawnManager>().Set();
+            this.GetComponentInChildren<MatchManager>().MatchSet();
+
+        }
+
         //Update is called every frame.
         void Update()
         {

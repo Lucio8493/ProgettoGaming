@@ -21,18 +21,26 @@ public class MazeGenerator: MonoBehaviour
     public GameObject Floor = null;
     public GameObject Wall = null;
     public GameObject FowPlane = null;
-    public int Rows = 5;
-    public int Columns = 5;
-    public float CellWidth = 5;
-    public float CellHeight = 5;
-    public GameObject GoalPrefab = null;
+
+    [SerializeField]
+    private int rows = 5;
+    [SerializeField]
+    private int columns = 5;
+    private const int FowHeight = 3;
+
+
+    private const float cellWidth = 5;
+    private const float cellHeight = 5;
 
     private BasicMazeGenerator mMazeGenerator = null;
 
-    private int randomInt;
-    System.Random rnd = new System.Random();
-    int bonusN = 0;
 
+    public BasicMazeGenerator MMazeGenerator { get => mMazeGenerator;}
+
+    public static float CellWidth => cellWidth;
+    public static float CellHeight => cellHeight;
+    public int Rows { get => rows;}
+    public int Columns { get => columns; }
 
     public void generate()
     {
@@ -66,8 +74,8 @@ public class MazeGenerator: MonoBehaviour
         {
             for (int column = 0; column < Columns; column++)
             {
-                float x = column * (CellWidth);
-                float z = row * (CellHeight);
+                float x = column * (cellWidth);
+                float z = row * (cellHeight);
                 MazeCell cell = mMazeGenerator.GetMazeCell(row, column);
                 GameObject tmp;
                 tmp = Instantiate(Floor, new Vector3(x, 0, z), Quaternion.Euler(0, 0, 0)) as GameObject;
@@ -76,25 +84,27 @@ public class MazeGenerator: MonoBehaviour
 
                 if (cell.WallRight)
                 {
-                    tmp = Instantiate(Wall, new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
+                    tmp = Instantiate(Wall, new Vector3(x + cellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
                     tmp.transform.parent = transform;
                 }
                 if (cell.WallFront)
                 {
-                    tmp = Instantiate(Wall, new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
+                    tmp = Instantiate(Wall, new Vector3(x, 0, z + cellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// front
                     tmp.transform.parent = transform;
                 }
                 if (cell.WallLeft)
                 {
-                    tmp = Instantiate(Wall, new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
+                    tmp = Instantiate(Wall, new Vector3(x - cellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// left
                     tmp.transform.parent = transform;
                 }
                 if (cell.WallBack)
                 {
-                    tmp = Instantiate(Wall, new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
+                    tmp = Instantiate(Wall, new Vector3(x, 0, z - cellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
                     tmp.transform.parent = transform;
                 }
 
+
+                /*
                 randomInt = rnd.Next(1, 20);
                 if (randomInt > 12)
                 {
@@ -106,20 +116,20 @@ public class MazeGenerator: MonoBehaviour
                         tmp.transform.parent = transform;
                     }
                 }
+                */
             }
         }
-        // @@ è solo per la demo
-        Debug.Log("Ho creato " + bonusN + " Bonus");
+
 
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 
         //@@ eliminare numeri magici
         //creazione del velo di FOW
-        //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
-        FowPlane.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);
+        //il meno e' un offset legato alla creazione del maze, che pone le mura nella parte esterna rispetto rispetto al centro posizione della cella        
+        FowPlane.transform.position = new Vector3(((Columns * cellWidth) / 2)-cellWidth/2, FowHeight, ((Rows * cellHeight) / 2)-cellHeight/2);
         //settaggio delle dimensioni del pannello della fow (ampiezza del labirinto piu' 5 colonne e 5 righe da mettere esternamente)
-        FowPlane.transform.localScale = new Vector3((Columns + 5) * CellWidth, (Rows + 5) * CellHeight, 1);
+        FowPlane.transform.localScale = new Vector3((Columns + 5) * cellWidth, (Rows + 5) * cellHeight, 1);
         //settaggio della mesh del plane in modo da garantirsi che il numero di vertici e di triangoli sia sufficiente ad avere un movimento fluido
         FowPlane.GetComponent<ProceduralPlane>().xSegments = Columns*3;
         FowPlane.GetComponent<ProceduralPlane>().ySegments = Rows*3;

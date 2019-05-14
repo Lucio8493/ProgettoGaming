@@ -8,19 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] protected GameObject player; // un riferimento pubblico al game object player.
     private Vector3 offset; // un riferimento privato a Vector3 che contenga i valori di offset
                             // offset è privato perché perché possiamo impostare il suo valore nello script
-
+    
     // Start is called before the first frame update
-    void Start()
+    public void SetOffset()
     {
         // per il valore dell'offset prendiamo la posizione corrente del Transform della camera e sottraiamo 
         // la Transform position del giocatore per trovare la differenza tra i due 
         offset = transform.position - player.transform.position;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 
     void LateUpdate()
@@ -35,5 +29,11 @@ public class CameraController : MonoBehaviour
         // è garantito che viene eseguito dopo che tutti gli item sono stati processati in update. 
         // Quindi, quando settiamo la posizione della camera, noi sappiamo certamente che il player si è mosso in quel frame
         transform.position = player.transform.position + offset;
+    }
+
+
+    public void moveCamera(Vector3 move)
+    {
+        this.transform.position = this.transform.position + move;
     }
 }

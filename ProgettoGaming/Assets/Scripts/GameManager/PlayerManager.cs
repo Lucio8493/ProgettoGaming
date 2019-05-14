@@ -2,33 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InputControllers;
-
+using Character;
+using UnityEngine.AI;
 
 namespace GameManagers
 {
 
     public class PlayerManager : MonoBehaviour
     {
-        protected BaseInputController myPrimaryInputController;
 
         
         protected Pointing HunterArrow;
         protected Pointing PreyArrow;
-
+        private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
+        
 
         // Start is called before the first frame update
         void Start()
         {
-            myPrimaryInputController = new KeyboardInputController();
             HunterArrow = GameObject.Find("HunterArrow").GetComponent<Pointing>();
             PreyArrow = GameObject.Find("PreyArrow").GetComponent<Pointing>();
+            FindPlayers();
             setTarget();
+        }
+
+        // imposta i controller che devono utilizzare tutti i personaggi in gioco
+        void FindPlayers()
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in players) {
+              
+                if ( p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
+                {
+                    controllers.Add(p, new KeyboardInputController());
+                    p.GetComponent<NavMeshAgent>().enabled = false; // @@soluzione temporanea
+                }
+                if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.AI)
+                {
+                    controllers.Add(p, new AiInputController());
+
+                }
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            myPrimaryInputController.CheckInput();
+
+            // controllo gli input di tutti i giocatori
+            foreach (GameObject p in controllers.Keys)
+            {
+                controllers[p].CheckInput(p);
+            }
             
         }
 
@@ -39,13 +64,13 @@ namespace GameManagers
         }
 
 
-        public BaseInputController PrimaryInputController
+        public BaseInputController GetController(GameObject p)
         {
-            get
-            {
-                return myPrimaryInputController;
-            }
+           
+                return controllers[p];
+         
         }
+
 
         private void changeHunter(GameObject value)
         {

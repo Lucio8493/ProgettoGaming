@@ -10,7 +10,7 @@ namespace InputControllers
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
 
 
-        public override void CheckInput()
+        public override void CheckInput(GameObject o)
         {
             // override with your own code to deal with input
             horz = Input.GetAxisRaw("Horizontal");

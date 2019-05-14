@@ -17,7 +17,7 @@ namespace InputControllers
 
 
 
-        public virtual void CheckInput()
+        public virtual void CheckInput(GameObject o)// GameObject è l'oggetto a cui il controller fa riferimento
         {
             // override con il codice per gestire l'input
         

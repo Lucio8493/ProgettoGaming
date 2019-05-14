@@ -114,6 +114,7 @@ public class MazeGenerator: MonoBehaviour
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();
 
+        //@@ eliminare numeri magici
         //creazione del velo di FOW
         //il meno 2.5f e' un offset legato alla creazione del maze, che pone le mura inferiori a -2.5f rispetto alla posizione dell'oggetto vuoto Maze
         FowPlane.transform.position = new Vector3(((Columns * CellWidth) / 2)-2.5F, 3, ((Rows * CellHeight) / 2)-2.5F);

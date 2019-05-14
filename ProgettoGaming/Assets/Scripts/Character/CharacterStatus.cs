@@ -16,18 +16,45 @@ namespace Character
         protected bool isGrounded;
         protected bool isFacing;
 
+        // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
+        public GameObject prey; // la preda che il giocatore deve prendere
+
         protected float verticalMovement;
         protected float orizontalMovement;
 
         protected  Vector3 headMovement;
 
-      
+        //definisce se il giocatore deve essere controllato dall'intelligenza artificiale, dal player o da altro
+        public enum typeOfPlayer
+        {
+            Player,
+            AI
+        }
+
+        //@@ va cambiata al runtime
+        [SerializeField]
+        protected typeOfPlayer type;
+
+        // dice se sono un giocatore vero, un IA o altro
+        public typeOfPlayer MyType
+        {
+            get { return type; }
+
+        }
+
+        public GameObject getPrey
+        {
+            get { return prey; }
+        }
+
+
+
         public bool IsRunning{
               get { return isRunning;}
 
-            }
+        }
             
-
+        
 
         public bool IsMoving
         {
@@ -88,21 +115,16 @@ namespace Character
         {
 
 
-
-            /*
-            Vector3 ctrlMoves = gameManagerRef.PrimaryInputController.GetMovementDirectionVector();
-            verticalMovement = ctrlMoves.z;
-            orizontalMovement = ctrlMoves.x;*/
-
-            verticalMovement = playerManagerRef.PrimaryInputController.GetVertical();
-            orizontalMovement = playerManagerRef.PrimaryInputController.GetHorizontal();
+            // @posso chiedere  una volta sola getController e salvarla in una variabile
+            verticalMovement = playerManagerRef.GetController(this.gameObject).GetVertical();
+            orizontalMovement = playerManagerRef.GetController(this.gameObject).GetHorizontal();
 
 
             isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0);
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
             // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
-            isRunning = isMoving && playerManagerRef.PrimaryInputController.useBonus;
+            isRunning = isMoving && playerManagerRef.GetController(this.gameObject).useBonus;
 
 
         }
@@ -131,7 +153,7 @@ namespace Character
         {
 
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 0.7f)
                 )
             {
                 isFacing = true;

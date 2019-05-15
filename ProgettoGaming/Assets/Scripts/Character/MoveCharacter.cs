@@ -13,12 +13,12 @@ namespace Character
         private Rigidbody rb;
 
 
-        [SerializeField] protected float walkSpeed = 6.0f;
+   //     [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
 
+        // @@ i bonus non vanno qui
+        int numBonus = 0;
 
-
-        private int numBonus = 0;
 
         void Start()
         {
@@ -34,7 +34,7 @@ namespace Character
             Vector3 movement = new Vector3(0, 0, 0);
             float vertMovement = 0;
             float orizMovement = 0;
-            float speed = walkSpeed;
+            float speed = status.WalkSpeed;
 
             if (status.IsGrounded)
             {

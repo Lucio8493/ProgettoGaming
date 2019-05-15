@@ -16,6 +16,9 @@ namespace Character
         protected bool isGrounded;
         protected bool isFacing;
 
+        [SerializeField] protected float walkSpeed = 6.0f;
+
+
         // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
         public GameObject prey; // la preda che il giocatore deve prendere
 
@@ -92,6 +95,11 @@ namespace Character
             get { return orizontalMovement; }
         }
 
+
+        public float WalkSpeed
+        {
+            get { return walkSpeed; }
+        }
    
 
         void Start()

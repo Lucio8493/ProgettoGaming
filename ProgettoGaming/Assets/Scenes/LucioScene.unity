@@ -337,7 +337,6 @@ GameObject:
   - component: {fileID: 693426506}
   - component: {fileID: 693426505}
   - component: {fileID: 693426507}
-  - component: {fileID: 693426508}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -409,33 +408,6 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &693426508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693426504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99781995a80e0254a9e44bc05009f291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Players: 1
-  goalPrefab: {fileID: 8202630048040354531, guid: 6575ee05b7cce1341b890f07301d5362,
-    type: 3}
-  enemyPlayerPrefab: {fileID: 3797126801742604879, guid: 6758cca1bac877740a5184e4f9dcc0b6,
-    type: 3}
-  myMazeGenerator: {fileID: 0}
-  enemylist:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerManager: {fileID: 0}
-  id_bonus: 0
-  id_enemy: 0
 --- !u!1 &758473867
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,6 @@ namespace GameManagers
                 if ( p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
                 {
                     controllers.Add(p, new KeyboardInputController());
-                    p.GetComponent<NavMeshAgent>().enabled = false; // @@soluzione temporanea
                     player = p;
                 }
                 if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.AI)

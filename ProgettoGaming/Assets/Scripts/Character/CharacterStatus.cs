@@ -58,13 +58,16 @@ namespace Character
             set { hunter = value; }
         }
 
+        public bool IsVisible
+        {
+            get { return IsVisible;  }
+            set { IsVisible = value; }
+        }
 
         public bool IsRunning{
               get { return isRunning;}
 
         }
-            
-        
 
         public bool IsMoving
         {
@@ -180,7 +183,5 @@ namespace Character
             }
 
         }
-
-
     }
 }

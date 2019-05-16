@@ -19,10 +19,25 @@ namespace GameManagers
 
         public void PlayersSet()
         {
-            //HunterArrow = GameObject.Find("MainCharacter").
-            //PreyArrow = GameObject.Find("MainCharacter").GetComponentInChildren<Pointing>();
+            //recupero i vari giocatori
             FindPlayers();
-            //setTarget();
+            //nel giocatore principale recupero le arrows
+            var children = player.GetComponentsInChildren<Transform>();
+            foreach (var child in children)
+            {
+                if (child.name == "HunterArrow")
+                {
+                    HunterArrow = child.GetComponent<Pointing>();
+                }
+                if (child.name == "PreyArrow")
+                {
+                    PreyArrow = child.GetComponent<Pointing>();
+                }
+            }
+
+            //infine setto l'hunter e il prey recuperandoli dallo status del main character
+            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            changePrey(player.GetComponent<CharacterStatus>().Prey);
         }
 
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
@@ -53,13 +68,17 @@ namespace GameManagers
             {
                 controllers[p].CheckInput(p);
             }
-            
+
+            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            changePrey(player.GetComponent<CharacterStatus>().Prey);
+
+
         }
 
         private void LateUpdate()
         {
-            //HunterArrow.Point();
-            //PreyArrow.Point();
+            HunterArrow.Point();
+            PreyArrow.Point();
         }
 
 
@@ -80,25 +99,5 @@ namespace GameManagers
         {
             PreyArrow.Target = value;
         }
-
-
-        //utilizzato temporaneamente per fare le prove il gestore di partita poi settera' prey e hunter
-        private void setTarget()
-        {
-            changeHunter(this.GetComponent<CharacterStatus>().Hunter);
-            changePrey(this.GetComponent<CharacterStatus>().Prey);
-        }
-
-        public void moveCharacter(Vector3 offset)
-        {
-            player.transform.position = player.transform.position + offset;
-        }
-
-        public Vector3 getPosition()
-        {
-            return player.transform.position;
-        }
-
-
     }
 }

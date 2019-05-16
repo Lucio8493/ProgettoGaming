@@ -34,8 +34,11 @@ namespace InputControllers
               path);
              int cc = 1;
              Debug.Log(path.corners[cc]);
-             horz = path.corners[cc].x.CompareTo(o.transform.position.x);
-             vert = path.corners[cc].z.CompareTo(o.transform.position.z);
+
+                Vector3 difference = path.corners[cc] - o.transform.position;
+
+                horz = difference.x;
+                 vert = difference.z;
                 count = 0;
             }
 

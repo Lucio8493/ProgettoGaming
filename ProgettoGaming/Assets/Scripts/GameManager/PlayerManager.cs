@@ -17,13 +17,12 @@ namespace GameManagers
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
         GameObject player; // il giocatore controllato dall'utente
 
-        // Start is called before the first frame update
-        void Start()
+        public void PlayersSet()
         {
-            HunterArrow = GameObject.Find("HunterArrow").GetComponent<Pointing>();
-            PreyArrow = GameObject.Find("PreyArrow").GetComponent<Pointing>();
+            //HunterArrow = GameObject.Find("MainCharacter").
+            //PreyArrow = GameObject.Find("MainCharacter").GetComponentInChildren<Pointing>();
             FindPlayers();
-            setTarget();
+            //setTarget();
         }
 
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
@@ -59,8 +58,8 @@ namespace GameManagers
 
         private void LateUpdate()
         {
-            HunterArrow.Point();
-            PreyArrow.Point();
+            //HunterArrow.Point();
+            //PreyArrow.Point();
         }
 
 
@@ -86,8 +85,8 @@ namespace GameManagers
         //utilizzato temporaneamente per fare le prove il gestore di partita poi settera' prey e hunter
         private void setTarget()
         {
-            changeHunter(GameObject.Find("Hunter"));
-            changePrey(GameObject.Find("Prey"));
+            changeHunter(this.GetComponent<CharacterStatus>().Hunter);
+            changePrey(this.GetComponent<CharacterStatus>().Prey);
         }
 
         public void moveCharacter(Vector3 offset)

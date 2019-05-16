@@ -30,7 +30,7 @@ namespace InputControllers
             
             // @@ da riscrivere
             if (count > ncicliAggiornamento) { 
-             NavMesh.CalculatePath(o.transform.position, status.getPrey.transform.position, NavMesh.AllAreas,
+             NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas,
               path);
              int cc = 1;
              Debug.Log(path.corners[cc]);

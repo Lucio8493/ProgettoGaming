@@ -40,9 +40,9 @@ namespace GameManagers
         private void Start()
         {
             this.GetComponentInChildren<MazeManager>().GenerateEnviroment();
-            this.GetComponentInChildren<SpawnManager>().Set();
+            this.GetComponentInChildren<SpawnManager>().SpawnSet();
             this.GetComponentInChildren<MatchManager>().MatchSet();
-
+            this.GetComponentInChildren<PlayerManager>().PlayersSet();
         }
 
         //Update is called every frame.

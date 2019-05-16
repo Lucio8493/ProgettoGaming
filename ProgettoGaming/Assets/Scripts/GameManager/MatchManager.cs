@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Character;
 
 namespace GameManagers {
     public class MatchManager : MonoBehaviour
@@ -9,6 +10,7 @@ namespace GameManagers {
         //parte del nemico
         protected GameObject[] enemy;
         protected List<GameObject> enemyList;
+        //nel dictionary entro con la chiave hunter e recupero la prey??
         protected Dictionary<GameObject, GameObject> hunterPrey = new Dictionary<GameObject, GameObject>(); // associazione nome_hunter con nome_hunter
         protected Dictionary<string, string> test = new Dictionary<string, string>();
         private int mexicanStallValue = 3;
@@ -26,9 +28,17 @@ namespace GameManagers {
 
         public void MatchSet()
         {
-            enemy = GameObject.FindGameObjectsWithTag("Enemy");
-            enemyList = new List<GameObject>(enemy);
-            player = GameObject.FindGameObjectWithTag("Player");
+            //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
+            enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+            foreach (GameObject p in enemyList){
+                if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
+                {
+                    player = p;
+                    enemyList.Remove(p);
+                    break;
+                }
+            }
+            enemy = enemyList.ToArray();
 
             Debug.Log("Numero di nemici: " + enemy.Length);
             // per test
@@ -64,6 +74,11 @@ namespace GameManagers {
             */
         }
 
+        void Update()
+        {
+
+            
+        }
         // Update is called once per frame
         void LateUpdate()
         {
@@ -85,9 +100,18 @@ namespace GameManagers {
                 }
                 hunterPrey.Add(target[i], target[i + 1]);
             }
+
+            //aggiunta delle varie prede e dei vari hunter negli status dei giocatori
+            foreach (GameObject p in hunterPrey.Keys)
+            {
+                p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
+                hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
+            }
             // per testare se associo correttamente.
             //return hunterPrey;
             //
+
+
         }
 
         // se il numero di giocatori è pari a tre cambio le regole della partita

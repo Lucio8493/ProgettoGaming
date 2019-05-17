@@ -17,13 +17,27 @@ namespace GameManagers
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
         GameObject player; // il giocatore controllato dall'utente
 
-        // Start is called before the first frame update
-        void Start()
+        public void PlayersSet()
         {
-            HunterArrow = GameObject.Find("HunterArrow").GetComponent<Pointing>();
-            PreyArrow = GameObject.Find("PreyArrow").GetComponent<Pointing>();
+            //recupero i vari giocatori
             FindPlayers();
-            setTarget();
+            //nel giocatore principale recupero le arrows
+            var children = player.GetComponentsInChildren<Transform>();
+            foreach (var child in children)
+            {
+                if (child.name == "HunterArrow")
+                {
+                    HunterArrow = child.GetComponent<Pointing>();
+                }
+                if (child.name == "PreyArrow")
+                {
+                    PreyArrow = child.GetComponent<Pointing>();
+                }
+            }
+
+            //infine setto l'hunter e il prey recuperandoli dallo status del main character
+            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            changePrey(player.GetComponent<CharacterStatus>().Prey);
         }
 
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
@@ -35,7 +49,6 @@ namespace GameManagers
                 if ( p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
                 {
                     controllers.Add(p, new KeyboardInputController());
-                    p.GetComponent<NavMeshAgent>().enabled = false; // @@soluzione temporanea
                     player = p;
                 }
                 if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.AI)
@@ -55,7 +68,11 @@ namespace GameManagers
             {
                 controllers[p].CheckInput(p);
             }
-            
+
+            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            changePrey(player.GetComponent<CharacterStatus>().Prey);
+
+
         }
 
         private void LateUpdate()
@@ -82,25 +99,5 @@ namespace GameManagers
         {
             PreyArrow.Target = value;
         }
-
-
-        //utilizzato temporaneamente per fare le prove il gestore di partita poi settera' prey e hunter
-        private void setTarget()
-        {
-            changeHunter(GameObject.Find("Hunter"));
-            changePrey(GameObject.Find("Prey"));
-        }
-
-        public void moveCharacter(Vector3 offset)
-        {
-            player.transform.position = player.transform.position + offset;
-        }
-
-        public Vector3 getPosition()
-        {
-            return player.transform.position;
-        }
-
-
     }
 }

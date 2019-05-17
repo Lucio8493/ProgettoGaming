@@ -19,7 +19,7 @@ namespace GameManagers
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             m.generate();
             fow = this.GetComponent<FogOfWarScript>();
-            fow.Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            fow.Player = GameObject.Find("MainCharacter").GetComponent<Transform>();
             fow.Initialize();
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Character;
 
 
 namespace GameManagers
@@ -23,24 +24,31 @@ namespace GameManagers
         private MazeGenerator myMazeGenerator = null;
         private Zone[] numberOfZones;
         private GameObject[] enemylist;
+        private GameObject[] bonuslist;
         private const int BONUSES = 4;
         private System.Random rnd = new System.Random();
         private PlayerManager playerManager;
+        private GameObject enemyObject;
+        private GameObject bonusObject;
         private int id_enemy = 0;
+        private int lastBonus = 0;
 
 
-
-        public void Set()
+        public void SpawnSet()
         {
             Players = SettingsClass.NumOfPlayers;
             playerManager = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
             myMazeGenerator = GameObject.Find("Maze").GetComponent<MazeGenerator>();
+            enemyObject = GameObject.Find("EnemyObject");
+            bonusObject = GameObject.Find("BonusObject");
+
             if (Players == 4)
             {
                 //setto il numero massimo di avversari al numero totale di giocatori meno 1
                 enemylist = new GameObject[3];
                 //setto il numero di zone pari al numero di giocatori
                 numberOfZones = new Zone[4];
+                bonuslist = new GameObject[4 * BONUSES];
                 //@@il numero di bonus per ogni zona per ora e' hardcoded qui e sono 4
                 numberOfZones[0] = new Zone(0, myMazeGenerator.Rows / 2, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Columns / 4, myMazeGenerator.Rows / 4), BONUSES);
                 numberOfZones[1] = new Zone(0, myMazeGenerator.Rows / 2, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 4, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
@@ -53,6 +61,7 @@ namespace GameManagers
                 enemylist = new GameObject[5];
                 //setto il numero di zone pari al numero di giocatori
                 numberOfZones = new Zone[6];
+                bonuslist = new GameObject[6 * BONUSES];
                 //@@il numero di bonus per ogni zona per ora e' hardcoded qui e sono 4
                 numberOfZones[0] = new Zone(0, myMazeGenerator.Rows / 3, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Rows / 6, myMazeGenerator.Columns / 4), BONUSES);
                 numberOfZones[1] = new Zone(0, myMazeGenerator.Rows / 3, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 6, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
@@ -79,13 +88,24 @@ namespace GameManagers
                 ///Nel caso mi trovassi nell'ultima zona e il player non fosse stato ancora creato lo creo
                 if (!playerCreated && rnd.Next()%2==1 || !playerCreated && i==numberOfZones.Length-1)
                 {
+                    
                     //scegliamo la nuova posizione
                     Vector3 newPosition = new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth);
-                    //procediamo a spostare il player e calcoliamo lo spostamento da fare
-                    Vector3 offset = newPosition - playerManager.getPosition();
-                    playerManager.moveCharacter(offset);
+                    //procediamo a spostare il giocatore principale e calcoliamo lo spostamento da fare
+                    GameObject mainPlayer = GameObject.Find("MainCharacter");
+                    Vector3 offset = newPosition - mainPlayer.transform.position;
+                    mainPlayer.transform.position = mainPlayer.transform.position + offset;
+                    
+                    //creo il giocatore principale
+                    /*
+                    tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    tmp.name = "MainCharcter";
+                    tmp.GetComponent<CharacterStatus>().MyType = CharacterStatus.typeOfPlayer.Player;
+                    */
+                    //@@ forse potrebbe essere fatto meglio
                     //procedo a spostare la telecamera di conseguenza
                     CameraController cameraController = Camera.main.GetComponent<CameraController>();
+                    //Vector3 offset = new Vector3(Camera.main.transform.position.x + tmp.transform.position.x, 0, Camera.main.transform.position.z + tmp.transform.position.z);
                     cameraController.moveCamera(offset);
                     cameraController.SetOffset();
                     playerCreated = true;
@@ -94,13 +114,18 @@ namespace GameManagers
                 else if ( playerCreated && i == numberOfZones.Length - 1)
                 {
                     tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    tmp.transform.parent = enemyObject.transform;
+                    tmp.GetComponent<CharacterStatus>().MyType= CharacterStatus.typeOfPlayer.AI;
                     tmp.name = tmp.name + id_enemy;
                     id_enemy++;
                     enemylist[i-1] = tmp;
+                    
                 }
                 else
                 {
                     tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                    tmp.transform.parent = enemyObject.transform;
+                    tmp.GetComponent<CharacterStatus>().MyType = CharacterStatus.typeOfPlayer.AI;
                     tmp.name = tmp.name + id_enemy;
                     id_enemy++;
                     enemylist[i] = tmp;
@@ -131,7 +156,10 @@ namespace GameManagers
                     else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
+                        tmp.transform.parent = bonusObject.transform;
                         z.addBonus(tmp);
+                        bonuslist[lastBonus] = tmp;
+                        lastBonus++;
                         break;
                     }
                 }

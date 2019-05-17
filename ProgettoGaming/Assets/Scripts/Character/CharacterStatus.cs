@@ -21,6 +21,7 @@ namespace Character
 
         // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
         public GameObject prey; // la preda che il giocatore deve prendere
+        public GameObject hunter; // la preda che il giocatore deve prendere
 
         protected float verticalMovement;
         protected float orizontalMovement;
@@ -42,22 +43,31 @@ namespace Character
         public typeOfPlayer MyType
         {
             get { return type; }
-
+            set { type = value; }
         }
 
-        public GameObject getPrey
+        public GameObject Prey
         {
             get { return prey; }
+            set { prey = value; }
         }
 
+        public GameObject Hunter
+        {
+            get { return hunter; }
+            set { hunter = value; }
+        }
 
+        public bool IsVisible
+        {
+            get { return IsVisible;  }
+            set { IsVisible = value; }
+        }
 
         public bool IsRunning{
               get { return isRunning;}
 
         }
-            
-        
 
         public bool IsMoving
         {
@@ -173,7 +183,5 @@ namespace Character
             }
 
         }
-
-
     }
 }

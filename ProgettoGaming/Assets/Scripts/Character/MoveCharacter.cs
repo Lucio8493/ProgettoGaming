@@ -60,7 +60,10 @@ namespace Character
 
                     if (!status.IsFacing)
                     {
-                        rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
+                        //  rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
+                        GetComponent<CharacterController>().Move(transform.forward * speed * Time.deltaTime);
+
+
                     }
 
                 }

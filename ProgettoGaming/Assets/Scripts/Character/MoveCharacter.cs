@@ -74,12 +74,12 @@ namespace Character
         }
 
         // @@
-        void OnCollisionEnter(Collision collision)
+        void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if (collision.gameObject.CompareTag("Bonus"))
+            if (hit.gameObject.CompareTag("Bonus"))
             {
                 numBonus++;
-                collision.gameObject.SetActive(false);
+                hit.gameObject.SetActive(false);
                 Debug.Log("Player complimenti, hai preso il bonus. Hai collezionato " + numBonus + " bonus");
             }
         }

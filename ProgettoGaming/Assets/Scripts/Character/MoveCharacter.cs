@@ -10,7 +10,7 @@ namespace Character
     {
        // protected CharacterController _charController;
         protected CharacterStatus status;
-        private Rigidbody rb;
+        protected CharacterController controller;
 
 
    //     [SerializeField] protected float walkSpeed = 6.0f;
@@ -24,16 +24,14 @@ namespace Character
         {
          //   _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
-
-            rb = GetComponent<Rigidbody>();           
-
+            controller = GetComponent<CharacterController>();
+            
         }
 
         private void Update()
         {
-            Vector3 movement = new Vector3(0, 0, 0);
-            float vertMovement = 0;
-            float orizMovement = 0;
+            float vertMovement;
+            float orizMovement;
             float speed = status.WalkSpeed;
 
             if (status.IsGrounded)
@@ -60,8 +58,7 @@ namespace Character
 
                     if (!status.IsFacing)
                     {
-                        //  rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed); // muovi davanti
-                        GetComponent<CharacterController>().Move(transform.forward * speed * Time.deltaTime);
+                        controller.Move(transform.forward * speed * Time.deltaTime);
 
 
                     }

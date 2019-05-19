@@ -31,7 +31,7 @@ namespace GameManagers
                 Destroy(gameObject);
 
             //Sets this to not be destroyed when reloading scene
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
             
 
            

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayManager : MonoBehaviour
+public class MainMenuButtonManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,6 @@ public class PlayManager : MonoBehaviour
 
     public void OnClick()
     {
-        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 1);
+        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 0);
     }
 }

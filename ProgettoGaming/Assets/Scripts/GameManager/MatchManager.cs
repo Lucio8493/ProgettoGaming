@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Character;
+using BonusManager;
 
 namespace GameManagers {
     public class MatchManager : MonoBehaviour
@@ -14,7 +15,11 @@ namespace GameManagers {
         protected Dictionary<GameObject, GameObject> hunterPrey = new Dictionary<GameObject, GameObject>(); // associazione nome_hunter con nome_hunter
         protected Dictionary<string, string> test = new Dictionary<string, string>();
         private int mexicanStallValue = 3;
-        
+
+        List<Bonus> bonuses;
+        // tutti i bonus nella partita corrente
+
+
         // parte del bonus
         protected GameObject[] bonus;
         
@@ -80,6 +85,12 @@ namespace GameManagers {
                 Debug.Log("" + el.Key + " -> " + el.Value);
             }
             */
+        }
+
+        void Start()
+        {
+            ReadBonuses rb = new ReadBonuses();
+            bonuses = rb.getBonuses();
         }
 
         void Update()
@@ -167,6 +178,11 @@ namespace GameManagers {
             return namePrey;
         }
 
+        // restituisce un bonus casuale
+        public Bonus getRandomBonus()
+        {
+            return bonuses[0];
+        }
 
 
     }

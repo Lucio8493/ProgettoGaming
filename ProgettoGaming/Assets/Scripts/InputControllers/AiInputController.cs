@@ -33,7 +33,7 @@ namespace InputControllers
              NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas,
               path);
              int cc = 1;
-             Debug.Log(path.corners[cc]);
+             //Debug.Log(path.corners[cc]);
 
                 Vector3 difference = path.corners[cc] - o.transform.position;
 

@@ -1268,6 +1268,7 @@ GameObject:
   - component: {fileID: 8344928288028895542}
   - component: {fileID: 8344928288028895541}
   - component: {fileID: 8948768251045924314}
+  - component: {fileID: -6120585546961217911}
   m_Layer: 0
   m_Name: Giocatore
   m_TagString: Player
@@ -1338,8 +1339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 6
-  prey: {fileID: 0}
-  hunter: {fileID: 0}
   type: 0
 --- !u!114 &8344928288028895541
 MonoBehaviour:
@@ -1372,6 +1371,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-6120585546961217911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344928288926759722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91d5d4725b893d48a4d3af6e5b7cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8344928288926759724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,6 +2813,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: PreyArrow
+      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2872,11 +2888,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: PreyArrow
-      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: target
@@ -2913,6 +2924,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: HunterArrow
+      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2982,11 +2998,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: HunterArrow
       objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
@@ -3104,6 +3115,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928289386031559}
     m_Modifications:
+    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
+      propertyPath: m_Name
+      value: Magic fire pro orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3147,14 +3166,6 @@ PrefabInstance:
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
-      propertyPath: m_Name
-      value: Magic fire pro orange
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4404365773844742, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalScale.x

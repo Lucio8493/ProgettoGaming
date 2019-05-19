@@ -15,13 +15,15 @@ namespace Character
         protected bool isRotating;
         protected bool isGrounded;
         protected bool isFacing;
+        protected bool isCaptured;
+        protected bool isDead;
 
         [SerializeField] protected float walkSpeed = 6.0f;
 
 
         // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
-        public GameObject prey; // la preda che il giocatore deve prendere
-        public GameObject hunter; // la preda che il giocatore deve prendere
+        protected GameObject prey; // la preda che il giocatore deve prendere
+        protected GameObject hunter; // la preda che il giocatore deve prendere
 
         protected float verticalMovement;
         protected float orizontalMovement;
@@ -95,6 +97,18 @@ namespace Character
             get { return isFacing; }
         }
 
+        public bool IsCaptured
+        {
+            get { return isCaptured; }
+            set { isCaptured = value; }
+        }
+
+        public bool IsDead
+        {
+            get { return isDead; }
+            set { isDead = value; }
+        }
+
         public float VerticalMovement
         {
             get { return verticalMovement; }
@@ -118,6 +132,7 @@ namespace Character
  
             isGrounded = true;
             isFacing = false;
+            isCaptured = false;
         }
 
         // Update is called once per frame
@@ -127,6 +142,7 @@ namespace Character
             checkGrounded();
             checkFacing();
             CollectInputs();
+            checkDead();
         }
 
         protected void CollectInputs()
@@ -138,11 +154,11 @@ namespace Character
             orizontalMovement = playerManagerRef.GetController(this.gameObject).GetHorizontal();
 
 
-            isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0);
+            isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0) && !isCaptured;
            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
             // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
-            isRunning = isMoving && playerManagerRef.GetController(this.gameObject).useBonus;
+            isRunning = isMoving && playerManagerRef.GetController(this.gameObject).useBonus && !isCaptured;
 
 
         }
@@ -182,6 +198,15 @@ namespace Character
                     //Debug.Log("not facing");
             }
 
+        }
+
+        protected void checkDead()
+        {
+            if (isDead == true)
+            {
+                //Solo quando il personaggio e' morto puo' essere disattivato
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }

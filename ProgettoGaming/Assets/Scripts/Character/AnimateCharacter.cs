@@ -30,6 +30,27 @@ namespace Character
                 anim.SetInteger("speed", 0);
 
             }
+
+            checkCapture();
+        }
+
+        void checkCapture()
+        {
+            if (status.IsCaptured)
+            {
+                //fai partire l'animazione di morte
+                anim.SetBool("IsDead", true);
+                //serve ad aspettare la fine dell'animazione
+                StartCoroutine(WaitAnimation());
+
+            }
+        }
+
+        IEnumerator WaitAnimation()
+        {
+            //run animation
+            yield return new WaitForSeconds(1.1f);
+            status.IsDead = true;
         }
     }
 }

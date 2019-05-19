@@ -227,7 +227,7 @@ namespace GameManagers
             if(lastBonus==bonuses.Length)
             {
                 isFull = true;
-                Debug.Log("Max Bonus");
+                //Debug.Log("Max Bonus");
             }
         }
     }

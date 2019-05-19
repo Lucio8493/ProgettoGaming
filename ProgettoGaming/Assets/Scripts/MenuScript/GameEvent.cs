@@ -10,6 +10,7 @@ public static class GameEvent
     public const string SPEED_CHANGE = "SPEED_CHANGE";
     public const string VISIBILITY_RANGE_INCREASED = "VISIBILITY_RANGE_INCREASED";
     public const string POSITION_OFFSET = "POSITION_OFFSET";
+    public const string TARGET_CAPTURED = "TARGET_CAPTURED";
 
 }
 

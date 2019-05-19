@@ -26,6 +26,14 @@ namespace GameManagers {
         // ?invece di fare la classifica si può fare un riepilogo quando il giocatore muore che gli dice il numero di bonus presi
         // e il numero di giocatori catturati?
 
+
+
+        private void Start()
+        {
+            Messenger<GameObject,GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+        }
+
+
         public void MatchSet()
         {
             //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
@@ -40,18 +48,18 @@ namespace GameManagers {
             }
             enemy = enemyList.ToArray();
 
-            Debug.Log("Numero di nemici: " + enemy.Length);
+            //Debug.Log("Numero di nemici: " + enemy.Length);
             // per test
             // il primo for mi serve solo per vedere se riuscivo ad accedere al nome dell'oggetto
             for (int i = 0; i < enemy.Length; i++) {
-                Debug.Log("MatchManager dice -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
+                //Debug.Log("MatchManager dice -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
             }
             //
             // per testare se riempie correttamente
             AssociatesHunterWithPrey(enemy);
             foreach(KeyValuePair<GameObject, GameObject> el in hunterPrey)
             {
-                Debug.Log("" + el.Key + " -> " + el.Value);
+                //Debug.Log("" + el.Key + " -> " + el.Value);
             }
             //
             //AssociatesHunterWithPrey(enemy);
@@ -102,11 +110,7 @@ namespace GameManagers {
             }
 
             //aggiunta delle varie prede e dei vari hunter negli status dei giocatori
-            foreach (GameObject p in hunterPrey.Keys)
-            {
-                p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
-                hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
-            }
+            AssociationsCheck();
             // per testare se associo correttamente.
             //return hunterPrey;
             //
@@ -125,13 +129,35 @@ namespace GameManagers {
 
         // rimuove il valore in base alla chiave hunter passato
         // @@ vedere se si può migliorare questo metodo
-        public void TargetCaptured(GameObject hunter)
+        protected void TargetCaptured(GameObject hunter, GameObject prey)
         {
+            /*
             hunterPrey.Remove(hunter);
             enemyList.Remove(hunter);
             enemy = enemyList.ToArray();
             hunterPrey.Clear();
             AssociatesHunterWithPrey(enemy);
+            */
+
+            if (hunterPrey[hunter] == prey)
+            {
+                Debug.Log("Target catturato");
+                prey.gameObject.GetComponent<CharacterStatus>().IsCaptured = true;
+                hunterPrey[hunter] = hunterPrey[prey];
+                hunterPrey.Remove(prey);
+                enemyList.Remove(prey);
+                enemy = enemyList.ToArray();
+                AssociationsCheck();
+            }
+        }
+
+        protected void AssociationsCheck()
+        {
+            foreach (GameObject p in hunterPrey.Keys)
+            {
+                p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
+                hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
+            }
         }
 
         // prendo la preda che mi è stata associata
@@ -140,6 +166,7 @@ namespace GameManagers {
             GameObject namePrey = hunterPrey[nameHunter];
             return namePrey;
         }
+
 
 
     }

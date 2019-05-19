@@ -15,6 +15,7 @@ namespace GameManagers {
         protected Dictionary<GameObject, GameObject> hunterPrey = new Dictionary<GameObject, GameObject>(); // associazione nome_hunter con nome_hunter
         protected Dictionary<string, string> test = new Dictionary<string, string>();
         private int mexicanStallValue = 3;
+        private bool InMexicanStall = false;
 
         List<Bonus> bonuses;
         // tutti i bonus nella partita corrente
@@ -130,6 +131,7 @@ namespace GameManagers {
             if(hunterPrey.Count == mexicanStallValue)
             {
                 Debug.Log("Il primo che cattura il proprio obbiettivo vince");
+                InMexicanStall = true;
             }
         }
 
@@ -144,15 +146,22 @@ namespace GameManagers {
             hunterPrey.Clear();
             AssociatesHunterWithPrey(enemy);
             */
-
-            if (hunterPrey[hunter] == prey)
+            if (hunterPrey[hunter] == prey && InMexicanStall)
             {
-                Debug.Log("Target catturato");
+                Debug.Log(hunter.name+" ha vinto!!!");
+                //@@carica la scena di vittoria o di sconfitta
+            }
+            else if (hunterPrey[hunter] == prey)
+            {
+                
                 prey.gameObject.GetComponent<CharacterStatus>().IsCaptured = true;
+
+                
                 hunterPrey[hunter] = hunterPrey[prey];
                 hunterPrey.Remove(prey);
                 enemyList.Remove(prey);
                 enemy = enemyList.ToArray();
+                
                 AssociationsCheck();
             }
         }
@@ -163,6 +172,7 @@ namespace GameManagers {
             {
                 p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
                 hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
+                //Debug.Log("hunter: " + p.name + ", prey: "+hunterPrey[p].name);
             }
         }
 

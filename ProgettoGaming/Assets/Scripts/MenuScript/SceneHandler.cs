@@ -10,7 +10,7 @@ public class SceneHandler : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        Messenger.AddListener(GameEvent.CHANGE_SCENE, ChangeScene);
+        Messenger<int>.AddListener(GameEvent.CHANGE_SCENE, ChangeScene);
         Messenger<int>.AddListener(GameEvent.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
         Messenger.AddListener(GameEvent.QUIT_MSG, QuitGame);
     }
@@ -29,8 +29,8 @@ public class SceneHandler : MonoBehaviour
         SettingsClass.NumOfPlayers = numOfPlayers;
     }
 
-    private void ChangeScene()
+    private void ChangeScene(int numScene)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(numScene);
     }
 }

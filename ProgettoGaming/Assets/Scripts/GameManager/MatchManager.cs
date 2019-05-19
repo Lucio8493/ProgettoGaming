@@ -23,7 +23,10 @@ namespace GameManagers {
 
         // parte del bonus
         protected GameObject[] bonus;
-        
+        // coppia chiave valore, come chiave c'è i personaggi giocanti, come valore il loro bonus
+        protected Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
+
+
         //parte del player
         protected GameObject player;
 
@@ -189,6 +192,30 @@ namespace GameManagers {
             return bonuses[0];
         }
 
+        // assegna il bonus ad un personaggio
+        public void assignBonus(GameObject o)
+        {
+            bonusOfTheCharacter[o] = getRandomBonus();
+        }
+
+
+
+        public void useBonus(GameObject o)
+        {
+            o.GetComponent<CharacterStatus>().setBonus(bonusOfTheCharacter[o]);
+            StartCoroutine(AnnullaBonus(o));
+        }
+
+        // dopo aver aspettato setto i bonus al valore di default
+        IEnumerator AnnullaBonus(GameObject o)
+        {
+            Debug.Log("inizio conta");
+
+            yield return new WaitForSeconds(bonusOfTheCharacter[o].Seconds);
+            Debug.Log("fine conta");
+            o.GetComponent<CharacterStatus>().setBonus(new ReadBonuses().DefaultBonus);
+
+        }
 
     }
 }

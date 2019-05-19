@@ -15,12 +15,9 @@ namespace Character
         protected bool isRotating;
         protected bool isGrounded;
         protected bool isFacing;
-<<<<<<< HEAD
         protected bool isCaptured;
         protected bool isDead;
-=======
         protected bool haveBonus;
->>>>>>> 07f6e45b55ded168151f333c99899fbdffde487f
 
         [SerializeField] protected float walkSpeed = 6.0f;
 

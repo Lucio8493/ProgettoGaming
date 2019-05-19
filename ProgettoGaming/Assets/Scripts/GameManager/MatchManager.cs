@@ -32,13 +32,6 @@ namespace GameManagers {
         // e il numero di giocatori catturati?
 
 
-
-        private void Start()
-        {
-            Messenger<GameObject,GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
-        }
-
-
         public void MatchSet()
         {
             //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
@@ -91,6 +84,8 @@ namespace GameManagers {
         {
             ReadBonuses rb = new ReadBonuses();
             bonuses = rb.getBonuses();
+
+            Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
         }
 
         void Update()

@@ -11,24 +11,26 @@ public class SceneHandler : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         Messenger.AddListener(GameEvent.CHANGE_SCENE, ChangeScene);
-        Messenger.AddListener(GameEvent.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
+        Messenger<int>.AddListener(GameEvent.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
+        Messenger.AddListener(GameEvent.QUIT_MSG, QuitGame);
     }
 
-    private void SetNumberOfPlayers()
+    private void QuitGame()
     {
-        SettingsClass.NumOfPlayers = 6;
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit ();
+        #endif
+    }
+
+    private void SetNumberOfPlayers(int numOfPlayers)
+    {
+        SettingsClass.NumOfPlayers = numOfPlayers;
     }
 
     private void ChangeScene()
     {
         SceneManager.LoadScene(1);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 }

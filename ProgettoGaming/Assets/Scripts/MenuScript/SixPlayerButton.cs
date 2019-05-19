@@ -18,6 +18,6 @@ public class SixPlayerButton : MonoBehaviour
 
     public void OnClick()
     {
-        Messenger.Broadcast(GameEvent.SETTING_PLAYERS_NUMBER);
+        Messenger<int>.Broadcast(GameEvent.SETTING_PLAYERS_NUMBER, 6);
     }
 }

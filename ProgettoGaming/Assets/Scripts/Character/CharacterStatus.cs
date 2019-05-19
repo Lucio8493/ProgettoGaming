@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameManagers;
+using BonusManager;
 
 namespace Character
 {
@@ -20,6 +21,8 @@ namespace Character
         protected bool haveBonus;
 
         [SerializeField] protected float walkSpeed = 6.0f;
+
+        protected float speedBoost = 1f;
 
 
         // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
@@ -130,7 +133,7 @@ namespace Character
 
         public float WalkSpeed
         {
-            get { return walkSpeed; }
+            get { return walkSpeed * speedBoost; }
         }
    
 
@@ -151,6 +154,16 @@ namespace Character
             checkFacing();
             CollectInputs();
             checkDead();
+
+
+            //@@ soluzione ESTREMAMENTE temporanea
+            if (playerManagerRef.GetController(this.gameObject).useBonus)
+            {
+
+                GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
+                GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
+            }
+
         }
 
         protected void CollectInputs()
@@ -163,10 +176,13 @@ namespace Character
 
 
             isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0) && !isCaptured;
-           // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
+            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
             // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
-            isRunning = isMoving && playerManagerRef.GetController(this.gameObject).useBonus && !isCaptured;
+            isRunning = (isMoving && playerManagerRef.GetController(this.gameObject).useBonus && !isCaptured)
+                            && false;
+
+
 
 
         }
@@ -213,8 +229,18 @@ namespace Character
             if (isDead == true)
             {
                 //Solo quando il personaggio e' morto puo' essere disattivato
+
+                //@@ non credo che la disattivazione vada messa qui
                 this.gameObject.SetActive(false);
             }
         }
+
+        // imposta i valori extra secondo il bonus
+        public void setBonus(Bonus b)
+        {
+            speedBoost = b.SpeedBoost;
+        }
+
+
     }
 }

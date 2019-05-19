@@ -73,7 +73,7 @@ namespace Character
             }
         }
 
-        // @@
+        // @@ va spostato da qua
         void OnControllerColliderHit(ControllerColliderHit hit)
         {
             if (hit.gameObject.CompareTag("Bonus"))
@@ -81,6 +81,8 @@ namespace Character
                 numBonus++;
                 hit.gameObject.SetActive(false);
                 Debug.Log("Player complimenti, hai preso il bonus. Hai collezionato " + numBonus + " bonus");
+
+
             }
         }
 

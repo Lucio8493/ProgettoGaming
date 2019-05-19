@@ -9,17 +9,19 @@ namespace BonusManager //restituisce una lista di bonus
     public class ReadBonuses
     {
           List<Bonus> bonuses;
-
+        Bonus defaultBonus; // il "bonus" di default che non varia le statistiche (quelli con tutti 1)
 
         public ReadBonuses()
         {
              bonuses  = new List<Bonus>();
 
             Bonus b = new Bonus(1);
-            b.SpeedBoost = 1.5f;
+            b.SpeedBoost = 3f;
             b.Seconds = 4f;
 
             bonuses.Add(b);
+
+            defaultBonus = new Bonus(0);
 
         }
 
@@ -29,6 +31,11 @@ namespace BonusManager //restituisce una lista di bonus
            return bonuses;
         }
 
+
+        public Bonus DefaultBonus
+        {
+            get {return defaultBonus;}
+        }
     }
 
 }

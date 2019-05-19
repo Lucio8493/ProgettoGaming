@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bonus
+namespace BonusManager
 {
 
     // la classe bonus è un oggetto che ha solo dei valori, che poi sarebbero i modificatori che il personaggio ottiene quando lo usa

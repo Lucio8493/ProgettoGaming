@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bonus //restituisce una lista di bonus
+namespace BonusManager //restituisce una lista di bonus
 {
 
 

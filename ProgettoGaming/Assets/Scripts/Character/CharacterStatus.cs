@@ -15,6 +15,7 @@ namespace Character
         protected bool isRotating;
         protected bool isGrounded;
         protected bool isFacing;
+        protected bool haveBonus;
 
         [SerializeField] protected float walkSpeed = 6.0f;
 
@@ -44,6 +45,13 @@ namespace Character
         {
             get { return type; }
             set { type = value; }
+        }
+
+
+        public bool HaveBonus
+        {
+            get { return haveBonus; }
+            set { haveBonus = value; }
         }
 
         public GameObject Prey

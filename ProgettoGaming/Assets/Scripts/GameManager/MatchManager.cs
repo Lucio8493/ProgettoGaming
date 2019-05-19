@@ -12,7 +12,7 @@ namespace GameManagers {
         protected GameObject[] enemy;
         protected List<GameObject> enemyList;
         //nel dictionary entro con la chiave hunter e recupero la prey??
-        protected Dictionary<GameObject, GameObject> hunterPrey = new Dictionary<GameObject, GameObject>(); // associazione nome_hunter con nome_hunter
+        protected Dictionary<GameObject, GameObject> hunterPrey; // associazione nome_hunter con nome_hunter
         protected Dictionary<string, string> test = new Dictionary<string, string>();
         private int mexicanStallValue = 3;
         private bool InMexicanStall = false;
@@ -35,6 +35,7 @@ namespace GameManagers {
 
         public void MatchSet()
         {
+            hunterPrey = new Dictionary<GameObject, GameObject>();
             //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
             enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
             foreach (GameObject p in enemyList){
@@ -58,7 +59,7 @@ namespace GameManagers {
             AssociatesHunterWithPrey(enemy);
             foreach(KeyValuePair<GameObject, GameObject> el in hunterPrey)
             {
-                //Debug.Log("" + el.Key + " -> " + el.Value);
+                Debug.Log("" + el.Key + " -> " + el.Value);
             }
             //
             //AssociatesHunterWithPrey(enemy);
@@ -139,24 +140,23 @@ namespace GameManagers {
         // @@ vedere se si può migliorare questo metodo
         protected void TargetCaptured(GameObject hunter, GameObject prey)
         {
-            /*
-            hunterPrey.Remove(hunter);
-            enemyList.Remove(hunter);
-            enemy = enemyList.ToArray();
-            hunterPrey.Clear();
-            AssociatesHunterWithPrey(enemy);
-            */
-            if (hunterPrey[hunter] == prey && InMexicanStall)
+            //verifico l'avvenuta cattura
+            
+            //se il maincharacter e' catturato faccio partire la scena di game over
+            if (prey == player && hunterPrey[hunter] == player)
             {
-                Debug.Log(hunter.name+" ha vinto!!!");
-                //@@carica la scena di vittoria o di sconfitta
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
             }
+            //se il maincharcter cattura faccio partire la scena di vittoria
+            else if (hunter == player && hunterPrey[hunter] == prey &&  InMexicanStall)
+            {
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
+            }
+            //altrimenti verifico che la cattura sia lecita e aggiorno gli stati
             else if (hunterPrey[hunter] == prey)
             {
                 
                 prey.gameObject.GetComponent<CharacterStatus>().IsCaptured = true;
-
-                
                 hunterPrey[hunter] = hunterPrey[prey];
                 hunterPrey.Remove(prey);
                 enemyList.Remove(prey);

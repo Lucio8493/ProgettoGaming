@@ -6,6 +6,8 @@ using Character;
 using BonusManager;
 
 namespace GameManagers {
+
+
     public class MatchManager : MonoBehaviour
     {
         //parte del nemico
@@ -62,8 +64,11 @@ namespace GameManagers {
             AssociatesHunterWithPrey(enemy);
             foreach(KeyValuePair<GameObject, GameObject> el in hunterPrey)
             {
-                Debug.Log("" + el.Key + " -> " + el.Value);
+                //Debug.Log("" + el.Key + " -> " + el.Value);
+               
+               // Debug.Log(Time.realtimeSinceStartup+ " "+ el.Key+ " " + el.Value);
             }
+
             //
             //AssociatesHunterWithPrey(enemy);
             // per test
@@ -77,26 +82,32 @@ namespace GameManagers {
             {
                 Debug.Log("Dopo il remove -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
             }
-            foreach (KeyValuePair<string, string> el in hunterPrey)
+            foreach (KeyValuePair<GameObject, GameObject> el in hunterPrey)
             {
                 Debug.Log("Dopo la rimozione");
-                Debug.Log("" + el.Key + " -> " + el.Value);
+                Debug.Log("Chiave: " + el.Key + " -> Valore: " + el.Value);
             }
             */
         }
 
+        private void OnDestroy()
+        {
+            Messenger<GameObject, GameObject>.RemoveListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+        }
+
+
         void Start()
         {
+            
             ReadBonuses rb = new ReadBonuses();
             bonuses = rb.getBonuses();
-
             Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
         }
 
         void Update()
         {
 
-            
+            EndCheck();
         }
         // Update is called once per frame
         void LateUpdate()
@@ -108,11 +119,12 @@ namespace GameManagers {
         //private Dictionary<string, string> AssociatesHunterWithPrey(GameObject[] target) 
         private void AssociatesHunterWithPrey(GameObject[] target)
         {
+            
             for(int i = 0; i <= target.Length; i++)
             {
                 // @@ trovare un modo migliore se possibile
                 if(i == target.Length - 1)
-                {
+                { 
                     hunterPrey.Add(target[i], player);
                     hunterPrey.Add(player, target[0]);
                     break;
@@ -134,26 +146,28 @@ namespace GameManagers {
         {
             if(hunterPrey.Count == mexicanStallValue)
             {
-                Debug.Log("Il primo che cattura il proprio obbiettivo vince");
+                //Debug.Log("Il primo che cattura il proprio obbiettivo vince");
                 InMexicanStall = true;
             }
         }
 
         // rimuove il valore in base alla chiave hunter passato
         // @@ vedere se si può migliorare questo metodo
-        protected void TargetCaptured(GameObject hunter, GameObject prey)
+        public void TargetCaptured(GameObject hunter, GameObject prey)
         {
             //verifico l'avvenuta cattura
-            
+
             //se il maincharacter e' catturato faccio partire la scena di game over
             if (prey == player && hunterPrey[hunter] == player)
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
+                player.GetComponent<CharacterStatus>().IsCaptured = true;
+                //Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
             }
             //se il maincharcter cattura faccio partire la scena di vittoria
             else if (hunter == player && hunterPrey[hunter] == prey &&  InMexicanStall)
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
+                player.GetComponent<CharacterStatus>().IsWinning = true;
+                //Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
             }
             //altrimenti verifico che la cattura sia lecita e aggiorno gli stati
             else if (hunterPrey[hunter] == prey)
@@ -209,12 +223,27 @@ namespace GameManagers {
         // dopo aver aspettato setto i bonus al valore di default
         IEnumerator AnnullaBonus(GameObject o)
         {
-            Debug.Log("inizio conta");
+            //Debug.Log("inizio conta");
 
             yield return new WaitForSeconds(bonusOfTheCharacter[o].Seconds);
-            Debug.Log("fine conta");
+            //Debug.Log("fine conta");
             o.GetComponent<CharacterStatus>().setBonus(new ReadBonuses().DefaultBonus);
 
+        }
+
+        protected void EndCheck() {
+
+            //se il maincharacter e' morto faccio partire la scena di game over
+            if (player.GetComponent<CharacterStatus>().IsDead)
+            {
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
+            }
+            //se il maincharcter cattura in mexicanstall faccio partire la scena di vittoria
+            else if (player.GetComponent<CharacterStatus>().HasWon)
+            {
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
+            }
+        
         }
 
     }

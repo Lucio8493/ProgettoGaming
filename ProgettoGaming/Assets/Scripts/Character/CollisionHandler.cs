@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Character;
+using GameManagers;
 using System;
 
 public class CollisionHandler : MonoBehaviour
@@ -34,6 +35,7 @@ public class CollisionHandler : MonoBehaviour
                 if (status.Prey == hit.gameObject)
                 {
                     Messenger<GameObject,GameObject>.Broadcast(GameEvent.TARGET_CAPTURED, this.gameObject,hit.gameObject);
+                    //GameObject.Find("MatchManager").GetComponent<MatchManager>().TargetCaptured(this.gameObject, hit.gameObject);
                 }
                 break;
 

@@ -19,6 +19,8 @@ namespace Character
         protected bool isCaptured;
         protected bool isDead;
         protected bool haveBonus;
+        private bool isWinning;
+        private bool hasWon;
 
         [SerializeField] protected float walkSpeed = 6.0f;
 
@@ -135,7 +137,16 @@ namespace Character
         {
             get { return walkSpeed * speedBoost; }
         }
-   
+
+        public bool IsWinning {
+            get => isWinning;
+            set => isWinning = value;
+        }
+
+        public bool HasWon {
+            get => hasWon;
+            set => hasWon = value;
+        }
 
         void Start()
         {
@@ -154,6 +165,7 @@ namespace Character
             checkFacing();
             CollectInputs();
             checkDead();
+            checkWin();
 
 
             //@@ soluzione ESTREMAMENTE temporanea
@@ -241,6 +253,20 @@ namespace Character
             speedBoost = b.SpeedBoost;
         }
 
+        protected void checkWin()
+        {
+            if (isWinning)
+            {
+                WaitAnimation();
+            }
+        }
 
+        IEnumerator WaitAnimation()
+        {
+            //run animation
+            yield return new WaitForSeconds(1.1f);
+            hasWon = true;
+        }
     }
+
 }

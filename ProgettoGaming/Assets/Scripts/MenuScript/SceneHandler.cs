@@ -30,7 +30,7 @@ public class SceneHandler : MonoBehaviour
             Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
-        //DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
+        DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
 
 
 

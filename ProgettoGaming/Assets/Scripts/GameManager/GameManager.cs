@@ -18,6 +18,7 @@ namespace GameManagers
 
         void Awake()
         {
+            /*
             //Check if instance already exists
             if (instance == null)
 
@@ -33,7 +34,7 @@ namespace GameManagers
             //Sets this to not be destroyed when reloading scene
             //DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
             
-
+            */
            
         }
 

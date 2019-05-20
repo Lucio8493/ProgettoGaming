@@ -93,6 +93,8 @@ namespace GameManagers {
         private void OnDestroy()
         {
             Messenger<GameObject, GameObject>.RemoveListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.RemoveListener(GameEvent.BONUS_PICKED, assignBonus);
+
         }
 
 
@@ -103,6 +105,8 @@ namespace GameManagers {
             bonuses = rb.getBonuses();
 
             Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.AddListener(GameEvent.BONUS_PICKED, assignBonus);
+
         }
 
         void Update()
@@ -229,6 +233,7 @@ namespace GameManagers {
             yield return new WaitForSeconds(bonusOfTheCharacter[o].Seconds);
             //Debug.Log("fine conta");
             o.GetComponent<CharacterStatus>().setBonus(new ReadBonuses().DefaultBonus);
+            bonusOfTheCharacter[o] = new ReadBonuses().DefaultBonus;
 
         }
 

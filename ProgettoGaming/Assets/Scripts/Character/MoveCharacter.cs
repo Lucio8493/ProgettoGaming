@@ -74,6 +74,7 @@ namespace Character
         }
 
         // @@ va spostato da qua
+        /*
         void OnControllerColliderHit(ControllerColliderHit hit)
         {
             if (hit.gameObject.CompareTag("Bonus"))
@@ -84,7 +85,7 @@ namespace Character
 
 
             }
-        }
+        }*/
 
     }
 }

@@ -172,7 +172,7 @@ namespace Character
             if (playerManagerRef.GetController(this.gameObject).useBonus)
             {
 
-                GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
+               // GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
                 GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
             }
 

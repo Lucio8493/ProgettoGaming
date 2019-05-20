@@ -40,7 +40,15 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case (BonusTag):
-                //Messenger<GameObject>.Broadcast(GameEvent.BUNUS_QUALCOSA, hit.gameObject);
+
+                Debug.Log("BonusManager");
+                hit.gameObject.SetActive(false); //@@ spostare nel MatchManager
+
+
+                Messenger<GameObject>.Broadcast(GameEvent.BONUS_PICKED, this.gameObject);
+
+                //CharacterStatus.hasBonus = true;
+
                 break;
 
         }

@@ -215,7 +215,7 @@ namespace GameManagers {
         // restituisce un bonus casuale
         public Bonus getRandomBonus()
         {
-            return bonuses[0]; //@@
+            return bonuses[UnityEngine.Random.Range(0, bonuses.Count)]; //@@
         }
 
         // assegna il bonus ad un personaggio

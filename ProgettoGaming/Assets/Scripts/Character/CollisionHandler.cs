@@ -41,7 +41,6 @@ public class CollisionHandler : MonoBehaviour
 
             case (BonusTag):
 
-                Debug.Log("BonusManager");
                 hit.gameObject.SetActive(false); //@@ spostare nel MatchManager
 
 

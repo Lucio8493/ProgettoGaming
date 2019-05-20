@@ -19,6 +19,11 @@ namespace Character
         protected bool isCaptured;
         protected bool isDead;
         protected bool haveBonus;
+
+        protected bool usingBonus;
+
+        protected bool activateBonus;
+
         private bool isWinning;
         private bool hasWon;
 
@@ -53,6 +58,20 @@ namespace Character
             get { return type; }
             set { type = value; }
         }
+
+
+        public bool UsingBonus
+        {
+            get { return usingBonus; }
+            set { usingBonus = value; }
+        }
+
+        public bool ActivateBonus
+        {
+            get { return activateBonus; }
+            set { activateBonus = value; }
+        }
+
 
 
         public bool HaveBonus
@@ -155,6 +174,9 @@ namespace Character
             isGrounded = true;
             isFacing = false;
             isCaptured = false;
+            usingBonus = false;
+            activateBonus = false;
+
         }
 
         // Update is called once per frame
@@ -167,13 +189,12 @@ namespace Character
             checkDead();
             checkWin();
 
-
-            //@@ soluzione ESTREMAMENTE temporanea
-            if (playerManagerRef.GetController(this.gameObject).useBonus)
+            if (playerManagerRef.GetController(this.gameObject).useBonus && usingBonus == false)
             {
-
+                activateBonus = true;
+                usingBonus = true;
                // GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
-                GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
+               // GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
             }
 
         }
@@ -251,6 +272,7 @@ namespace Character
         public void setBonus(Bonus b)
         {
             speedBoost = b.SpeedBoost;
+            activateBonus = false;
         }
 
         protected void checkWin()

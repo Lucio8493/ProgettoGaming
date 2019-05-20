@@ -82,10 +82,10 @@ namespace GameManagers {
             {
                 Debug.Log("Dopo il remove -> Nome nemico in posizione " + i + " è: " + enemy[i].name + "\n");
             }
-            foreach (KeyValuePair<string, string> el in hunterPrey)
+            foreach (KeyValuePair<GameObject, GameObject> el in hunterPrey)
             {
                 Debug.Log("Dopo la rimozione");
-                Debug.Log("" + el.Key + " -> " + el.Value);
+                Debug.Log("Chiave: " + el.Key + " -> Valore: " + el.Value);
             }
             */
         }
@@ -103,7 +103,6 @@ namespace GameManagers {
             
             ReadBonuses rb = new ReadBonuses();
             bonuses = rb.getBonuses();
-
             Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
             Messenger<GameObject>.AddListener(GameEvent.BONUS_PICKED, assignBonus);
 

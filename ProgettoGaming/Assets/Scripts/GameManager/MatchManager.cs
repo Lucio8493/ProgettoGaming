@@ -230,7 +230,6 @@ namespace GameManagers {
         {
             foreach (GameObject p in hunterPrey.Keys)
             {
-                Debug.Log(p.GetComponent<CharacterStatus>().ActivateBonus);
                 if (p.GetComponent<CharacterStatus>().ActivateBonus)
                 {
                      p.GetComponent<CharacterStatus>().setBonus(bonusOfTheCharacter[p]);

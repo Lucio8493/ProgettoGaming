@@ -42,11 +42,6 @@ namespace Character
                     orizMovement = status.OrizontalMovement;//asse orizzontale
 
 
-                    if (status.IsRunning)
-                    {
-                        speed *= runBoost;
-                    }
-                 
 
                     //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
                     Vector3 m_move;

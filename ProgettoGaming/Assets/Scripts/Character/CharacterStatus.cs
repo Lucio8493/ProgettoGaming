@@ -11,7 +11,6 @@ namespace Character
     
         protected PlayerManager playerManagerRef;
 
-        protected bool isRunning;
         protected bool isMoving;
         protected bool isRotating;
         protected bool isGrounded;
@@ -98,10 +97,6 @@ namespace Character
             set { IsVisible = value; }
         }
 
-        public bool IsRunning{
-              get { return isRunning;}
-
-        }
 
         public bool IsMoving
         {
@@ -211,9 +206,7 @@ namespace Character
             isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0) && !isCaptured;
             // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
-            // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
-            isRunning = (isMoving && playerManagerRef.GetController(this.gameObject).useBonus && !isCaptured)
-                            && false;
+          
 
 
 

@@ -11,7 +11,6 @@ namespace Character
     
         protected PlayerManager playerManagerRef;
 
-        protected bool isRunning;
         protected bool isMoving;
         protected bool isRotating;
         protected bool isGrounded;
@@ -19,6 +18,11 @@ namespace Character
         protected bool isCaptured;
         protected bool isDead;
         protected bool haveBonus;
+
+        protected bool usingBonus;
+
+        protected bool activateBonus;
+
         private bool isWinning;
         private bool hasWon;
 
@@ -55,6 +59,20 @@ namespace Character
         }
 
 
+        public bool UsingBonus
+        {
+            get { return usingBonus; }
+            set { usingBonus = value; }
+        }
+
+        public bool ActivateBonus
+        {
+            get { return activateBonus; }
+            set { activateBonus = value; }
+        }
+
+
+
         public bool HaveBonus
         {
             get { return haveBonus; }
@@ -79,10 +97,6 @@ namespace Character
             set { IsVisible = value; }
         }
 
-        public bool IsRunning{
-              get { return isRunning;}
-
-        }
 
         public bool IsMoving
         {
@@ -155,6 +169,9 @@ namespace Character
             isGrounded = true;
             isFacing = false;
             isCaptured = false;
+            usingBonus = false;
+            activateBonus = false;
+
         }
 
         // Update is called once per frame
@@ -167,13 +184,12 @@ namespace Character
             checkDead();
             checkWin();
 
-
-            //@@ soluzione ESTREMAMENTE temporanea
-            if (playerManagerRef.GetController(this.gameObject).useBonus)
+            if (playerManagerRef.GetController(this.gameObject).useBonus && usingBonus == false)
             {
-
-                GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
-                GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
+                activateBonus = true;
+                usingBonus = true;
+               // GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
+               // GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
             }
 
         }
@@ -190,9 +206,7 @@ namespace Character
             isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0) && !isCaptured;
             // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
 
-            // @@ per ora il pulsante del bonus fa muovere solo il personaggio, poi deve usare il bonus preso
-            isRunning = (isMoving && playerManagerRef.GetController(this.gameObject).useBonus && !isCaptured)
-                            && false;
+          
 
 
 
@@ -251,6 +265,7 @@ namespace Character
         public void setBonus(Bonus b)
         {
             speedBoost = b.SpeedBoost;
+            activateBonus = false;
         }
 
         protected void checkWin()

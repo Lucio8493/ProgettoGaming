@@ -42,11 +42,6 @@ namespace Character
                     orizMovement = status.OrizontalMovement;//asse orizzontale
 
 
-                    if (status.IsRunning)
-                    {
-                        speed *= runBoost;
-                    }
-                 
 
                     //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
                     Vector3 m_move;
@@ -74,6 +69,7 @@ namespace Character
         }
 
         // @@ va spostato da qua
+        /*
         void OnControllerColliderHit(ControllerColliderHit hit)
         {
             if (hit.gameObject.CompareTag("Bonus"))
@@ -84,7 +80,7 @@ namespace Character
 
 
             }
-        }
+        }*/
 
     }
 }

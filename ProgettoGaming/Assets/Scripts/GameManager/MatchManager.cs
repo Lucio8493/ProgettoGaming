@@ -72,7 +72,7 @@ namespace GameManagers {
             //
             //AssociatesHunterWithPrey(enemy);
             // per test
-           // Debug.Log("La preda di Hunter(Clone)2 è: "+GetMyPrey("Hunter(Clone)2"));
+            // Debug.Log("La preda di Hunter(Clone)2 è: "+GetMyPrey("Hunter(Clone)2"));
             //
 
             /*
@@ -88,25 +88,37 @@ namespace GameManagers {
                 Debug.Log("Chiave: " + el.Key + " -> Valore: " + el.Value);
             }
             */
+
+            ReadBonuses rb = new ReadBonuses();
+            bonuses = rb.getBonuses();
+
+            IstantiateBonus();
+
+
         }
 
         private void OnDestroy()
         {
             Messenger<GameObject, GameObject>.RemoveListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.RemoveListener(GameEvent.BONUS_PICKED, assignBonus);
+
         }
 
 
         void Start()
         {
             
-            ReadBonuses rb = new ReadBonuses();
-            bonuses = rb.getBonuses();
+         
             Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.AddListener(GameEvent.BONUS_PICKED, assignBonus);
+
         }
 
         void Update()
         {
 
+
+            useBonus();
             EndCheck();
         }
         // Update is called once per frame
@@ -203,7 +215,7 @@ namespace GameManagers {
         // restituisce un bonus casuale
         public Bonus getRandomBonus()
         {
-            return bonuses[0];
+            return bonuses[UnityEngine.Random.Range(0, bonuses.Count)]; //@@
         }
 
         // assegna il bonus ad un personaggio
@@ -214,10 +226,26 @@ namespace GameManagers {
 
 
 
-        public void useBonus(GameObject o)
+        public void useBonus()
         {
-            o.GetComponent<CharacterStatus>().setBonus(bonusOfTheCharacter[o]);
-            StartCoroutine(AnnullaBonus(o));
+            foreach (GameObject p in hunterPrey.Keys)
+            {
+                if (p.GetComponent<CharacterStatus>().ActivateBonus)
+                {
+                     p.GetComponent<CharacterStatus>().setBonus(bonusOfTheCharacter[p]);
+                     StartCoroutine(AnnullaBonus(p));
+                }
+            }
+        }
+
+
+        public void IstantiateBonus()
+        {
+            foreach (GameObject p in hunterPrey.Keys)
+            {
+                bonusOfTheCharacter[p] = new ReadBonuses().DefaultBonus;
+
+            }
         }
 
         // dopo aver aspettato setto i bonus al valore di default
@@ -228,6 +256,9 @@ namespace GameManagers {
             yield return new WaitForSeconds(bonusOfTheCharacter[o].Seconds);
             //Debug.Log("fine conta");
             o.GetComponent<CharacterStatus>().setBonus(new ReadBonuses().DefaultBonus);
+            bonusOfTheCharacter[o] = new ReadBonuses().DefaultBonus;
+            o.GetComponent<CharacterStatus>().UsingBonus = false;
+
 
         }
 

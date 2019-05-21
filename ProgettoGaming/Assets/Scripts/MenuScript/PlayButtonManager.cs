@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitButtonManager : MonoBehaviour
+public class PlayButtonManager : MonoBehaviour
 {
     public void OnClick()
     {
-        Messenger.Broadcast(GameEvent.QUIT_MSG);
+        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 1);
     }
 }

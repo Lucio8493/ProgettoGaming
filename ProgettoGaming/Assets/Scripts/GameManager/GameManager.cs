@@ -34,8 +34,7 @@ namespace GameManagers
             //Sets this to not be destroyed when reloading scene
             //DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
             
-            */
-           
+            */           
         }
 
         private void Start()
@@ -45,14 +44,5 @@ namespace GameManagers
             this.GetComponentInChildren<MatchManager>().MatchSet();
             this.GetComponentInChildren<PlayerManager>().PlayersSet();
         }
-
-        //Update is called every frame.
-        void Update()
-        {
-
-        }
-
     }
-
-
 }

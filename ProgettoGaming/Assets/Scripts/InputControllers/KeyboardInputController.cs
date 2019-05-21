@@ -7,7 +7,7 @@ namespace InputControllers
     public class KeyboardInputController : BaseInputController
     {
 
-        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
+        private Transform m_Cam;  // A reference to the main camera in the scenes transform
 
 
         public override void CheckInput(GameObject o)
@@ -15,7 +15,6 @@ namespace InputControllers
             // override with your own code to deal with input
             horz = Input.GetAxisRaw("Horizontal");
             vert = Input.GetAxisRaw("Vertical");
-
 
             //codice che serve per far andare il personaggio in una direzione, ma rispetto alla telecamera
             // @@ ATTENZIONE la gestione della camera forse è meglio metterla nel game manager
@@ -27,18 +26,9 @@ namespace InputControllers
 
             horz = m_move.x;
             vert = m_move.z;
-
             }
 
-
             useBonus = Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0); //  è il pulsante sinistro del mouse
-
-
-
-
-
         }
-
-
     }
 }

@@ -12,20 +12,17 @@ namespace Character
         protected CharacterStatus status;
         protected CharacterController controller;
 
-
-   //     [SerializeField] protected float walkSpeed = 6.0f;
+       // [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
 
         // @@ i bonus non vanno qui
         int numBonus = 0;
 
-
         void Start()
         {
          //   _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
-            controller = GetComponent<CharacterController>();
-            
+            controller = GetComponent<CharacterController>();           
         }
 
         private void Update()
@@ -41,8 +38,6 @@ namespace Character
                     vertMovement = status.VerticalMovement; //asse verticale
                     orizMovement = status.OrizontalMovement;//asse orizzontale
 
-
-
                     //quando premo un pulsante direzionale il protagonista deve direzionarsi in base alla telecamera
                     Vector3 m_move;
                     m_move.z = vertMovement;
@@ -54,10 +49,7 @@ namespace Character
                     if (!status.IsFacing)
                     {
                         controller.Move(transform.forward * speed * Time.deltaTime);
-
-
                     }
-
                 }
                 else
                 {
@@ -81,6 +73,5 @@ namespace Character
 
             }
         }*/
-
     }
 }

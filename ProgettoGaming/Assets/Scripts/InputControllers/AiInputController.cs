@@ -14,7 +14,6 @@ namespace InputControllers
 
         private NavMeshPath path = new NavMeshPath();
 
-
         private float ncicliAggiornamento = 10; //@@(time.deltatime) numero di cicli con il quale cambiare direzione (se serve)
         int count = 0;
 
@@ -22,29 +21,21 @@ namespace InputControllers
         {
             CharacterStatus status = o.GetComponent<CharacterStatus>();
 
-
             // calcolo la strada per arrivare dalla preda
             count++;
-
-
-            
+          
             // @@ da riscrivere
-            if (count > ncicliAggiornamento) { 
-             NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas,
-              path);
+            if (count > ncicliAggiornamento)
+            { 
+             NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas, path);
              int cc = 1;
-             //Debug.Log(path.corners[cc]);
-
                 Vector3 difference = path.corners[cc] - o.transform.position;
 
                 horz = difference.x;
-                 vert = difference.z;
+                vert = difference.z;
                 count = 0;
             }
-
         }
-
-
     }
 }
 

@@ -54,7 +54,6 @@ public class FogOfWarScript : MonoBehaviour
             }
             UpdateColor();
         }
-   
     }
 
     //Metodo per ottenere la verticale del mio player
@@ -81,6 +80,4 @@ public class FogOfWarScript : MonoBehaviour
     {
         m_mesh.colors = m_coloros;
     }
-
-
 }

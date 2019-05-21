@@ -28,9 +28,7 @@ namespace Character
             } else
             {
                 anim.SetInteger("speed", 0);
-
             }
-
             checkCapture();
         }
 
@@ -42,7 +40,6 @@ namespace Character
                 anim.SetBool("IsDead", true);
                 //serve ad aspettare la fine dell'animazione
                 StartCoroutine(WaitAnimation());
-
             }
         }
 

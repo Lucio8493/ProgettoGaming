@@ -54,7 +54,6 @@ namespace GameManagers
                 if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.AI)
                 {
                     controllers.Add(p, new AiInputController());
-
                 }
             }
         }
@@ -62,17 +61,13 @@ namespace GameManagers
         // Update is called once per frame
         void Update()
         {
-
             // controllo gli input di tutti i giocatori
             foreach (GameObject p in controllers.Keys)
             {
                 controllers[p].CheckInput(p);
             }
-
             changeHunter(player.GetComponent<CharacterStatus>().Hunter);
             changePrey(player.GetComponent<CharacterStatus>().Prey);
-
-
         }
 
         private void LateUpdate()
@@ -83,10 +78,8 @@ namespace GameManagers
 
 
         public BaseInputController GetController(GameObject p)
-        {
-           
-                return controllers[p];
-         
+        {          
+                return controllers[p];         
         }
 
 

@@ -15,7 +15,6 @@ namespace GameManagers
        //Metedo utilizzato per inizializzare l'ambiente
         public void GenerateEnviroment()
         {
-
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             m.generate();
             fow = this.GetComponent<FogOfWarScript>();
@@ -28,6 +27,5 @@ namespace GameManagers
         {
             fow.UpdateFOW();
         }
-
     }
 }

@@ -67,9 +67,7 @@ public class MazeGenerator: MonoBehaviour
                 break;
         }
         mMazeGenerator.GenerateMaze();
-
-        
-        
+     
         for (int row = 0; row < Rows; row++)
         {
             for (int column = 0; column < Columns; column++)
@@ -80,7 +78,6 @@ public class MazeGenerator: MonoBehaviour
                 GameObject tmp;
                 tmp = Instantiate(Floor, new Vector3(x, 0, z), Quaternion.Euler(0, 0, 0)) as GameObject;
                 tmp.transform.parent = transform;
-
 
                 if (cell.WallRight)
                 {
@@ -103,7 +100,6 @@ public class MazeGenerator: MonoBehaviour
                     tmp.transform.parent = transform;
                 }
 
-
                 /*
                 randomInt = rnd.Next(1, 20);
                 if (randomInt > 12)
@@ -119,7 +115,6 @@ public class MazeGenerator: MonoBehaviour
                 */
             }
         }
-
 
         //creazione della navmesh sulla superfice del maze
         this.GetComponent<NavMeshSurface>().BuildNavMesh();

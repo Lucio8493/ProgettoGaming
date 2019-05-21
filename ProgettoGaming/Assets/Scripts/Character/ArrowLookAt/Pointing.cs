@@ -14,10 +14,8 @@ public class Pointing : MonoBehaviour
     void Start()
     {
          rb = GetComponent<Rigidbody>();
-        
     }
 
-    
     public void Point()
     {
         if (target)

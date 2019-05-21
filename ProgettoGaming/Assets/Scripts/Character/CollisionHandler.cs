@@ -19,12 +19,6 @@ public class CollisionHandler : MonoBehaviour
         status = this.gameObject.GetComponent<CharacterStatus>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         string tag =hit.gameObject.tag;
@@ -40,16 +34,10 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case (BonusTag):
-
                 hit.gameObject.SetActive(false); //@@ spostare nel MatchManager
-
-
                 Messenger<GameObject>.Broadcast(GameEvent.BONUS_PICKED, this.gameObject);
-
                 //CharacterStatus.hasBonus = true;
-
                 break;
-
         }
     }
 }

@@ -8,14 +8,6 @@ namespace GameManagers
 {
     public class SpawnManager : MonoBehaviour
     {
-        /*
-        public enum NumberOfPlayers
-        {
-            four,
-            six,
-        }
-
-        public NumberOfPlayers Players = NumberOfPlayers.four;*/
         public int Players;
         public GameObject goalPrefab = null;
         public GameObject enemyPlayerPrefab = null;
@@ -32,7 +24,6 @@ namespace GameManagers
         private GameObject bonusObject;
         private int id_enemy = 0;
         private int lastBonus = 0;
-
 
         public void SpawnSet()
         {
@@ -73,10 +64,8 @@ namespace GameManagers
             SetZones();
         }
 
-        
-        /// <summary>
+
         /// setto le varie zone del mio labirinto, creando i nemici e i bonus, e posizionando il player in una zona a caso
-        /// </summary>
         private void SetZones()
         {
             GameObject tmp;
@@ -88,7 +77,6 @@ namespace GameManagers
                 ///Nel caso mi trovassi nell'ultima zona e il player non fosse stato ancora creato lo creo
                 if (!playerCreated && rnd.Next()%2==1 || !playerCreated && i==numberOfZones.Length-1)
                 {
-                    
                     //scegliamo la nuova posizione
                     Vector3 newPosition = new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth);
                     //procediamo a spostare il giocatore principale e calcoliamo lo spostamento da fare
@@ -118,8 +106,7 @@ namespace GameManagers
                     tmp.GetComponent<CharacterStatus>().MyType= CharacterStatus.typeOfPlayer.AI;
                     tmp.name = tmp.name + id_enemy;
                     id_enemy++;
-                    enemylist[i-1] = tmp;
-                    
+                    enemylist[i-1] = tmp;                    
                 }
                 else
                 {
@@ -135,7 +122,6 @@ namespace GameManagers
             }
             
         }
-
 
         /// <summary>
         /// metodo per la creazione dei bonus all'interno della zona in posizioni randomiche, ma in celle cieche
@@ -179,7 +165,6 @@ namespace GameManagers
            return myMazeGenerator.MMazeGenerator.GetMazeCell(row, column);
         }
     }
-
 
     /// <summary>
     /// classe che mi identifica la zona, con i suoi estremi, la cella centrale e la lista dei bonus nella zona
@@ -227,7 +212,6 @@ namespace GameManagers
             if(lastBonus==bonuses.Length)
             {
                 isFull = true;
-                //Debug.Log("Max Bonus");
             }
         }
     }

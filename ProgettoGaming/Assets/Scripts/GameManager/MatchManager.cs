@@ -116,13 +116,11 @@ namespace GameManagers {
             if (prey == player && hunterPrey[hunter] == player)
             {
                 player.GetComponent<CharacterStatus>().IsCaptured = true;
-                //Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
             }
             //se il maincharcter cattura faccio partire la scena di vittoria
             else if (hunter == player && hunterPrey[hunter] == prey &&  InMexicanStall)
             {
                 player.GetComponent<CharacterStatus>().IsWinning = true;
-                //Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
             }
             //altrimenti verifico che la cattura sia lecita e aggiorno gli stati
             else if (hunterPrey[hunter] == prey)

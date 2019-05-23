@@ -83,17 +83,10 @@ namespace GameManagers
                     GameObject mainPlayer = GameObject.Find("MainCharacter");
                     Vector3 offset = newPosition - mainPlayer.transform.position;
                     mainPlayer.transform.position = mainPlayer.transform.position + offset;
-                    
-                    //creo il giocatore principale
-                    /*
-                    tmp = Instantiate(enemyPlayerPrefab, new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
-                    tmp.name = "MainCharcter";
-                    tmp.GetComponent<CharacterStatus>().MyType = CharacterStatus.typeOfPlayer.Player;
-                    */
+
                     //@@ forse potrebbe essere fatto meglio
                     //procedo a spostare la telecamera di conseguenza
                     CameraController cameraController = Camera.main.GetComponent<CameraController>();
-                    //Vector3 offset = new Vector3(Camera.main.transform.position.x + tmp.transform.position.x, 0, Camera.main.transform.position.z + tmp.transform.position.z);
                     cameraController.moveCamera(offset);
                     cameraController.SetOffset();
                     playerCreated = true;
@@ -138,7 +131,7 @@ namespace GameManagers
                     {
                         break;
                     }
-                    //crea un bonus in quella cella con una possibilita' su 30
+                    //@@crea un bonus in quella cella con una possibilita' su 30
                     else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
@@ -152,7 +145,6 @@ namespace GameManagers
             }
         }
 
-        ////probabilmente andra' aggiunto un metodo per aggiungere i bonus durante l'esecuzione del gioco
 
         /// <summary>
         /// metodo per ottenere la cella dal mazeGenerator

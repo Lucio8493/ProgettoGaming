@@ -32,6 +32,7 @@ namespace Character
             checkCapture();
         }
 
+        //@@volendo aggiungere piu' vite si potrebbe utilizzare una variabile in piu' isDying
         void checkCapture()
         {
             if (status.IsCaptured)

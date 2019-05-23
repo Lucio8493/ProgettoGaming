@@ -15,12 +15,8 @@ namespace Character
        // [SerializeField] protected float walkSpeed = 6.0f;
         [SerializeField] protected float runBoost = 2f;
 
-        // @@ i bonus non vanno qui
-        int numBonus = 0;
-
         void Start()
         {
-         //   _charController = GetComponent<CharacterController>();
             status = GetComponent<CharacterStatus>();
             controller = GetComponent<CharacterController>();           
         }
@@ -51,27 +47,7 @@ namespace Character
                         controller.Move(transform.forward * speed * Time.deltaTime);
                     }
                 }
-                else
-                {
-                    vertMovement = 0;
-                    orizMovement = 0;
-                    speed = 0;
-                }
             }
         }
-
-        // @@ va spostato da qua
-        /*
-        void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            if (hit.gameObject.CompareTag("Bonus"))
-            {
-                numBonus++;
-                hit.gameObject.SetActive(false);
-                Debug.Log("Player complimenti, hai preso il bonus. Hai collezionato " + numBonus + " bonus");
-
-
-            }
-        }*/
     }
 }

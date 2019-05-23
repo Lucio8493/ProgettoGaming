@@ -27,6 +27,7 @@ public class MazeGenerator: MonoBehaviour
     [SerializeField]
     private int columns = 5;
     private const int FowHeight = 3;
+    
 
 
     private const float cellWidth = 5;
@@ -99,20 +100,6 @@ public class MazeGenerator: MonoBehaviour
                     tmp = Instantiate(Wall, new Vector3(x, 0, z - cellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// back
                     tmp.transform.parent = transform;
                 }
-
-                /*
-                randomInt = rnd.Next(1, 20);
-                if (randomInt > 12)
-                {
-                    //lo tengo cosi' possiamo pensare di gestire l'aggiunta dei bonus con questa informazione
-                    if (cell.IsGoal && GoalPrefab != null)
-                    {
-                        bonusN++;
-                        tmp = Instantiate(GoalPrefab, new Vector3(x, 1, z), Quaternion.Euler(0, 0, 0)) as GameObject;
-                        tmp.transform.parent = transform;
-                    }
-                }
-                */
             }
         }
 

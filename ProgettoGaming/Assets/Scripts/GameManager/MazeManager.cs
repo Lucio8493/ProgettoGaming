@@ -11,8 +11,10 @@ namespace GameManagers
 
         protected FogOfWarScript fow;
         protected SpawnManager spawnManager;
+        
+        //@@aggiungere i tag alla classe specifica
 
-       //Metedo utilizzato per inizializzare l'ambiente
+        //Metedo utilizzato per inizializzare l'ambiente
         public void GenerateEnviroment()
         {
             MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();

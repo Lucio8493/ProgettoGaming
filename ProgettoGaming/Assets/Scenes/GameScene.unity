@@ -578,7 +578,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878816232}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ad98080f385224c41bd0f972f37b9224, type: 3}
@@ -849,7 +849,7 @@ MonoBehaviour:
   Players: 4
   goalPrefab: {fileID: 8202630048040354531, guid: 6575ee05b7cce1341b890f07301d5362,
     type: 3}
-  enemyPlayerPrefab: {fileID: 8344928288926759722, guid: 1457ad2866c72d74f8aa321a867ad860,
+  enemyPlayerPrefab: {fileID: 8344928288926759722, guid: 6fd460578201d354082bcb131e14f3ec,
     type: 3}
 --- !u!1 &1538689739
 GameObject:

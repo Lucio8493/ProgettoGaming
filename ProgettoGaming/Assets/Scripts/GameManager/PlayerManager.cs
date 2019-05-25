@@ -36,8 +36,8 @@ namespace GameManagers
             }
 
             //infine setto l'hunter e il prey recuperandoli dallo status del main character
-            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
-            changePrey(player.GetComponent<CharacterStatus>().Prey);
+            //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            //changePrey(player.GetComponent<CharacterStatus>().Prey);
         }
 
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
@@ -66,14 +66,14 @@ namespace GameManagers
             {
                 controllers[p].CheckInput(p);
             }
-            changeHunter(player.GetComponent<CharacterStatus>().Hunter);
-            changePrey(player.GetComponent<CharacterStatus>().Prey);
+            //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
+            //changePrey(player.GetComponent<CharacterStatus>().Prey);
         }
 
         private void LateUpdate()
         {
-            HunterArrow.Point();
-            PreyArrow.Point();
+           // HunterArrow.Point();
+            //PreyArrow.Point();
         }
 
 

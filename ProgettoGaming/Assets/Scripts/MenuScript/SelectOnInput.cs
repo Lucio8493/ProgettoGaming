@@ -13,7 +13,8 @@ public class SelectOnInput : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        eventSystem.SetSelectedGameObject(selectedObject);
+        buttonSelected = true;
     }
 
     // Update is called once per frame

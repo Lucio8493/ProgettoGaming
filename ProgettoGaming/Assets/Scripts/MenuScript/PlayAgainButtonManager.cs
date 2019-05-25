@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayButtonManager : MonoBehaviour
+public class PlayAgainButtonManager : MonoBehaviour
 {
     public void OnClick()
     {

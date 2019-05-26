@@ -41,6 +41,10 @@ namespace GameManagers
             //infine setto l'hunter e il prey recuperandoli dallo status del main character
             //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
             //changePrey(player.GetComponent<CharacterStatus>().Prey);
+
+
+            s = new SwitchColor();
+
         }
 
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
@@ -78,13 +82,28 @@ namespace GameManagers
 
             s = new SwitchColor();
 
+            
+            SetColor();
+
             ChangeColor();
 
         }
 
 
-        // cambia il colore della preda e del predatore del giocatore
-        void ChangeColor()
+        //setta il colore neutrale a tutti i gicatori in campo tranne al protagonista 
+        void SetColor()
+        {
+
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in players)
+            {
+                if (p.GetComponent<CharacterStatus>().MyType != CharacterStatus.typeOfPlayer.Player)
+                    s.NeutralColor(p);
+            }
+        }
+
+            // cambia il colore della preda e del predatore del giocatore
+            void ChangeColor()
         {
             s.HunterColor(player.GetComponent<CharacterStatus>().Hunter);
             s.PreyColor(player.GetComponent<CharacterStatus>().Prey);

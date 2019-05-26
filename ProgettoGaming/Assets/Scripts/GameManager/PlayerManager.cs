@@ -17,6 +17,9 @@ namespace GameManagers
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
         GameObject player; // il giocatore controllato dall'utente
 
+
+        SwitchColor s; // classe che permette di cambiare il colore della preda e del predatore del giocatore in modo che siano più facilmente riconoscibili
+
         public void PlayersSet()
         {
             //recupero i vari giocatori
@@ -68,6 +71,21 @@ namespace GameManagers
             }
             //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
             //changePrey(player.GetComponent<CharacterStatus>().Prey);
+
+
+            s = new SwitchColor();
+
+            ChangeColor();
+
+        }
+
+
+        // cambia il colore della preda e del predatore del giocatore
+        void ChangeColor()
+        {
+            s.HunterColor(player.GetComponent<CharacterStatus>().Hunter);
+            s.PreyColor(player.GetComponent<CharacterStatus>().Prey);
+
         }
 
         private void LateUpdate()

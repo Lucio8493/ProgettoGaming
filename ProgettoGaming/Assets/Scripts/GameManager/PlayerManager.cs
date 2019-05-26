@@ -68,7 +68,10 @@ namespace GameManagers
             foreach (GameObject p in controllers.Keys)
             {
                 controllers[p].CheckInput(p);
+                
             }
+
+            
             //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
             //changePrey(player.GetComponent<CharacterStatus>().Prey);
 

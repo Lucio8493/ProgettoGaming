@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 7be9ba13c0ae62049a20c08d415f7187
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: 82702d093373d3c48bfaf688cee777e5
+  - enabled: 1
+    path: Assets/Scenes/MiniMapTest.unity
+    guid: b51a7a2de57c19d4d96eb29fa20a27e9
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: f11efaa7987ffd44e970e7cffa34cb67

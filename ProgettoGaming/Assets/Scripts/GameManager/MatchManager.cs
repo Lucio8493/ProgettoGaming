@@ -100,7 +100,7 @@ namespace GameManagers {
         // se il numero di giocatori è pari a tre cambio le regole della partita
         private void MexicanStall()
         {
-            if(hunterPrey.Count == mexicanStallValue)
+            if(hunterPrey.Count < mexicanStallValue)
             {
                 InMexicanStall = true;
             }
@@ -142,6 +142,11 @@ namespace GameManagers {
                 p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
                 hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
             }
+            
+            //@@per ora messo qui cosi' possiamo provare
+            player.GetComponent<CharacterStatus>().Prey.transform.Find("MiniMapPreyIcon").gameObject.SetActive(true);
+            player.GetComponent<CharacterStatus>().Hunter.transform.Find("MiniMapHunterIcon").gameObject.SetActive(true);
+
         }
 
         // prendo la preda che mi è stata associata
@@ -196,7 +201,7 @@ namespace GameManagers {
         protected void EndCheck()
         {
             //se il maincharacter e' morto faccio partire la scena di game over
-            if (player.GetComponent<CharacterStatus>().IsDead)
+            if (player.GetComponent<CharacterStatus>().IsDead || InMexicanStall  )
             {
                 Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
             }

@@ -16,6 +16,7 @@ namespace GameManagers {
         protected Dictionary<GameObject, GameObject> hunterPrey; // associazione nome_hunter con nome_hunter
         private int mexicanStallValue = 3;
         private bool InMexicanStall = false;
+        private bool OutOfMexicanStall = false;
 
         List<Bonus> bonuses;
         // tutti i bonus nella partita corrente
@@ -101,6 +102,10 @@ namespace GameManagers {
         private void MexicanStall()
         {
             if(hunterPrey.Count < mexicanStallValue)
+            {
+                OutOfMexicanStall = true;
+            }
+            if (hunterPrey.Count == mexicanStallValue)
             {
                 InMexicanStall = true;
             }
@@ -201,7 +206,7 @@ namespace GameManagers {
         protected void EndCheck()
         {
             //se il maincharacter e' morto faccio partire la scena di game over
-            if (player.GetComponent<CharacterStatus>().IsDead || InMexicanStall  )
+            if (player.GetComponent<CharacterStatus>().IsDead || OutOfMexicanStall  )
             {
                 Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 4);
             }

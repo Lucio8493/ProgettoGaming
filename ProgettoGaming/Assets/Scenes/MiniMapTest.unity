@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 312493768}
   - component: {fileID: 312493770}
-  - component: {fileID: 312493769}
   m_Layer: 0
   m_Name: MiniMapCam
   m_TagString: Untagged
@@ -254,21 +253,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312493767}
-  m_LocalRotation: {x: -0.46279326, y: 0.01715238, z: -0.03354737, w: -0.8856651}
+  m_LocalRotation: {x: 0.46311042, y: 0, z: 0, w: 0.8863006}
   m_LocalPosition: {x: -0.95804507, y: 125.910675, z: -73.55921}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 878816234}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &312493769
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312493767}
-  m_Enabled: 0
+  m_LocalEulerAnglesHint: {x: 55.176003, y: 0, z: 0}
 --- !u!20 &312493770
 Camera:
   m_ObjectHideFlags: 0
@@ -296,7 +287,7 @@ Camera:
   far clip plane: 600
   field of view: 60
   orthographic: 1
-  orthographic size: 100
+  orthographic size: 80
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -700,14 +691,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878816232}
-  m_LocalRotation: {x: -0.29901558, y: -0.03585008, z: 0.011593021, w: -0.95350415}
+  m_LocalRotation: {x: 0.29924062, y: 0, z: 0, w: 0.9541777}
   m_LocalPosition: {x: -0.008771867, y: 9.631502, z: -11.548684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312493768}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.824, y: 0, z: 0}
 --- !u!114 &878816235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,10 +1294,10 @@ RectTransform:
   m_Father: {fileID: 1866224315}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8064843, y: 0}
-  m_AnchorMax: {x: 1, y: 0.4517955}
-  m_AnchoredPosition: {x: -74.5, y: 70.5}
-  m_SizeDelta: {x: 145, y: 139}
+  m_AnchorMin: {x: 0.9477422, y: 0}
+  m_AnchorMax: {x: 1, y: 0.14533988}
+  m_AnchoredPosition: {x: -131, y: 117.5}
+  m_SizeDelta: {x: 258, y: 233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818650603
 MonoBehaviour:

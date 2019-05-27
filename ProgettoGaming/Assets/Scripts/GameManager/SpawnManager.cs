@@ -32,19 +32,6 @@ namespace GameManagers
             myMazeGenerator = GameObject.Find("Maze").GetComponent<MazeGenerator>();
             enemyObject = GameObject.Find("EnemyObject");
             bonusObject = GameObject.Find("BonusObject");
-            if (Players == 3)
-            {
-                //setto il numero massimo di avversari al numero totale di giocatori meno 1
-                enemylist = new GameObject[3];
-                //setto il numero di zone pari al numero di giocatori
-                numberOfZones = new Zone[4];
-                bonuslist = new GameObject[4 * BONUSES];
-                //@@il numero di bonus per ogni zona per ora e' hardcoded qui e sono 4
-                numberOfZones[0] = new Zone(0, myMazeGenerator.Rows / 2, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Columns / 4, myMazeGenerator.Rows / 4), BONUSES);
-                numberOfZones[1] = new Zone(0, myMazeGenerator.Rows / 2, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 4, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
-                numberOfZones[2] = new Zone(myMazeGenerator.Rows / 2 + 1, myMazeGenerator.Rows, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Rows / 4 + myMazeGenerator.Rows / 2, myMazeGenerator.Columns / 4), BONUSES);
-                numberOfZones[3] = new Zone(myMazeGenerator.Rows / 2 + 1, myMazeGenerator.Rows, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 4 + myMazeGenerator.Rows / 2, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
-            }
             if (Players == 4)
             {
                 //setto il numero massimo di avversari al numero totale di giocatori meno 1

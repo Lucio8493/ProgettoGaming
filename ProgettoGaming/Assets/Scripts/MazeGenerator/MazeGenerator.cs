@@ -22,10 +22,8 @@ public class MazeGenerator: MonoBehaviour
     public GameObject Wall = null;
     public GameObject FowPlane = null;
 
-    [SerializeField]
-    private int rows = 5;
-    [SerializeField]
-    private int columns = 5;
+    private int rows = SettingsClass.RowsDimensions;
+    private int columns =  SettingsClass.ColumnsDimensions;
     private const int FowHeight = 3;
     
 

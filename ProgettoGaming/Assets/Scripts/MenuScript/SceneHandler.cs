@@ -42,7 +42,29 @@ public class SceneHandler : MonoBehaviour
         DontDestroyOnLoad(this);
         Messenger<int>.AddListener(GameEvent.CHANGE_SCENE, ChangeScene);
         Messenger<int>.AddListener(GameEvent.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
+        Messenger<int>.AddListener(GameEvent.MAZE_ROWS_DIMENSION, SetRowsDimension);
+        Messenger<int>.AddListener(GameEvent.MAZE_COLUMNS_DIMENSION, SetColumnsDimension);
         Messenger.AddListener(GameEvent.QUIT_MSG, QuitGame);
+    }
+
+    private void ChangeScene(int numScene)
+    {
+        SceneManager.LoadScene(numScene);
+    }
+
+    private void SetNumberOfPlayers(int numOfPlayers)
+    {
+        SettingsClass.NumOfPlayers = numOfPlayers;
+    }
+
+    private void SetRowsDimension(int rowsDimensions)
+    {
+        SettingsClass.RowsDimensions = rowsDimensions;
+    }
+
+    private void SetColumnsDimension(int columnsDimensions)
+    {
+        SettingsClass.ColumnsDimensions = columnsDimensions;
     }
 
     private void QuitGame()
@@ -52,15 +74,5 @@ public class SceneHandler : MonoBehaviour
         #else
             Application.Quit ();
         #endif
-    }
-
-    private void SetNumberOfPlayers(int numOfPlayers)
-    {
-        SettingsClass.NumOfPlayers = numOfPlayers;
-    }
-
-    private void ChangeScene(int numScene)
-    {
-        SceneManager.LoadScene(numScene);
     }
 }

@@ -12,7 +12,7 @@ public static class GameEvent
     public const string POSITION_OFFSET = "POSITION_OFFSET";
     public const string TARGET_CAPTURED = "TARGET_CAPTURED";
     public const string BONUS_PICKED = "BONUS_PICKED";
-
-
+    public const string MAZE_ROWS_DIMENSION = "MAZE_ROWS_DIMENSION";
+    public const string MAZE_COLUMNS_DIMENSION = "MAZE_COLUMNS_DIMENSION";
 }
 

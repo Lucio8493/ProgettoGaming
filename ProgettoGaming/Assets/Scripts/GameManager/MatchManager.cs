@@ -203,12 +203,12 @@ namespace GameManagers {
             //se il maincharacter e' morto faccio partire la scena di game over
             if (player.GetComponent<CharacterStatus>().IsDead || InMexicanStall  )
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 4);
             }
             //se il maincharcter cattura in mexicanstall faccio partire la scena di vittoria
             else if (player.GetComponent<CharacterStatus>().HasWon)
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
+                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
             }
         }
 

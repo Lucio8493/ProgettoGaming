@@ -1656,16 +1656,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895542, guid: 1457ad2866c72d74f8aa321a867ad860,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8948768251045924314, guid: 1457ad2866c72d74f8aa321a867ad860,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3750618765606362931, guid: 1457ad2866c72d74f8aa321a867ad860,
         type: 3}
       propertyPath: m_IsActive
@@ -1675,6 +1665,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895542, guid: 1457ad2866c72d74f8aa321a867ad860,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948768251045924314, guid: 1457ad2866c72d74f8aa321a867ad860,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1457ad2866c72d74f8aa321a867ad860, type: 3}
@@ -2102,8 +2102,9 @@ GameObject:
   - component: {fileID: 1771192014}
   - component: {fileID: 1771192013}
   - component: {fileID: 1771192012}
+  - component: {fileID: 1771192015}
   m_Layer: 5
-  m_Name: OptionButton
+  m_Name: TutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2171,7 +2172,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1771192013}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1771192015}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1771192013
@@ -2211,6 +2223,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771192010}
   m_CullTransparentMesh: 0
+--- !u!114 &1771192015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771192010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fd03609998520438d0ee94a2aafa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1826453453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2598,7 @@ GameObject:
   - component: {fileID: 1873704426}
   - component: {fileID: 1873704425}
   m_Layer: 5
-  m_Name: OptionText
+  m_Name: TutorialText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2632,7 +2656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTION
+  m_Text: TUTORIAL
 --- !u!222 &1873704426
 CanvasRenderer:
   m_ObjectHideFlags: 0

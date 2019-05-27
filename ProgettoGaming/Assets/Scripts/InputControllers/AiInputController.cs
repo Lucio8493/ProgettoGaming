@@ -16,7 +16,7 @@ namespace InputControllers
 
         private float ncicliAggiornamento = 10; //@@(time.deltatime) numero di cicli con il quale cambiare direzione (se serve)
         int count = 0;
-
+        
         public override void CheckInput(GameObject o)
         {
             CharacterStatus status = o.GetComponent<CharacterStatus>();

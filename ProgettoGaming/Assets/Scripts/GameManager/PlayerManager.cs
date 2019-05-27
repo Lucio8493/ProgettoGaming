@@ -86,8 +86,8 @@ namespace GameManagers
         // cambia il colore della preda e del predatore del giocatore
         void ChangeColor()
         {
-            s.HunterColor(player.GetComponent<CharacterStatus>().Hunter);
-            s.PreyColor(player.GetComponent<CharacterStatus>().Prey);
+            //s.HunterColor(player.GetComponent<CharacterStatus>().Hunter);
+            //s.PreyColor(player.GetComponent<CharacterStatus>().Prey);
 
         }
 

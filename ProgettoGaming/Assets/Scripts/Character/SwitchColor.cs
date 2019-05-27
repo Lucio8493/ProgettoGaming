@@ -34,4 +34,17 @@ public class SwitchColor
 
         }
     }
+
+    // il colore del personaggio che non è ne preda ne predatore rispetto al giocatore
+    public void NeutralColor(GameObject o)
+    {
+        var Component = o.GetComponentsInChildren<Renderer>();
+        foreach (var rend in Component)
+        {
+            Material mat = rend.material;
+            mat.SetColor("_EmissionColor", Color.white);
+
+
+        }
+    }
 }

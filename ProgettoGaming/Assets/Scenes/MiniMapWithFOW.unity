@@ -287,7 +287,7 @@ Camera:
   far clip plane: 600
   field of view: 60
   orthographic: 1
-  orthographic size: 80
+  orthographic size: 100
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1695,6 +1695,11 @@ PrefabInstance:
       propertyPath: m_fogOfWarPlane
       value: 
       objectReference: {fileID: 986924102}
+    - target: {fileID: 8344928288028895542, guid: 1457ad2866c72d74f8aa321a867ad860,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1457ad2866c72d74f8aa321a867ad860, type: 3}

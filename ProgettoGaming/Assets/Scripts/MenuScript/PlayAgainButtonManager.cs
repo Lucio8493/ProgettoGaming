@@ -6,6 +6,7 @@ public class PlayAgainButtonManager : MonoBehaviour
 {
     public void OnClick()
     {
-        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 1);
+        Debug.Log("Play Again dice: nome ultima scena -> " + SceneHandler.LastSceneName);
+        Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneHandler.LastSceneName);
     }
 }

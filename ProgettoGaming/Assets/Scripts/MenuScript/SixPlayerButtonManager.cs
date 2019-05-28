@@ -6,7 +6,7 @@ public class SixPlayerButtonManager : MonoBehaviour
 {
     public void OnClick()
     {
-        Messenger<int>.Broadcast(GameEvent.SETTING_PLAYERS_NUMBER, 6);
-        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 2);
+        Messenger<int>.Broadcast(GameEventStrings.SETTING_PLAYERS_NUMBER, 6);
+        Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.GAME_SCENE);
     }
 }

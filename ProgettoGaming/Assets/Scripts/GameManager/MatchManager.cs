@@ -56,15 +56,15 @@ namespace GameManagers {
 
         private void OnDestroy()
         {
-            Messenger<GameObject, GameObject>.RemoveListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
-            Messenger<GameObject>.RemoveListener(GameEvent.BONUS_PICKED, assignBonus);
+            Messenger<GameObject, GameObject>.RemoveListener(GameEventStrings.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, assignBonus);
         }
 
 
         void Start()
         {     
-            Messenger<GameObject, GameObject>.AddListener(GameEvent.TARGET_CAPTURED, TargetCaptured);
-            Messenger<GameObject>.AddListener(GameEvent.BONUS_PICKED, assignBonus);
+            Messenger<GameObject, GameObject>.AddListener(GameEventStrings.TARGET_CAPTURED, TargetCaptured);
+            Messenger<GameObject>.AddListener(GameEventStrings.BONUS_PICKED, assignBonus);
         }
 
         void Update()
@@ -208,12 +208,12 @@ namespace GameManagers {
             //se il maincharacter e' morto faccio partire la scena di game over
             if (player.GetComponent<CharacterStatus>().IsDead || OutOfMexicanStall  )
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 4);
+                Messenger<int>.Broadcast(GameEventStrings.CHANGE_SCENE, 4);
             }
             //se il maincharcter cattura in mexicanstall faccio partire la scena di vittoria
             else if (player.GetComponent<CharacterStatus>().HasWon)
             {
-                Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
+                Messenger<int>.Broadcast(GameEventStrings.CHANGE_SCENE, 3);
             }
         }
 

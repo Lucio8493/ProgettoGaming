@@ -9,7 +9,7 @@ public class ExitButtonManager : MonoBehaviour
 
     public void OnClick()
     {
-        Messenger.Broadcast(GameEvent.QUIT_MSG);
+        Messenger.Broadcast(GameEventStrings.QUIT_MSG);
     }
 
 }

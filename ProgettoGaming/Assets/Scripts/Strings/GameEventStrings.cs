@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameEvent
+public static class GameEventStrings
 {
     public const string CHANGE_SCENE = "CHANGE_SCENE";
     public const string SETTING_PLAYERS_NUMBER = "SETTING_PLAYERS_NUMBER";

@@ -6,13 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-
-
+    private static string lastSceneName;
     protected static SceneHandler instance;
 
     public SceneHandler Instance
     {
         get { return instance; }
+    }
+
+    public static string LastSceneName
+    {
+        get => lastSceneName;
+        set => lastSceneName = value;
     }
 
     void Awake()
@@ -31,23 +36,22 @@ public class SceneHandler : MonoBehaviour
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject); //la scena deve essere ricreata ogni volta
-
-
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
-        Messenger<int>.AddListener(GameEvent.CHANGE_SCENE, ChangeScene);
-        Messenger<int>.AddListener(GameEvent.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
-        Messenger.AddListener(GameEvent.QUIT_MSG, QuitGame);
+        Messenger<string>.AddListener(GameEventStrings.CHANGE_SCENE, ChangeScene);
+        Messenger<int>.AddListener(GameEventStrings.SETTING_PLAYERS_NUMBER, SetNumberOfPlayers);
+        Messenger.AddListener(GameEventStrings.QUIT_MSG, QuitGame);
     }
 
-    private void ChangeScene(int numScene)
+    private void ChangeScene(string nameScene)
     {
-        SceneManager.LoadScene(numScene);
+        LastSceneName = nameScene;
+        Debug.Log("SceneHandlers dice: nome ultima scena -> " + LastSceneName);
+        SceneManager.LoadScene(nameScene);
     }
 
     private void SetNumberOfPlayers(int numOfPlayers)

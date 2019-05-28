@@ -28,13 +28,13 @@ public class CollisionHandler : MonoBehaviour
                
                 if (status.Prey == hit.gameObject)
                 {
-                    Messenger<GameObject,GameObject>.Broadcast(GameEvent.TARGET_CAPTURED, this.gameObject,hit.gameObject);
+                    Messenger<GameObject,GameObject>.Broadcast(GameEventStrings.TARGET_CAPTURED, this.gameObject,hit.gameObject);
                 }
                 break;
 
             case (BonusTag):
                 hit.gameObject.SetActive(false); //@@ spostare nel MatchManager la disattivazione della gemma
-                Messenger<GameObject>.Broadcast(GameEvent.BONUS_PICKED, this.gameObject);
+                Messenger<GameObject>.Broadcast(GameEventStrings.BONUS_PICKED, this.gameObject);
                 break;
         }
     }

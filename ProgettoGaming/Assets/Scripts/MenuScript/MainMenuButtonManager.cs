@@ -7,6 +7,6 @@ public class MainMenuButtonManager : MonoBehaviour
 {
     public void OnClick()
     {
-        Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 0);
+        Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.MENU_SCENE);
     }
 }

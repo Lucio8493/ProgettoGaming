@@ -49,7 +49,7 @@ public class SceneHandler : MonoBehaviour
 
     private void ChangeScene(string nameScene)
     {
-        LastSceneName = nameScene;
+        LastSceneName = SceneManager.GetActiveScene().name;
         Debug.Log("SceneHandlers dice: nome ultima scena -> " + LastSceneName);
         SceneManager.LoadScene(nameScene);
     }

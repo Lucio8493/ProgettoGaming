@@ -93,12 +93,12 @@ public class Rules : Object
         //se il maincharacter e' morto faccio partire la scena di game over
         if (MStatus.Player.GetComponent<CharacterStatus>().IsDead || MStatus.OutOfMexicanStall)
         {
-            Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 4);
+            Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.GAMEOVER_SCENE);
         }
         //se il maincharcter cattura in mexicanstall faccio partire la scena di vittoria
         else if (MStatus.Player.GetComponent<CharacterStatus>().HasWon)
         {
-            Messenger<int>.Broadcast(GameEvent.CHANGE_SCENE, 3);
+            Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.WIN_SCENE);
         }
     }
 

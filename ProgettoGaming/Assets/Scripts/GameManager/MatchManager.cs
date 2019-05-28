@@ -13,26 +13,31 @@ namespace GameManagers {
         //parte del nemico
         protected GameObject[] enemy;
         protected List<GameObject> enemyList;
-        protected Dictionary<GameObject, GameObject> hunterPrey; // associazione nome_hunter con nome_hunter
-        private int mexicanStallValue = 3;
-        private bool InMexicanStall = false;
-        private bool OutOfMexicanStall = false;
+        //protected Dictionary<GameObject, GameObject> hunterPrey; // associazione nome_hunter con nome_hunter
+        //private int mexicanStallValue = 3;
+        //private bool InMexicanStall = false;
+        //private bool OutOfMexicanStall = false;
 
-        List<Bonus> bonuses;
+
         // tutti i bonus nella partita corrente
+        protected List<Bonus> bonuses;
 
-        // parte del bonus
-        protected GameObject[] bonus;
+
+
         // coppia chiave valore, come chiave c'è i personaggi giocanti, come valore il loro bonus
-        protected Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
+        //protected Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
 
         //parte del player
-        protected GameObject player;
+        //protected GameObject player;
 
+
+        private MatchStatus MStatus;
+        private Rules Rules;
 
         public void MatchSet()
         {
-            hunterPrey = new Dictionary<GameObject, GameObject>();
+            GameObject player = null;
+            //hunterPrey = new Dictionary<GameObject, GameObject>();
             //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
             enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
             foreach (GameObject p in enemyList){
@@ -45,7 +50,11 @@ namespace GameManagers {
             }
             enemy = enemyList.ToArray();
 
-            AssociatesHunterWithPrey(enemy);
+            MStatus = new MatchStatus(player);
+            Rules = new Rules(MStatus);
+            
+            Rules.AssociatesHunterWithPrey(enemy);
+            MiniMapIconActivation();
 
             ReadBonuses rb = new ReadBonuses();
             bonuses = rb.getBonuses();
@@ -70,14 +79,15 @@ namespace GameManagers {
         void Update()
         {
             useBonus();
-            EndCheck();
+            Rules.EndCheck();
         }
         // Update is called once per frame
         void LateUpdate()
         {
-            MexicanStall(); // chiamarlo ogni volta che viene notificata una cattura dal nemico o dal giocatore
+            Rules.MexicanStall(); // chiamarlo ogni volta che viene notificata una cattura dal nemico o dal giocatore
         }
 
+        /*
         // associo l'hunter alla preda
         //private Dictionary<string, string> AssociatesHunterWithPrey(GameObject[] target) 
         private void AssociatesHunterWithPrey(GameObject[] target)
@@ -97,7 +107,9 @@ namespace GameManagers {
             //aggiunta delle varie prede e dei vari hunter negli status dei giocatori
             AssociationsCheck();
         }
+        */
 
+        /*
         // se il numero di giocatori è pari a tre cambio le regole della partita
         private void MexicanStall()
         {
@@ -110,7 +122,9 @@ namespace GameManagers {
                 InMexicanStall = true;
             }
         }
+        */
 
+        /*
         // rimuove il valore in base alla chiave hunter passato
         // @@ vedere se si può migliorare questo metodo
         public void TargetCaptured(GameObject hunter, GameObject prey)
@@ -139,27 +153,39 @@ namespace GameManagers {
                 AssociationsCheck();
             }
         }
+        */
 
-        protected void AssociationsCheck()
+        public void TargetCaptured(GameObject hunter, GameObject prey)
+        {
+            Rules.TargetCaptured(hunter, prey);
+            MiniMapIconActivation();
+
+        }
+
+        /*
+            protected void AssociationsCheck()
         {
             foreach (GameObject p in hunterPrey.Keys)
             {
                 p.GetComponent<CharacterStatus>().Prey = hunterPrey[p];
                 hunterPrey[p].GetComponent<CharacterStatus>().Hunter = p;
             }
-            
-            //@@per ora messo qui cosi' possiamo provare
-            player.GetComponent<CharacterStatus>().Prey.transform.Find("MiniMapPreyIcon").gameObject.SetActive(true);
-            player.GetComponent<CharacterStatus>().Hunter.transform.Find("MiniMapHunterIcon").gameObject.SetActive(true);
+
+            //procedo ad attivare le icone giuste sulla minimappa
+            MiniMapIconActivation();
 
         }
+        */
 
+            
+        /*
         // prendo la preda che mi è stata associata
         public GameObject GetMyPrey(GameObject nameHunter)
         {
             GameObject namePrey = hunterPrey[nameHunter];
             return namePrey;
         }
+        */
 
         // restituisce un bonus casuale
         public Bonus getRandomBonus()
@@ -167,33 +193,41 @@ namespace GameManagers {
             return bonuses[UnityEngine.Random.Range(0, bonuses.Count)]; //@@
         }
 
+        
         // assegna il bonus ad un personaggio
-        public void assignBonus(GameObject o)
+        ///nella versione con machStatus e Rules sara' chiamato da li ma il get randomBonus sara' qui
+        public void assignBonus(GameObject p)
         {
-            bonusOfTheCharacter[o] = getRandomBonus();
+            Rules.assignBonus(p, getRandomBonus());
+            //bonusOfTheCharacter[o] = getRandomBonus();
         }
+        
 
         public void useBonus()
         {
-            foreach (GameObject p in hunterPrey.Keys)
+            foreach (GameObject p in MStatus.GetHunterPreyKeys())
             {
-                if (p.GetComponent<CharacterStatus>().ActivateBonus)
+                //Il metodo di verifica e' nelle regole
+                if (Rules.UseBonusCheck(p))
                 {
-                     p.GetComponent<CharacterStatus>().setBonus(bonusOfTheCharacter[p]);
-                     StartCoroutine(AnnullaBonus(p));
+                     p.GetComponent<CharacterStatus>().setBonus(MStatus.GetBonusOf(p));
+                     StartCoroutine(Rules.ConsumeBonus(p));
                 }
             }
         }
 
+        //@@da modificare
         public void IstantiateBonus()
         {
-            foreach (GameObject p in hunterPrey.Keys)
+            foreach (GameObject p in MStatus.GetHunterPreyKeys())
             {
-                bonusOfTheCharacter[p] = new ReadBonuses().DefaultBonus;
+                MStatus.AssignBonus(p, new ReadBonuses().DefaultBonus);
+                //bonusOfTheCharacter[p] = new ReadBonuses().DefaultBonus;
 
             }
         }
 
+        /*
         // dopo aver aspettato setto i bonus al valore di default
         IEnumerator AnnullaBonus(GameObject o)
         {
@@ -202,7 +236,9 @@ namespace GameManagers {
             bonusOfTheCharacter[o] = new ReadBonuses().DefaultBonus;
             o.GetComponent<CharacterStatus>().UsingBonus = false;
         }
+        */
 
+        /*
         protected void EndCheck()
         {
             //se il maincharacter e' morto faccio partire la scena di game over
@@ -216,6 +252,14 @@ namespace GameManagers {
                 Messenger<int>.Broadcast(GameEventStrings.CHANGE_SCENE, 3);
             }
         }
+        */
 
+        //Il metodo serve ad attivare le icone giuste sulla preda e sul cacciatore del giocatore principale
+        //@@ il nome dell'oggetto va inserito nel file con le costanti 
+        protected void MiniMapIconActivation()
+        {
+            MStatus.Player.GetComponent<CharacterStatus>().Prey.transform.Find("MiniMapPreyIcon").gameObject.SetActive(true);
+            MStatus.Player.GetComponent<CharacterStatus>().Hunter.transform.Find("MiniMapHunterIcon").gameObject.SetActive(true);
+        }
     }
 }

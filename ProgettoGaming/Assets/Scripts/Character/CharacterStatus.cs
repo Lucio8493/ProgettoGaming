@@ -180,10 +180,11 @@ namespace Character
             checkDead();
             checkWin();
 
-            if (playerManagerRef.GetController(this.gameObject).useBonus && usingBonus == false)
+            if (playerManagerRef.GetController(this.gameObject).useBonus && usingBonus == false && haveBonus == true)
             {
                 activateBonus = true;
                 usingBonus = true;
+                haveBonus = false;
                // GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
                // GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
             }

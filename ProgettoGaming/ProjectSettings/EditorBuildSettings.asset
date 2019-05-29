@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 72a002d66a95a6d4bb8f6fdd84421f32
+  - enabled: 1
+    path: Assets/Scenes/MiniMapWithFOW.unity
+    guid: d238e7636efc8dd4a8a5cce87f5e07bc
   m_configObjects: {}

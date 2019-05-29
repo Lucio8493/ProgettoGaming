@@ -31,7 +31,7 @@ namespace Character
         protected float speedBoost = 1f;
 
 
-        // @@ per prova è passata staticamente, in realtà devo prenderla dinamicamente
+        
         protected GameObject prey; // la preda che il giocatore deve prendere
         protected GameObject hunter; // la preda che il giocatore deve prendere
 
@@ -250,7 +250,7 @@ namespace Character
         {
             if (isWinning)
             {
-                WaitAnimation();
+                StartCoroutine(WaitAnimation());
             }
         }
 

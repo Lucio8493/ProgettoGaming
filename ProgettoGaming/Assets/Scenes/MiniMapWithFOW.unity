@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d700356a4be64aae12f301b6c81d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mexicanStallSound: {fileID: 8300000, guid: 9173ae5f51f1e4bb8b9356dd0b4196fc, type: 3}
 --- !u!4 &274143621
 Transform:
   m_ObjectHideFlags: 0
@@ -634,6 +635,7 @@ GameObject:
   - component: {fileID: 878816235}
   - component: {fileID: 878816237}
   - component: {fileID: 878816236}
+  - component: {fileID: 878816238}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -719,19 +721,19 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878816232}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ad98080f385224c41bd0f972f37b9224, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3d3a8bcc680b1f54bbdca4b847256937, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.055
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
+  Priority: 256
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -816,6 +818,102 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878816232}
   m_Enabled: 1
+--- !u!82 &878816238
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878816232}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &927105647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1624,11 @@ PrefabInstance:
       propertyPath: runBoost
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895542, guid: 1457ad2866c72d74f8aa321a867ad860,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3750618765606362932, guid: 1457ad2866c72d74f8aa321a867ad860,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1616,11 +1719,6 @@ PrefabInstance:
       propertyPath: m_fogOfWarPlane
       value: 
       objectReference: {fileID: 986924102}
-    - target: {fileID: 8344928288028895542, guid: 1457ad2866c72d74f8aa321a867ad860,
-        type: 3}
-      propertyPath: walkSpeed
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1457ad2866c72d74f8aa321a867ad860, type: 3}
@@ -1738,8 +1836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a972b5d2b95cc342a8e639c1ede2a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footsteps:
-  - {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  die: {fileID: 8300000, guid: 39d2907d8f026a94d83aaf31ab9f765f, type: 3}
+  getBonus: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
 --- !u!1001 &8485935126913120217
 PrefabInstance:
   m_ObjectHideFlags: 0

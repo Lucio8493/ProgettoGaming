@@ -6,8 +6,10 @@ using Character;
 public class SoundHandler : MonoBehaviour
 {
     [SerializeField]
-    protected AudioClip[] footsteps;
-    
+    protected AudioClip die;
+    [SerializeField]
+    protected AudioClip getBonus;
+
 
     private AudioSource audioSource;
     private CharacterStatus status;
@@ -16,14 +18,33 @@ public class SoundHandler : MonoBehaviour
     {
         audioSource = this.GetComponent<AudioSource>();
         status = this.GetComponent<CharacterStatus>();
+        Messenger<GameObject>.AddListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (status.IsMoving && !audioSource.isPlaying)
+        PlayDieSound();
+    }
+
+    protected void PlayDieSound()
+    {
+        if (status.IsCaptured)
         {
-            audioSource.PlayOneShot(footsteps[Random.Range(0, footsteps.Length)]);
+            audioSource.PlayOneShot(die);
+        }
+    }
+
+    protected void PlayGetBonus(GameObject player)
+    {
+        if (this.gameObject == player)
+        {
+            audioSource.PlayOneShot(getBonus);
         }
     }
 }

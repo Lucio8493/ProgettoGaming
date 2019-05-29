@@ -34,6 +34,9 @@ namespace GameManagers {
         private MatchStatus MStatus;
         private Rules Rules;
 
+        [SerializeField]
+        protected AudioClip mexicanStallSound;
+
         public void MatchSet()
         {
             GameObject player = null;
@@ -80,6 +83,7 @@ namespace GameManagers {
         {
             useBonus();
             Rules.EndCheck();
+            PlayMexicanStallSound();
         }
         // Update is called once per frame
         void LateUpdate()
@@ -260,6 +264,16 @@ namespace GameManagers {
         {
             MStatus.Player.GetComponent<CharacterStatus>().Prey.transform.Find("MiniMapPreyIcon").gameObject.SetActive(true);
             MStatus.Player.GetComponent<CharacterStatus>().Hunter.transform.Find("MiniMapHunterIcon").gameObject.SetActive(true);
+        }
+
+        //metodo per l'esecuzione del suono del mexicanStall
+        //@@ la clip va tagliata perche' dura 12 secondi ed e' troppo lunga
+        protected void PlayMexicanStallSound()
+        {
+            if (MStatus.InMexicanStall)
+            {
+                Camera.main.GetComponents<AudioSource>()[1].PlayOneShot(mexicanStallSound);
+            }
         }
     }
 }

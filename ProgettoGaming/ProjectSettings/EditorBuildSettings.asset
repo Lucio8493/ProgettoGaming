@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialScene1.unity
     guid: 8f7538b84b78f8749bbb25205fac6ad8
   - enabled: 1
+    path: Assets/Scenes/MiniMapWithFOW.unity
+    guid: d238e7636efc8dd4a8a5cce87f5e07bc
+  - enabled: 0
     path: Assets/Scenes/MiniMapTest.unity
     guid: b51a7a2de57c19d4d96eb29fa20a27e9
   - enabled: 1

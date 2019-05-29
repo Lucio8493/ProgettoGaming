@@ -21,6 +21,7 @@ public class CollisionHandler : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        
         string tag =hit.gameObject.tag;
         switch (tag)
         {
@@ -29,6 +30,7 @@ public class CollisionHandler : MonoBehaviour
                 if (status.Prey == hit.gameObject)
                 {
                     Messenger<GameObject,GameObject>.Broadcast(GameEventStrings.TARGET_CAPTURED, this.gameObject,hit.gameObject);
+                    
                 }
                 break;
 

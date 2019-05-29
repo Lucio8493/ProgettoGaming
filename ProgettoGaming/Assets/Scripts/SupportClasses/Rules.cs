@@ -90,6 +90,7 @@ public class Rules : Object
 
     public void EndCheck()
     {
+        //Debug.Log("has won = " + MStatus.Player.GetComponent<CharacterStatus>().HasWon);
         //se il maincharacter e' morto faccio partire la scena di game over
         if (MStatus.Player.GetComponent<CharacterStatus>().IsDead || MStatus.OutOfMexicanStall)
         {
@@ -118,15 +119,16 @@ public class Rules : Object
     public void TargetCaptured(GameObject hunter, GameObject prey)
     {
         //verifico l'avvenuta cattura
-
-        //se il maincharacter e' catturato faccio partire la scena di game over
+        //Debug.Log("Sono in target captured:"+hunter.name + " ha catturato " + prey.name);
+        //se il maincharacter e' catturato setto il flag IsCaptured a true
         if (prey == MStatus.Player && MStatus.GetPrey(hunter)==MStatus.Player)
         {
             MStatus.Player.GetComponent<CharacterStatus>().IsCaptured = true;
         }
-        //se il maincharcter cattura faccio partire la scena di vittoria
+        //se il maincharcter cattura e si trova InMexicanStall allora setto il flag IsWinning nel player
         else if (hunter == MStatus.Player && MStatus.GetPrey(hunter)==prey && MStatus.InMexicanStall)
         {
+            prey.gameObject.GetComponent<CharacterStatus>().IsCaptured = true;
             MStatus.Player.GetComponent<CharacterStatus>().IsWinning = true;
         }
         //altrimenti verifico che la cattura sia lecita e aggiorno gli stati

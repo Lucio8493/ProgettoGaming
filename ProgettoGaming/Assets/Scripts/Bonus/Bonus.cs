@@ -26,6 +26,12 @@ namespace BonusManager
             isMalus = false;
         }
 
+
+        public int Id
+        {
+            get { return id;}
+        }
+
         public float SpeedBoost
         {
             get { return speedBoost; }

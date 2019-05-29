@@ -65,6 +65,11 @@ public class Rules : Object
     public void assignBonus(GameObject p, Bonus b)
     {
         MStatus.AssignBonus(p, b);
+
+        //invio l'id del bonus che il gicatoro vero ha ottenuto
+        if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
+            Messenger<int>.Broadcast(GameEventStrings.BONUS_ASSIGNED, b.Id);
+
     }
 
     public bool UseBonusCheck(GameObject p)

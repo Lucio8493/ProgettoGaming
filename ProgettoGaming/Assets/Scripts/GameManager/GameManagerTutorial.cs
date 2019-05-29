@@ -13,6 +13,7 @@ namespace GameManagers
 
         private void Start()
         {
+            this.GetComponentInChildren<MazeManagerTutorial>().GenerateEnviromentTutorial();
             this.GetComponentInChildren<MatchManager>().MatchSet();
             this.GetComponentInChildren<PlayerManager>().PlayersSet();
         }

@@ -14,5 +14,7 @@ public static class GameEventStrings
     public const string BONUS_PICKED = "BONUS_PICKED";
     public const string MAZE_ROWS_DIMENSION = "MAZE_ROWS_DIMENSION";
     public const string MAZE_COLUMNS_DIMENSION = "MAZE_COLUMNS_DIMENSION";
+    public const string BONUS_ASSIGNED = "BONUS_ASSIGNED";
+
 }
 

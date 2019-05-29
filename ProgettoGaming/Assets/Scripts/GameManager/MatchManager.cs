@@ -24,6 +24,8 @@ namespace GameManagers {
 
 
 
+
+
         // coppia chiave valore, come chiave c'è i personaggi giocanti, come valore il loro bonus
         //protected Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
 
@@ -62,7 +64,7 @@ namespace GameManagers {
             ReadBonuses rb = new ReadBonuses();
             bonuses = rb.getBonuses();
 
-            IstantiateBonus();
+            IstantiateBonuses();
 
         }
 
@@ -221,7 +223,7 @@ namespace GameManagers {
         }
 
         //@@da modificare
-        public void IstantiateBonus()
+        public void IstantiateBonuses()
         {
             foreach (GameObject p in MStatus.GetHunterPreyKeys())
             {

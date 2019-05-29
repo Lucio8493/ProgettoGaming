@@ -11,6 +11,8 @@ namespace Character
     
         protected PlayerManager playerManagerRef;
 
+
+
         protected bool isMoving;
         protected bool isRotating;
         protected bool isGrounded;

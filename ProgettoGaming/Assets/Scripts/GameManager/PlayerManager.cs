@@ -50,7 +50,7 @@ namespace GameManagers
         // imposta i controller che devono utilizzare tutti i personaggi in gioco
         void FindPlayers()
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            GameObject[] players = GameObject.FindGameObjectsWithTag(Tags.PLAYER);
             foreach (GameObject p in players) {
               
                 if ( p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
@@ -94,7 +94,7 @@ namespace GameManagers
         void SetColor()
         {
 
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            GameObject[] players = GameObject.FindGameObjectsWithTag(Tags.PLAYER);
             foreach (GameObject p in players)
             {
                 if (p.GetComponent<CharacterStatus>().MyType != CharacterStatus.typeOfPlayer.Player)

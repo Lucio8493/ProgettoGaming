@@ -9,10 +9,7 @@ public class CollisionHandler : MonoBehaviour
 {
     protected CharacterController charController;
     protected CharacterStatus status;
-    //@@creeremo un solo file di costanti
-    private const string PlayerTag = "Player";
-    private const string BonusTag = "Bonus";
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +22,7 @@ public class CollisionHandler : MonoBehaviour
         string tag =hit.gameObject.tag;
         switch (tag)
         {
-            case (PlayerTag):
+            case (Tags.PLAYER):
                
                 if (status.Prey == hit.gameObject)
                 {
@@ -34,7 +31,7 @@ public class CollisionHandler : MonoBehaviour
                 }
                 break;
 
-            case (BonusTag):
+            case (Tags.BONUS):
                 hit.gameObject.SetActive(false); //@@ spostare nel MatchManager la disattivazione della gemma
                 status.HaveBonus = true;
                 Messenger<GameObject>.Broadcast(GameEventStrings.BONUS_PICKED, this.gameObject);

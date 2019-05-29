@@ -44,7 +44,7 @@ namespace GameManagers {
             GameObject player = null;
             //hunterPrey = new Dictionary<GameObject, GameObject>();
             //recupero la lista di tutti i giocatori e dallo status recupero l'informazione per capire se sono il protagonista o gli avversari
-            enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+            enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag(Tags.PLAYER));
             foreach (GameObject p in enemyList){
                 if (p.GetComponent<CharacterStatus>().MyType == CharacterStatus.typeOfPlayer.Player)
                 {

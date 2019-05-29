@@ -204,7 +204,7 @@ namespace Character
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f)
-                && hit.collider.CompareTag("Floor"))
+                && hit.collider.CompareTag(Tags.FLOOR))
                 {
                     isGrounded = true;
                 }

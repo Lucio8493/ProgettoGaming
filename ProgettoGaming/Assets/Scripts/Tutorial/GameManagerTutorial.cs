@@ -16,6 +16,7 @@ namespace GameManagers
             this.GetComponentInChildren<MazeManagerTutorial>().GenerateEnviromentTutorial();
             this.GetComponentInChildren<MatchManager>().MatchSet();
             this.GetComponentInChildren<PlayerManager>().PlayersSet();
+            Camera.main.GetComponent<CameraController>().SetOffset();
         }
     }
 }

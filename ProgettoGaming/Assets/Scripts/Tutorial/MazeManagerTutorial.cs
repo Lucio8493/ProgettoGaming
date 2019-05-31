@@ -17,6 +17,8 @@ namespace GameManagers
         //Metedo utilizzato per inizializzare l'ambiente
         public void GenerateEnviromentTutorial()
         {
+
+
             fow = this.GetComponent<FogOfWarScript>();
             Debug.Log("fow = this.GetComponent<FogOfWarScript>() -> " + fow);
             fow.Player = GameObject.Find("MainCharacter").GetComponent<Transform>();

@@ -162,7 +162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 101849859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4755176c8279d488fc3d3a3138d9f5, type: 3}
+  m_Script: {fileID: 11500000, guid: b8590b608b0308b4fb7c93289713e9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &367262927
@@ -313,7 +313,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d700356a4be64aae12f301b6c81d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mexicanStallSound: {fileID: 0}
 --- !u!1001 &929161111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,6 +655,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8344928288917358820, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_Enabled
@@ -663,11 +669,6 @@ PrefabInstance:
         type: 3}
       propertyPath: type
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd460578201d354082bcb131e14f3ec, type: 3}
@@ -873,15 +874,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895542, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: type
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895542, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd460578201d354082bcb131e14f3ec, type: 3}

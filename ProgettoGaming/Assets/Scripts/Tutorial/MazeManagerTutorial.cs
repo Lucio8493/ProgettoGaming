@@ -10,7 +10,6 @@ namespace GameManagers
     {
 
         protected FogOfWarScript fow;
-        protected SpawnManager spawnManager;
         
         //@@aggiungere i tag alla classe specifica
 
@@ -20,9 +19,7 @@ namespace GameManagers
 
 
             fow = this.GetComponent<FogOfWarScript>();
-            Debug.Log("fow = this.GetComponent<FogOfWarScript>() -> " + fow);
             fow.Player = GameObject.Find("MainCharacter").GetComponent<Transform>();
-            Debug.Log("GameObject.Find(\"MainCharacter\").GetComponent<Transform>() -> " + fow.Player);
             fow.Initialize();
         }
 

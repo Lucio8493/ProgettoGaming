@@ -330,8 +330,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scappa dal tuo inseguitore (rombo rosso), prendi il bonus (gemma rossa)
-    e cattura la tua preda (triangolo verde)
+  m_Text: Cattura la tua preda (triangolo verde) prima che il tuo predatore (rombo
+    rosso) ti catturi. Usa il bonus per avvantaggiarti.
 --- !u!222 &357359591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1119,13 +1119,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529374049}
-  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
+  m_LocalRotation: {x: 0.46173108, y: -0.0077404683, z: 0.0040294332, w: 0.886977}
   m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1938379821}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: -1, z: 0}
 --- !u!81 &1529374051
 AudioListener:
   m_ObjectHideFlags: 0

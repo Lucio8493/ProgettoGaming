@@ -712,7 +712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Prendi il bonus (gemma rossa) e cattura la tua preda (triangolo verde)
+  m_Text: 'Prendi il bonus (gemma rossa) e per usarlo premi su spazio. '
 --- !u!222 &921709605
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -788,11 +788,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8344928288917358820, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_Enabled
@@ -802,6 +797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd460578201d354082bcb131e14f3ec, type: 3}
@@ -1540,13 +1540,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899795089}
-  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 14.8, y: 125, z: -49.85}
+  m_LocalRotation: {x: 0.46173108, y: -0.0077404683, z: 0.0040294332, w: 0.886977}
+  m_LocalPosition: {x: -0.61, y: 125, z: -49.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 398153172}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: -1, z: 0}
 --- !u!81 &1899795091
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1745,15 +1745,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8344928288028895542, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895541, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd460578201d354082bcb131e14f3ec, type: 3}

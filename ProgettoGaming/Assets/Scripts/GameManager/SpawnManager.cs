@@ -31,10 +31,10 @@ namespace GameManagers
         public void SpawnSet()
         {
             Players = SettingsClass.NumOfPlayers;
-            playerManager = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
-            myMazeGenerator = GameObject.Find("Maze").GetComponent<MazeGenerator>();
-            enemyObject = GameObject.Find("EnemyObject");
-            bonusObject = GameObject.Find("BonusObject");
+            playerManager = GameObject.Find(Names.PLAYER_MANAGER_OBJECT).GetComponent<PlayerManager>();
+            myMazeGenerator = GameObject.Find(Names.MAZE).GetComponent<MazeGenerator>();
+            enemyObject = GameObject.Find(Names.ENEMY_OBJECT);
+            bonusObject = GameObject.Find(Names.BONUS_OBJECT);
             if (Players == 4)
             {
                 //setto il numero massimo di avversari al numero totale di giocatori meno 1
@@ -82,7 +82,7 @@ namespace GameManagers
                     //scegliamo la nuova posizione
                     Vector3 newPosition = new Vector3(numberOfZones[i].Center.row * MazeGenerator.CellHeight, 0, numberOfZones[i].Center.column * MazeGenerator.CellWidth);
                     //procediamo a spostare il giocatore principale e calcoliamo lo spostamento da fare
-                    GameObject mainPlayer = GameObject.Find("MainCharacter");
+                    GameObject mainPlayer = GameObject.Find(Names.MAIN_CHARACTER);
                     Vector3 offset = newPosition - mainPlayer.transform.position;
                     mainPlayer.transform.position = mainPlayer.transform.position + offset;
 

@@ -17,8 +17,6 @@ public class SwitchColor
         {
             Material mat = rend.material;
             mat.SetColor("_EmissionColor", Color.red);
-
-
         }
     }
 
@@ -30,8 +28,6 @@ public class SwitchColor
         {
             Material mat = rend.material;
             mat.SetColor("_EmissionColor", Color.green);
-
-
         }
     }
 

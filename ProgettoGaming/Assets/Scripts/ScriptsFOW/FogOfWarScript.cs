@@ -21,13 +21,16 @@ public class FogOfWarScript : MonoBehaviour
     private Mesh m_mesh;
     private Vector3[] m_vertices;
     private Color[] m_coloros;
-    
+
+    private const int offsetVerticaleGiocatore = 20;
+
 
     // Update is called once per frame
     public void UpdateFOW()
     {
         // creiamo un raycast che punti dalla telecamera al giocatore
         Ray ray = new Ray(overPlayer(), m_player.position - overPlayer() );
+
         // creiamo una variabile raycast hit per memorizzare l'info del punto in cui viene colpita la fowa dal raycast
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, m_fogLayer, QueryTriggerInteraction.Collide))
@@ -37,6 +40,7 @@ public class FogOfWarScript : MonoBehaviour
             {
                 // TransformPoint trasforma una posizione da locale in coordinate globali
                 Vector3 v = m_fogOfWarPlane.transform.TransformPoint(m_vertices[i]);
+
                 // calcoliamo la distanza tra il punto di intersezione e i vertici
                 // usiamo SqrMagnitude perché dice che è più veloce che calcolare la distanza
                 // in quanto evita di usare una square root (radice quadrata)
@@ -48,6 +52,7 @@ public class FogOfWarScript : MonoBehaviour
                     // usiamo la funzione Min per evitare che la mappa diventi di nuovo nera dopo che il giocatore lascia l'area
                     // in questo modo l'alpha diventa minore man mano che si avvicina all'intersezione
                     float alpha = Mathf.Min(m_coloros[i].a, dist/m_radiusSqr);
+
                     // ora aggiorniamo i colori della mesh
                     m_coloros[i].a = alpha;                    
                 }
@@ -55,11 +60,11 @@ public class FogOfWarScript : MonoBehaviour
             UpdateColor();
         }
     }
-
+    
     //Metodo per ottenere la verticale del mio player
     private Vector3 overPlayer()
     {
-        return new Vector3(m_player.position.x, m_player.position.y + 20, m_player.position.z);
+        return new Vector3(m_player.position.x, m_player.position.y + offsetVerticaleGiocatore, m_player.position.z);
     }
 
     public void Initialize()
@@ -67,6 +72,7 @@ public class FogOfWarScript : MonoBehaviour
         m_mesh = m_fogOfWarPlane.GetComponent<MeshFilter>().mesh; // accediamo al mesh filter del fow plane e alla sua mesh
         m_vertices = m_mesh.vertices;
         m_coloros = new Color[m_vertices.Length];
+
         // inizializziamo tutti i colori a black
         // in questo modo siamo sicuri che la fow sia tutta nera
         for(int i = 0; i < m_coloros.Length; i++)

@@ -803,6 +803,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5750539072948182854, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd460578201d354082bcb131e14f3ec, type: 3}
 --- !u!1001 &1028336774

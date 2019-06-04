@@ -19,7 +19,7 @@ public class CollisionHandler : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         
-        string tag =hit.gameObject.tag;
+        string tag = hit.gameObject.tag;
         switch (tag)
         {
             case (Tags.PLAYER):
@@ -32,7 +32,6 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case (Tags.BONUS):
-            //    hit.gameObject.SetActive(false); //@@ spostare nel MatchManager la disattivazione della gemma
                 status.HaveBonus = true;
                 Messenger<GameObject, GameObject>.Broadcast(GameEventStrings.BONUS_PICKED, this.gameObject, hit.gameObject);
                 break;

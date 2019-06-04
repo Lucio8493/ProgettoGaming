@@ -55,7 +55,6 @@ namespace Character
             AI
         }
 
-        //@@ va cambiata al runtime
         [SerializeField]
         protected typeOfPlayer type;
 
@@ -209,7 +208,6 @@ namespace Character
                 }
         }
 
-        // @@ i valori raw sono un problema
         //mi dice se il personaggio sta di fronte a qualcosa @@ aggiungere eventuale contrllo per il muro
         protected void checkFacing()
         {

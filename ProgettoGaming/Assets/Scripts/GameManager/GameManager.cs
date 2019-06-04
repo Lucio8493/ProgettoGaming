@@ -13,7 +13,9 @@ namespace GameManagers
 
         private void Start()
         {
-            this.GetComponentInChildren<MazeManager>().GenerateEnviroment();
+            MazeGenerator m = GameObject.Find(Names.MAZE).GetComponent<MazeGenerator>();
+            m.generate();
+            this.GetComponentInChildren<FOWManager>().GenerateFOW();
             this.GetComponentInChildren<SpawnManager>().SpawnSet();
             this.GetComponentInChildren<MatchManager>().MatchSet();
             this.GetComponentInChildren<PlayerManager>().PlayersSet();

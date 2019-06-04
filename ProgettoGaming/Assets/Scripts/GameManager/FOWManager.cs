@@ -6,21 +6,19 @@ using UnityEngine;
 
 namespace GameManagers
 {
-    public class MazeManager : MonoBehaviour
+    public class FOWManager : MonoBehaviour
     {
 
         protected FogOfWarScript fow;
         protected SpawnManager spawnManager;
         
-        //@@aggiungere i tag alla classe specifica
-
         //Metedo utilizzato per inizializzare l'ambiente
-        public void GenerateEnviroment()
+        public void GenerateFOW()
         {
-            MazeGenerator m = GameObject.Find("Maze").GetComponent<MazeGenerator>();
-            m.generate();
+            //MazeGenerator m = GameObject.Find(Names.MAZE).GetComponent<MazeGenerator>();
+            //m.generate();
             fow = this.GetComponent<FogOfWarScript>();
-            fow.Player = GameObject.Find("MainCharacter").GetComponent<Transform>();
+            fow.Player = GameObject.Find(Names.MAIN_CHARACTER).GetComponent<Transform>();
             fow.Initialize();
         }
 

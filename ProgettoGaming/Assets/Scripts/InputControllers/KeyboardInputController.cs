@@ -17,7 +17,7 @@ namespace InputControllers
             vert = Input.GetAxisRaw("Vertical");
 
             //codice che serve per far andare il personaggio in una direzione, ma rispetto alla telecamera
-            // @@ ATTENZIONE la gestione della camera forse è meglio metterla nel game manager
+            // @@ ATTENZIONE prendere la camera dal game manager
             if (Camera.main != null)
             {
             m_Cam = Camera.main.transform;

@@ -14,7 +14,7 @@ namespace InputControllers
 
         private NavMeshPath path = new NavMeshPath();
 
-        private float ncicliAggiornamento = 10; //@@(time.deltatime) numero di cicli con il quale cambiare direzione (se serve)
+        private float ncicliAggiornamento = 10; //numero di frame dopo i quali ricalcolare il percorso
         int count = 0;
         
         public override void CheckInput(GameObject o)
@@ -24,7 +24,7 @@ namespace InputControllers
             // calcolo la strada per arrivare dalla preda
             count++;
           
-            // @@ da riscrivere
+            // @@ si potrebbe ottimizzare diminuendo il numero di volte in cui viene calcolato il percorso
             if (count > ncicliAggiornamento)
             { 
              NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas, path);

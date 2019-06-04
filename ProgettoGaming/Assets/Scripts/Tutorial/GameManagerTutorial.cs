@@ -13,7 +13,7 @@ namespace GameManagers
 
         private void Start()
         {
-            this.GetComponentInChildren<MazeManagerTutorial>().GenerateEnviromentTutorial();
+            this.GetComponentInChildren<FOWManager>().GenerateFOW();
             this.GetComponentInChildren<MatchManager>().MatchSet();
             this.GetComponentInChildren<PlayerManager>().PlayersSet();
             Camera.main.GetComponent<CameraController>().SetOffset();

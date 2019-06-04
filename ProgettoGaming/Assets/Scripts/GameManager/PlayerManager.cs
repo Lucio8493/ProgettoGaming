@@ -24,12 +24,6 @@ namespace GameManagers
             //recupero i vari giocatori
             FindPlayers();
 
-
-            //infine setto l'hunter e il prey recuperandoli dallo status del main character
-            //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
-            //changePrey(player.GetComponent<CharacterStatus>().Prey);
-
-
             s = new SwitchColor();
 
         }
@@ -62,11 +56,6 @@ namespace GameManagers
                 
             }
 
-            
-            //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
-            //changePrey(player.GetComponent<CharacterStatus>().Prey);
-
-
             s = new SwitchColor();
 
             
@@ -96,13 +85,6 @@ namespace GameManagers
             s.PreyColor(player.GetComponent<CharacterStatus>().Prey);
 
         }
-
-        private void LateUpdate()
-        {
-           // HunterArrow.Point();
-            //PreyArrow.Point();
-        }
-
 
         public BaseInputController GetController(GameObject p)
         {          

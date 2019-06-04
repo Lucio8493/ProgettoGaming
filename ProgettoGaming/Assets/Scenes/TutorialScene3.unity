@@ -683,6 +683,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8344928288028895542, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2505207464726529603, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_IsActive
@@ -772,15 +777,15 @@ PrefabInstance:
       propertyPath: runBoost
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6853235645115697623, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2505207464726529603, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853235645115697623, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3176838518741184427, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
@@ -1060,10 +1065,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 825921962}
-  - component: {fileID: 825921964}
   - component: {fileID: 825921963}
+  - component: {fileID: 825921964}
   m_Layer: 0
-  m_Name: EnvironmentManagerObject
+  m_Name: FOWManagerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1109,7 +1114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 825921961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02b2dca042f5624e95f77a6706f07be, type: 3}
+  m_Script: {fileID: 11500000, guid: 9adc8f0a7d642954aaa3523d84c73c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1045038038 stripped

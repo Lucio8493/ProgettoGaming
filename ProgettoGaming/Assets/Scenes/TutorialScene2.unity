@@ -898,10 +898,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156181793}
-  - component: {fileID: 1156181795}
   - component: {fileID: 1156181794}
+  - component: {fileID: 1156181795}
   m_Layer: 0
-  m_Name: EnviromentManagerObject
+  m_Name: FOWManagerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1156181792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02b2dca042f5624e95f77a6706f07be, type: 3}
+  m_Script: {fileID: 11500000, guid: 9adc8f0a7d642954aaa3523d84c73c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1221590161

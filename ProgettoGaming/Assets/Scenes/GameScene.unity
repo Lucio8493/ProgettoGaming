@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139d700356a4be64aae12f301b6c81d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mexicanStallSound: {fileID: 8300000, guid: 9173ae5f51f1e4bb8b9356dd0b4196fc, type: 3}
+  mexicanStallSound: {fileID: 8300000, guid: 7d622bf89dc8cf941a293ac103776d7e, type: 3}
 --- !u!4 &274143621
 Transform:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ namespace GameManagers {
 
         private MatchStatus MStatus;
         private Rules Rules;
+        private bool firstTime = true;
 
         [SerializeField]
         protected AudioClip mexicanStallSound;
@@ -136,8 +137,9 @@ namespace GameManagers {
         //@@ la clip va tagliata perche' dura 12 secondi ed e' troppo lunga
         protected void PlayMexicanStallSound()
         {
-            if (MStatus.InMexicanStall)
+            if (MStatus.InMexicanStall && firstTime)
             {
+                firstTime = false;
                 Camera.main.GetComponents<AudioSource>()[1].PlayOneShot(mexicanStallSound);
             }
         }

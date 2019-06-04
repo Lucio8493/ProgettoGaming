@@ -1697,7 +1697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614efa6d2b3fcb34997d6e0bab1b17d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runBoost: 4
 --- !u!143 &8948768251045924314
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1749,7 +1748,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1784,7 +1783,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3269,16 +3268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: PreyArrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3349,6 +3338,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: PreyArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: target
@@ -3385,16 +3384,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928288926459658}
     m_Modifications:
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_Name
-      value: HunterArrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970792, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3464,6 +3453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_Name
+      value: HunterArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119017492688970799, guid: c380ad1da7fda9a4db72346eac4f4f3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1119017492688970794, guid: c380ad1da7fda9a4db72346eac4f4f3c,
         type: 3}
@@ -3581,14 +3580,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8344928289386031559}
     m_Modifications:
-    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
-      propertyPath: m_Name
-      value: Magic fire pro orange
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3632,6 +3623,14 @@ PrefabInstance:
     - target: {fileID: 4274653050354540, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
+      propertyPath: m_Name
+      value: Magic fire pro orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725317912486240, guid: e55149ba6f4d00741984987e258c3378, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4404365773844742, guid: e55149ba6f4d00741984987e258c3378, type: 3}
       propertyPath: m_LocalScale.x

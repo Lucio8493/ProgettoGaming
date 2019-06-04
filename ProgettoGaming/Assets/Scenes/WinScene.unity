@@ -1082,12 +1082,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8344928288028895545, guid: 1457ad2866c72d74f8aa321a867ad860,
+    - target: {fileID: 8948768251045924314, guid: 1457ad2866c72d74f8aa321a867ad860,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8948768251045924314, guid: 1457ad2866c72d74f8aa321a867ad860,
+    - target: {fileID: 8344928288028895545, guid: 1457ad2866c72d74f8aa321a867ad860,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1524,13 +1524,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0db668f1731410340945940f0315ddda, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.208
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1645,7 +1645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.30489254, y: 0.016894737}
   m_AnchorMax: {x: 0.697215, y: 0.16552633}
-  m_AnchoredPosition: {x: 1.1850281, y: 1.8199921}
+  m_AnchoredPosition: {x: 1.1850281, y: 1.8200073}
   m_SizeDelta: {x: 2.3699532, y: 0.54000664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1460141442

@@ -12,8 +12,6 @@ namespace Character
         protected CharacterStatus status;
         protected CharacterController controller;
 
-       // [SerializeField] protected float walkSpeed = 6.0f;
-        [SerializeField] protected float runBoost = 2f;
 
         void Start()
         {

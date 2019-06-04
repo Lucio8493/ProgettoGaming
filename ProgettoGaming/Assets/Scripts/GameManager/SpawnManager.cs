@@ -16,7 +16,8 @@ namespace GameManagers
         private MazeGenerator myMazeGenerator = null;
         private Zone[] numberOfZones;
         private GameObject[] enemylist;
-        private GameObject[] bonuslist;
+
+        private GameObject[] objectBonuslist;
         private const int BONUSES = 4;
         private System.Random rnd = new System.Random();
         private PlayerManager playerManager;
@@ -24,6 +25,8 @@ namespace GameManagers
         private GameObject bonusObject;
         private int id_enemy = 0;
         private int lastBonus = 0;
+
+        public GameObject[] ObjectBonuslist { get => objectBonuslist; set => objectBonuslist = value; }
 
         public void SpawnSet()
         {
@@ -38,7 +41,7 @@ namespace GameManagers
                 enemylist = new GameObject[3];
                 //setto il numero di zone pari al numero di giocatori
                 numberOfZones = new Zone[4];
-                bonuslist = new GameObject[4 * BONUSES];
+                ObjectBonuslist = new GameObject[4 * BONUSES];
                 //@@il numero di bonus per ogni zona per ora e' hardcoded qui e sono 4
                 numberOfZones[0] = new Zone(0, myMazeGenerator.Rows / 2, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Columns / 4, myMazeGenerator.Rows / 4), BONUSES);
                 numberOfZones[1] = new Zone(0, myMazeGenerator.Rows / 2, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 4, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
@@ -51,7 +54,7 @@ namespace GameManagers
                 enemylist = new GameObject[5];
                 //setto il numero di zone pari al numero di giocatori
                 numberOfZones = new Zone[6];
-                bonuslist = new GameObject[6 * BONUSES];
+                ObjectBonuslist = new GameObject[6 * BONUSES];
                 //@@il numero di bonus per ogni zona per ora e' hardcoded qui e sono 4
                 numberOfZones[0] = new Zone(0, myMazeGenerator.Rows / 3, 0, myMazeGenerator.Columns / 2, getCell(myMazeGenerator.Rows / 6, myMazeGenerator.Columns / 4), BONUSES);
                 numberOfZones[1] = new Zone(0, myMazeGenerator.Rows / 3, myMazeGenerator.Columns / 2 + 1, myMazeGenerator.Columns, getCell(myMazeGenerator.Rows / 6, myMazeGenerator.Columns / 4 + myMazeGenerator.Columns / 2), BONUSES);
@@ -136,7 +139,7 @@ namespace GameManagers
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
                         tmp.transform.parent = bonusObject.transform;
                         z.addBonus(tmp);
-                        bonuslist[lastBonus] = tmp;
+                        ObjectBonuslist[lastBonus] = tmp;
                         lastBonus++;
                         break;
                     }

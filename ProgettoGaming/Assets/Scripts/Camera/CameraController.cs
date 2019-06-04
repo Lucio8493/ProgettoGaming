@@ -19,15 +19,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        // ad ogni frame settiamo la transform position alla  trasform position del player a cui aggiungiamo l'offset
-        // questo significa che quando muoviamo il il giocatore con il controller ad ogni frame, prima che venga mostrato
-        // quello che vede la camera, la camera viene spostata in una nuova posizione allineata al player object. Come
-        // se fosse figlia del player object. Update non è il miglior posto per mettere questo codice. È vero che update
-        // viene eseguito ad ogni frame e in update possiamo tracciare ad ogni frame la posizione del gameobject del player
-        // e settare la posizione della camera. Tuttavia, per seguire telecamere, animazione procedurale e raccolta 
-        // dell'ultimo stato conosciuto, è meglio usare LateUpdate. LateUpdate viene eseguito ad ogni frame, come update, ma
-        // è garantito che viene eseguito dopo che tutti gli item sono stati processati in update. 
-        // Quindi, quando settiamo la posizione della camera, noi sappiamo certamente che il player si è mosso in quel frame
+      // la camera segue il giocatore passo passo
         transform.position = player.transform.position + offset;
     }
 

@@ -18,12 +18,12 @@ public class SoundHandler : MonoBehaviour
     {
         audioSource = this.GetComponent<AudioSource>();
         status = this.GetComponent<CharacterStatus>();
-        Messenger<GameObject>.AddListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
+        Messenger<GameObject, GameObject>.AddListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
     }
 
     private void OnDestroy()
     {
-        Messenger<GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
+        Messenger<GameObject, GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, PlayGetBonus);
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class SoundHandler : MonoBehaviour
         }
     }
 
-    protected void PlayGetBonus(GameObject player)
+    protected void PlayGetBonus(GameObject player, GameObject bonus)
     {
         if (this.gameObject == player)
         {

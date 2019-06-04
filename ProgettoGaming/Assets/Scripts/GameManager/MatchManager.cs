@@ -71,14 +71,14 @@ namespace GameManagers {
         private void OnDestroy()
         {
             Messenger<GameObject, GameObject>.RemoveListener(GameEventStrings.TARGET_CAPTURED, TargetCaptured);
-            Messenger<GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, assignBonus);
+            Messenger<GameObject, GameObject>.RemoveListener(GameEventStrings.BONUS_PICKED, assignBonusCheck);
         }
 
 
         void Start()
         {     
             Messenger<GameObject, GameObject>.AddListener(GameEventStrings.TARGET_CAPTURED, TargetCaptured);
-            Messenger<GameObject>.AddListener(GameEventStrings.BONUS_PICKED, assignBonus);
+            Messenger<GameObject, GameObject>.AddListener(GameEventStrings.BONUS_PICKED, assignBonusCheck);
         }
 
         void Update()
@@ -202,8 +202,11 @@ namespace GameManagers {
         
         // assegna il bonus ad un personaggio
         ///nella versione con machStatus e Rules sara' chiamato da li ma il get randomBonus sara' qui
-        public void assignBonus(GameObject p)
+        public void assignBonusCheck(GameObject p, GameObject bonusObject)
         {
+
+            MStatus.ObjectBonusPicked.Add(bonusObject);
+            bonusObject.SetActive(false);
             Rules.assignBonus(p, getRandomBonus());
             //bonusOfTheCharacter[o] = getRandomBonus();
         }

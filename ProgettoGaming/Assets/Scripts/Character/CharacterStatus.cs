@@ -33,7 +33,13 @@ namespace Character
         protected float speedBoost = 1f;
 
 
-        
+        //[Costanti utilizzate solo da CharacterStatus]
+        private const float GROUNDED_RAY = 0.1f;
+        private const float FACING_RAY = 0.7f;
+
+
+
+
         protected GameObject prey; // la preda che il giocatore deve prendere
         protected GameObject hunter; // la preda che il giocatore deve prendere
 
@@ -104,13 +110,6 @@ namespace Character
 
         }
 
-        //forse isRotating non lo useremo più perchè il personaggio non ruota su se stesso con gli assi orizzontali, ma cammina
-        public bool IsRotating
-        {
-            get { return isRotating; }
-
-        }
-
         public bool IsGrounded
         {
             get { return isGrounded; }
@@ -162,7 +161,7 @@ namespace Character
 
         void Start()
         {
-            playerManagerRef = GameObject.Find("PlayerManagerObject").GetComponent<PlayerManager>();
+            playerManagerRef = GameObject.Find(Names.PLAYER_MANAGER_OBJECT).GetComponent<PlayerManager>();
  
             isGrounded = true;
             isFacing = false;
@@ -185,25 +184,21 @@ namespace Character
                 activateBonus = true;
                 usingBonus = true;
                 haveBonus = false;
-               // GameObject.Find("MatchManager").GetComponent<MatchManager>().assignBonus(this.gameObject);
-               // GameObject.Find("MatchManager").GetComponent<MatchManager>().useBonus(this.gameObject);
             }
         }
 
         protected void CollectInputs()
         {
-            // @posso chiedere  una volta sola getController e salvarla in una variabile
             verticalMovement = playerManagerRef.GetController(this.gameObject).GetVertical();
             orizontalMovement = playerManagerRef.GetController(this.gameObject).GetHorizontal();
 
             isMoving = isGrounded && (verticalMovement !=0 || orizontalMovement !=0) && !isCaptured;
-            // isRotating = isGrounded && (gameManagerRef.PrimaryInputController.Left || gameManagerRef.PrimaryInputController.Right);
         }
 
         protected void checkGrounded()
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, GROUNDED_RAY)
                 && hit.collider.CompareTag(Tags.FLOOR))
                 {
                     isGrounded = true;
@@ -219,7 +214,7 @@ namespace Character
         protected void checkFacing()
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 0.7f)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, FACING_RAY)
                 )
             {
                 isFacing = true;
@@ -236,8 +231,6 @@ namespace Character
             if (isDead == true)
             {
                 //Solo quando il personaggio e' morto puo' essere disattivato
-
-                //@@ non credo che la disattivazione vada messa qui
                 this.gameObject.SetActive(false);
             }
         }

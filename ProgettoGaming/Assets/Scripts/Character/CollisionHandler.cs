@@ -32,9 +32,9 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case (Tags.BONUS):
-                hit.gameObject.SetActive(false); //@@ spostare nel MatchManager la disattivazione della gemma
+            //    hit.gameObject.SetActive(false); //@@ spostare nel MatchManager la disattivazione della gemma
                 status.HaveBonus = true;
-                Messenger<GameObject>.Broadcast(GameEventStrings.BONUS_PICKED, this.gameObject);
+                Messenger<GameObject, GameObject>.Broadcast(GameEventStrings.BONUS_PICKED, this.gameObject, hit.gameObject);
                 break;
         }
     }

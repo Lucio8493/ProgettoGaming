@@ -12,8 +12,7 @@ namespace GameManagers
     {
 
         
-        protected Pointing HunterArrow;
-        protected Pointing PreyArrow;
+
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
         GameObject player; // il giocatore controllato dall'utente
 
@@ -24,19 +23,7 @@ namespace GameManagers
         {
             //recupero i vari giocatori
             FindPlayers();
-            //nel giocatore principale recupero le arrows
-            var children = player.GetComponentsInChildren<Transform>();
-            foreach (var child in children)
-            {
-                if (child.name == "HunterArrow")
-                {
-                    HunterArrow = child.GetComponent<Pointing>();
-                }
-                if (child.name == "PreyArrow")
-                {
-                    PreyArrow = child.GetComponent<Pointing>();
-                }
-            }
+
 
             //infine setto l'hunter e il prey recuperandoli dallo status del main character
             //changeHunter(player.GetComponent<CharacterStatus>().Hunter);
@@ -123,14 +110,5 @@ namespace GameManagers
         }
 
 
-        private void changeHunter(GameObject value)
-        {
-            HunterArrow.Target = value;
-        }
-
-        private void changePrey(GameObject value)
-        {
-            PreyArrow.Target = value;
-        }
     }
 }

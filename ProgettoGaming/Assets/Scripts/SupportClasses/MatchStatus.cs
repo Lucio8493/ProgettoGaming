@@ -10,6 +10,9 @@ public class MatchStatus : Object
     private bool inMexicanStall = false;
     private bool outOfMexicanStall = false;
 
+    private List<GameObject>  objectBonusPicked; // la lista degli oggetti bonus che sono stati presi
+
+
     // coppia chiave valore, come chiave c'è i personaggi giocanti, come valore il loro bonus
     private Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
 
@@ -21,14 +24,17 @@ public class MatchStatus : Object
     //costruttore
     public MatchStatus(GameObject player)
     {
+        objectBonusPicked = new List<GameObject>();
         Player = player;
         hunterPrey = new Dictionary<GameObject, GameObject>();
+
     }
 
     public GameObject Player { get => player; set => player = value; }
     public bool InMexicanStall { get => inMexicanStall; set => inMexicanStall = value; }
     public bool OutOfMexicanStall { get => outOfMexicanStall; set => outOfMexicanStall = value; }
     public bool GamePaused { get => gamePaused; set => gamePaused = value; }
+    public List<GameObject> ObjectBonusPicked { get => objectBonusPicked; set => objectBonusPicked = value; }
 
     public GameObject GetPrey(GameObject hunter)
     {

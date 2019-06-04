@@ -416,7 +416,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 260366502}
-        m_MethodName: OnClick
+        m_MethodName: Tutorial3Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 260366497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9699dcbcca89d6a4da46a8c4fe7052f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &395788472
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 725124633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86fd03609998520438d0ee94a2aafa0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &725124636
@@ -947,7 +947,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 725124635}
-        m_MethodName: OnClick
+        m_MethodName: Tutorial1Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 843450106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eee6b4cee76fde4fba34227d98300ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &843450109
@@ -1311,7 +1311,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 843450108}
-        m_MethodName: OnClick
+        m_MethodName: Tutorial2Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1931,7 +1931,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1230208375}
-        m_MethodName: OnClick
+        m_MethodName: SixPlayerButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1230208370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c31375b7da487a546990924a41b10a4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1276330664
@@ -2577,7 +2577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1486628008}
-        m_MethodName: OnClick
+        m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2635,7 +2635,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486628003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819b90675b9605144ad4d477d83f611c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1490270928
@@ -2894,7 +2894,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1563160330}
-        m_MethodName: OnClick
+        m_MethodName: FourPlayerButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2952,7 +2952,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563160325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df313769e824c54d825a5aeeab7b4b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de3ef5ea7a3d074387deebd02d89674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1758538627
@@ -3107,7 +3107,6 @@ GameObject:
   - component: {fileID: 1771192014}
   - component: {fileID: 1771192013}
   - component: {fileID: 1771192012}
-  - component: {fileID: 1771192015}
   m_Layer: 5
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -3239,18 +3238,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771192010}
   m_CullTransparentMesh: 0
---- !u!114 &1771192015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771192010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86fd03609998520438d0ee94a2aafa0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1797904233
 GameObject:
   m_ObjectHideFlags: 0

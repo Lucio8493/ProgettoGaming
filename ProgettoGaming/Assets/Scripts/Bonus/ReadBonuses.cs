@@ -14,7 +14,7 @@ namespace BonusManager //restituisce una lista di bonus
             bonuses  = new List<Bonus>();
 
             Bonus b = new Bonus(1);
-            b.SpeedBoost = 3f;
+            b.SpeedBoost = 1.8f;
             b.Seconds = 4f;
 
             bonuses.Add(b);

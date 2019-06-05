@@ -8,7 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] protected GameObject player; // un riferimento pubblico al game object player.
     private Vector3 offset; // un riferimento privato a Vector3 che contenga i valori di offset
                             // offset è privato perché perché possiamo impostare il suo valore nello script
-    
+
+    private Vector3 velocity = Vector3.zero;
+
+
+    private float smoothTime = 0.2f; // il tempo con il quale la telecamera raggiunge il giocatore
+
+
     // Start is called before the first frame update
     public void SetOffset()
     {
@@ -20,12 +26,15 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
       // la camera segue il giocatore passo passo
-        transform.position = player.transform.position + offset;
+      //  transform.position = player.transform.position + offset;
+
+        transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + offset,ref velocity, smoothTime);
     }
+
 
 
     public void moveCamera(Vector3 move)
     {
         this.transform.position = this.transform.position + move;
-    }
+    } 
 }

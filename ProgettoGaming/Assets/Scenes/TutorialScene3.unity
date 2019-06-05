@@ -777,15 +777,15 @@ PrefabInstance:
       propertyPath: runBoost
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 2505207464726529603, guid: 6fd460578201d354082bcb131e14f3ec,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6853235645115697623, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505207464726529603, guid: 6fd460578201d354082bcb131e14f3ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3176838518741184427, guid: 6fd460578201d354082bcb131e14f3ec,
         type: 3}
@@ -1362,7 +1362,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2359
+    m_Bits: 10551
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

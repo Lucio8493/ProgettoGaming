@@ -533,8 +533,8 @@ MonoBehaviour:
   Floor: {fileID: 2135401465745572770, guid: b0ec37bf081def745b7d7ed376c79d52, type: 3}
   Wall: {fileID: 144206, guid: 9de82ec743bb24449a99f5cf1e325d61, type: 3}
   FowPlane: {fileID: 986924102}
-  rows: 10
-  columns: 10
+  rows: 50
+  columns: 50
 --- !u!4 &693426506
 Transform:
   m_ObjectHideFlags: 0

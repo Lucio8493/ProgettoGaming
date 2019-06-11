@@ -9,32 +9,42 @@ namespace InputControllers
     public class AiInputController : BaseInputController
     {
 
-        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
-        private NavMeshAgent agent;
+        // numero piccolo che serve a capire quando sono vicino ad un corner e passare al successivo
+        public double epsilon = 0.15;
 
         private NavMeshPath path = new NavMeshPath();
 
-        private float ncicliAggiornamento = 10; //numero di frame dopo i quali ricalcolare il percorso
-        int count = 0;
-        
+        int cc; // incrementa quando arrivo in un corner e devo arrivare al prossimo
+
+
+        // prendo la posizione della preda, arrivo alla posizione della preda che conoscevo, ricalcolo
         public override void CheckInput(GameObject o)
         {
             CharacterStatus status = o.GetComponent<CharacterStatus>();
+       
 
-            // calcolo la strada per arrivare dalla preda
-            count++;
-          
-            // @@ si potrebbe ottimizzare diminuendo il numero di volte in cui viene calcolato il percorso
-            if (count > ncicliAggiornamento)
-            { 
-             NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas, path);
-             int cc = 1;
-                Vector3 difference = path.corners[cc] - o.transform.position;
 
-                horz = difference.x;
-                vert = difference.z;
-                count = 0;
+            
+            if ( path.corners.Length == cc)
+            {
+                NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas, path);
+                cc = 0;
             }
+
+
+            Vector3 difference = path.corners[cc] - o.transform.position;
+
+            // se sono molto vicino al corner e se non ho esplorato l'array in tutta lunghezza, vai al prossimo corner
+
+            if (Vector3.Distance(path.corners[cc] , o.transform.position) < epsilon)
+            {
+                cc++;
+
+            }
+            horz = difference.x;
+            vert = difference.z;
+
+
         }
     }
 }

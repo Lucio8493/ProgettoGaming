@@ -17,6 +17,12 @@ public class Rules : Object
         MStatus = s;
     }
 
+
+
+    /*@@M
+     * Questo metodo verra' eliminato dal momento che l'associazione iniziale verra' fatta e gestita all'interno del matchManager
+     */
+
     // associo l'hunter alla preda
     //private Dictionary<string, string> AssociatesHunterWithPrey(GameObject[] target) 
     public void AssociatesHunterWithPrey(GameObject[] target)
@@ -25,8 +31,8 @@ public class Rules : Object
         {
             if (i == target.Length - 1)
             {
-                MStatus.AddHunterPrey(target[i], MStatus.Player);
-                MStatus.AddHunterPrey(MStatus.Player, target[0]);
+                MStatus.AddHunterPrey(target[i], MStatus.MainCharacter);
+                MStatus.AddHunterPrey(MStatus.MainCharacter, target[0]);
                 break;
             }
             MStatus.AddHunterPrey(target[i], target[i + 1]);
@@ -36,6 +42,11 @@ public class Rules : Object
         AssociationsStatusUpdate();
     }
 
+    /*@@M
+     * Questo metodo verra' mantenuto e funzionera' dal momento che si e' pensato di operare sui metodi di matchStatus
+     * mantenendo i parametri in ingresso e i valori di ritorno. A patto che venga aggiornato il characterStatus che preveda di gestire la lista di prey.
+     * 
+     */
     protected void AssociationsStatusUpdate()
     {
         Dictionary<GameObject, GameObject>.KeyCollection keys = MStatus.GetHunterPreyKeys();
@@ -46,6 +57,12 @@ public class Rules : Object
             MStatus.GetPrey(p).GetComponent<CharacterStatus>().Hunter = p;
         }
     }
+
+    /*@@M
+     * Questo metodo verra' mantenuto e funzionera' dal momento che si e' pensato di operare sui metodi di matchStatus
+     * mantenendo i parametri in ingresso e i valori di ritorno
+     * 
+     */
 
     // se il numero di giocatori è pari a tre cambio le regole della partita
     public void MexicanStall()
@@ -96,32 +113,36 @@ public class Rules : Object
     {
 
         //se il maincharacter e' morto faccio partire la scena di game over
-        if (MStatus.Player.GetComponent<CharacterStatus>().IsDead || MStatus.OutOfMexicanStall)
+        if (MStatus.MainCharacter.GetComponent<CharacterStatus>().IsDead || MStatus.OutOfMexicanStall)
         {
             Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.GAMEOVER_SCENE);
         }
         //se il maincharcter cattura in mexicanstall faccio partire la scena di vittoria
-        else if (MStatus.Player.GetComponent<CharacterStatus>().HasWon)
+        else if (MStatus.MainCharacter.GetComponent<CharacterStatus>().HasWon)
         {
             Messenger<string>.Broadcast(GameEventStrings.CHANGE_SCENE, SceneStrings.WIN_SCENE);
         }
     }
+
+    /*@@M
+     * Il metodo dovrebbe rimanere uguale e perfettamente funzionante a patto di essere in grado di gestire le liste di prey
+     */
 
     // rimuove il valore in base alla chiave hunter passato
     public void TargetCaptured(GameObject hunter, GameObject prey)
     {
         //verifico l'avvenuta cattura
         //se il maincharacter e' catturato setto il flag IsCaptured a true
-        if (prey == MStatus.Player && MStatus.GetPrey(hunter)==MStatus.Player)
+        if (prey == MStatus.MainCharacter && MStatus.GetPrey(hunter)==MStatus.MainCharacter)
         {
-            MStatus.Player.GetComponent<CharacterStatus>().IsCaptured = true;
+            MStatus.MainCharacter.GetComponent<CharacterStatus>().IsCaptured = true;
         }
 
         //se il maincharcter cattura e si trova InMexicanStall allora setto il flag IsWinning nel player
-        else if (hunter == MStatus.Player && MStatus.GetPrey(hunter)==prey && MStatus.InMexicanStall)
+        else if (hunter == MStatus.MainCharacter && MStatus.GetPrey(hunter)==prey && MStatus.InMexicanStall)
         {
             prey.gameObject.GetComponent<CharacterStatus>().IsCaptured = true;
-            MStatus.Player.GetComponent<CharacterStatus>().IsWinning = true;
+            MStatus.MainCharacter.GetComponent<CharacterStatus>().IsWinning = true;
         }
 
         //altrimenti verifico che la cattura sia lecita e aggiorno gli stati

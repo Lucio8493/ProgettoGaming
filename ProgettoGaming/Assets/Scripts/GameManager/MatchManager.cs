@@ -42,6 +42,12 @@ namespace GameManagers {
             }
             enemy = enemyList.ToArray();
 
+
+     /*@@M
+     * qui procedo ad associare l'hunter e la prey leggendo la matrice da un file.
+     * In questo senso si prevede di chimare il costruttore del Matchstatus fornendo come parametri:
+     * La matrice, il gameObject mainCharacter e la lista dei gameobject players
+     */
             MStatus = new MatchStatus(player);
             Rules = new Rules(MStatus);
             
@@ -126,11 +132,15 @@ namespace GameManagers {
             }
         }
 
+        /*@@M
+         * Il metodo funzionera' a patto che gestisca il prey del characterStatus come una lista di gameobject e non come singolo
+         */
+
         //Il metodo serve ad attivare le icone giuste sulla preda e sul cacciatore del giocatore principale
         protected void MiniMapIconActivation()
         {
-            MStatus.Player.GetComponent<CharacterStatus>().Prey.transform.Find(Names.MINI_MAP_PREY_ICON).gameObject.SetActive(true);
-            MStatus.Player.GetComponent<CharacterStatus>().Hunter.transform.Find(Names.MINI_MAP_HUNTER_ICON).gameObject.SetActive(true);
+            MStatus.MainCharacter.GetComponent<CharacterStatus>().Prey.transform.Find(Names.MINI_MAP_PREY_ICON).gameObject.SetActive(true);
+            MStatus.MainCharacter.GetComponent<CharacterStatus>().Hunter.transform.Find(Names.MINI_MAP_HUNTER_ICON).gameObject.SetActive(true);
         }
 
         //metodo per l'esecuzione del suono del mexicanStall

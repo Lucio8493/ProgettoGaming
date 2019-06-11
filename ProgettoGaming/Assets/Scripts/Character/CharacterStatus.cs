@@ -84,12 +84,18 @@ namespace Character
             set { haveBonus = value; }
         }
 
+        /*@@M
+         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjcets, oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
+         */
         public GameObject Prey
         {
             get { return prey; }
             set { prey = value; }
         }
 
+        /*@@M
+         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjcets, oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
+         */
         public GameObject Hunter
         {
             get { return hunter; }

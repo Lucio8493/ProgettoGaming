@@ -5,10 +5,19 @@ using UnityEngine;
 // dato che la preda e il predatore dovranno essere di
 public class SwitchColor
 {
+
+    Color preyColor = new Color(0, 0.6f, 0, 0.6f);
+
+    Color hunterColor = new Color( 0.6f, 0, 0 , 0.6f);
+
+    Color neutralColor = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+
+
     public SwitchColor()
     {
 
     }
+    
 
     public void HunterColor(GameObject o)
     {
@@ -16,7 +25,7 @@ public class SwitchColor
         foreach (var rend in Component)
         {
             Material mat = rend.material;
-            mat.SetColor("_EmissionColor", Color.red);
+            mat.SetColor("_EmissionColor", hunterColor);
         }
     }
 
@@ -27,7 +36,7 @@ public class SwitchColor
         foreach (var rend in Component)
         {
             Material mat = rend.material;
-            mat.SetColor("_EmissionColor", Color.green);
+            mat.SetColor("_EmissionColor", preyColor);
         }
     }
 
@@ -38,7 +47,7 @@ public class SwitchColor
         foreach (var rend in Component)
         {
             Material mat = rend.material;
-            mat.SetColor("_EmissionColor", Color.white);
+            mat.SetColor("_EmissionColor", neutralColor);
 
 
         }

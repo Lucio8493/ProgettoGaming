@@ -27,6 +27,8 @@ public class MatchStatus : Object
 
     private List<GameObject>  objectBonusPicked; // la lista degli oggetti bonus che sono stati presi
 
+    // tutti i bonus nella partita corrente
+    private List<Bonus> bonusTypes;
 
     // coppia chiave valore, come chiave c'è i personaggi giocanti, come valore il loro bonus
     private Dictionary<GameObject, Bonus> bonusOfTheCharacter = new Dictionary<GameObject, Bonus>();
@@ -56,6 +58,7 @@ public class MatchStatus : Object
     public bool OutOfMexicanStall { get => outOfMexicanStall; set => outOfMexicanStall = value; }
     public bool GamePaused { get => gamePaused; set => gamePaused = value; }
     public List<GameObject> ObjectBonusPicked { get => objectBonusPicked; set => objectBonusPicked = value; }
+    public List<Bonus> BonusTypes { get => bonusTypes; set => bonusTypes = value; }
 
     /*@@M
      * Il metodo verra' mantenuto e si conservera' il tipo del parametro in ingresso mentre il tipo del valore di ritorno verra' portato a List<GameObjects>.

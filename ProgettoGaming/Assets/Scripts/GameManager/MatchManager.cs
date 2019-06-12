@@ -15,8 +15,7 @@ namespace GameManagers {
         protected List<GameObject> enemyList;
 
 
-        // tutti i bonus nella partita corrente
-        protected List<Bonus> bonusTypes;
+        
 
 
         private MatchStatus MStatus;
@@ -55,7 +54,7 @@ namespace GameManagers {
             MiniMapIconActivation();
 
             ReadBonuses rb = new ReadBonuses();
-            bonusTypes = rb.getBonuses();
+            MStatus.BonusTypes= rb.getBonuses();
 
             IstantiateBonuses();
 
@@ -97,7 +96,7 @@ namespace GameManagers {
         // restituisce un bonus casuale
         public Bonus getRandomBonus()
         {
-            return bonusTypes[UnityEngine.Random.Range(0, bonusTypes.Count)]; //@@
+            return MStatus.BonusTypes[UnityEngine.Random.Range(0, MStatus.BonusTypes.Count)]; //@@
         }
 
         

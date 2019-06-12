@@ -18,7 +18,7 @@ namespace GameManagers
         private GameObject[] enemylist;
 
         private GameObject[] objectBonuslist;
-        private const int BONUSES = 4;
+        private const int BONUSES = 20;
         private System.Random rnd = new System.Random();
         private PlayerManager playerManager;
         private GameObject enemyObject;
@@ -134,7 +134,7 @@ namespace GameManagers
                         break;
                     }
                     //@@crea un bonus in quella cella con una possibilita' su 30
-                    else if (rnd.Next() % 100 == 1)
+                    else if (rnd.Next() % 30 == 1)
                     {
                         tmp = Instantiate(goalPrefab, new Vector3(row * MazeGenerator.CellHeight, 1, column * MazeGenerator.CellWidth), Quaternion.Euler(0, 0, 0)) as GameObject;
                         tmp.transform.parent = bonusObject.transform;

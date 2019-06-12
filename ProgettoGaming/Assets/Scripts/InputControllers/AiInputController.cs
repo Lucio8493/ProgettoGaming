@@ -9,43 +9,44 @@ namespace InputControllers
     public class AiInputController : BaseInputController
     {
 
-        // numero piccolo che serve a capire quando sono vicino ad un corner e passare al successivo
-        public double epsilon = 0.15;
+        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
 
         private NavMeshPath path = new NavMeshPath();
 
+        private float ncicliAggiornamento = 10; //numero di frame dopo i quali ricalcolare il percorso
+        int count;
         int cc; // incrementa quando arrivo in un corner e devo arrivare al prossimo
 
 
-        // prendo la posizione della preda, arrivo alla posizione della preda che conoscevo, ricalcolo
+        public AiInputController()
+        {
+            count = (int)ncicliAggiornamento;
+        }
+
         public override void CheckInput(GameObject o)
         {
             CharacterStatus status = o.GetComponent<CharacterStatus>();
-       
 
+            // calcolo la strada per arrivare dalla preda
+            count++;
 
-            
-            if ( path.corners.Length == cc)
+            if (count > ncicliAggiornamento)
             {
                 NavMesh.CalculatePath(o.transform.position, status.Prey.transform.position, NavMesh.AllAreas, path);
-                cc = 0;
-            }
+                cc = 1;
+                count = 0;
 
+                Vector3 difference = path.corners[cc] - o.transform.position;
 
-            Vector3 difference = path.corners[cc] - o.transform.position;
+  
+                horz = difference.x;
+                vert = difference.z;
 
-            // se sono molto vicino al corner e se non ho esplorato l'array in tutta lunghezza, vai al prossimo corner
-
-            if (Vector3.Distance(path.corners[cc] , o.transform.position) < epsilon)
-            {
-                cc++;
 
             }
-            horz = difference.x;
-            vert = difference.z;
-
 
         }
     }
 }
+
 

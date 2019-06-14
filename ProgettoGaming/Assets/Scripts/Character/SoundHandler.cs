@@ -13,6 +13,7 @@ public class SoundHandler : MonoBehaviour
 
     private AudioSource audioSource;
     private CharacterStatus status;
+    private bool firstTime = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +35,9 @@ public class SoundHandler : MonoBehaviour
 
     protected void PlayDieSound()
     {
-        if (status.IsCaptured)
+        if (status.IsCaptured && firstTime)
         {
+            firstTime = false;
             audioSource.PlayOneShot(die);
         }
     }

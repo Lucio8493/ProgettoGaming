@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 public class SelectOnInput : MonoBehaviour
 {
 
-    public EventSystem eventSystem;
-    public GameObject selectedObject;
+    [SerializeField] protected EventSystem eventSystem;
+    [SerializeField] protected GameObject selectedObject;
 
     private bool buttonSelected;
 

@@ -5,7 +5,8 @@ using UnityEngine;
 namespace BonusManager
 {
 
-    // la classe bonus è un oggetto che ha solo dei valori, che poi sarebbero i modificatori che il personaggio ottiene quando lo usa
+    // la classe bonus è un oggetto che ha solo dei valori, che poi sarebbero i modificatori che il 
+    // personaggio ottiene quando lo usa
     public class Bonus
     {
         private int id; // serve per riconoscere i diversi bonus

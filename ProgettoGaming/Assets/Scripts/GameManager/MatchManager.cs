@@ -14,10 +14,6 @@ namespace GameManagers {
         protected GameObject[] enemy;
         protected List<GameObject> enemyList;
 
-
-        
-
-
         private MatchStatus MStatus;
         private Rules Rules;
         private bool firstTime = true;
@@ -132,7 +128,8 @@ namespace GameManagers {
         }
 
         /*@@M
-         * Il metodo funzionera' a patto che gestisca il prey del characterStatus come una lista di gameobject e non come singolo
+         * Il metodo funzionera' a patto che gestisca il prey del characterStatus come una lista di gameobject 
+         * e non come singolo
          */
 
         //Il metodo serve ad attivare le icone giuste sulla preda e sul cacciatore del giocatore principale

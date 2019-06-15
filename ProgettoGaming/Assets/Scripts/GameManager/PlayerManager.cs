@@ -11,8 +11,6 @@ namespace GameManagers
     public class PlayerManager : MonoBehaviour
     {
 
-        
-
         private Dictionary<GameObject, BaseInputController> controllers = new Dictionary<GameObject, BaseInputController>();
         GameObject player; // il giocatore controllato dall'utente
 

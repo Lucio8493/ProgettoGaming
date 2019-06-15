@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     // abbiamo bisogno di 2 variabili
-    [SerializeField] protected GameObject player; // un riferimento pubblico al game object player.
+    [SerializeField] protected GameObject player; // un riferimento al game object player.
     private Vector3 offset; // un riferimento privato a Vector3 che contenga i valori di offset
                             // offset è privato perché perché possiamo impostare il suo valore nello script
 
@@ -25,9 +25,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-      // la camera segue il giocatore passo passo
-      //  transform.position = player.transform.position + offset;
-
+      // la camera segue il giocatore 
         transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + offset,ref velocity, smoothTime);
     }
 

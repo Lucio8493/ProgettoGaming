@@ -20,6 +20,7 @@ namespace Character
         }
 
         // Update is called once per frame
+        // se il topo è di fronta al muro non fa l'animazione di movimento
         void Update()
         {
             if (status.IsMoving && !status.IsFacing)

@@ -31,7 +31,7 @@ public class FogOfWarScript : MonoBehaviour
         // creiamo un raycast che punti dalla telecamera al giocatore
         Ray ray = new Ray(overPlayer(), m_player.position - overPlayer() );
 
-        // creiamo una variabile raycast hit per memorizzare l'info del punto in cui viene colpita la fowa dal raycast
+        // creiamo una variabile raycast hit per memorizzare l'info del punto in cui viene colpita la fow dal raycast
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, m_fogLayer, QueryTriggerInteraction.Collide))
         {
@@ -42,7 +42,7 @@ public class FogOfWarScript : MonoBehaviour
                 Vector3 v = m_fogOfWarPlane.transform.TransformPoint(m_vertices[i]);
 
                 // calcoliamo la distanza tra il punto di intersezione e i vertici
-                // usiamo SqrMagnitude perché dice che è più veloce che calcolare la distanza
+                // usiamo SqrMagnitude perché  è più veloce che calcolare la distanza
                 // in quanto evita di usare una square root (radice quadrata)
                 float dist = Vector3.SqrMagnitude(v - hit.point);
 

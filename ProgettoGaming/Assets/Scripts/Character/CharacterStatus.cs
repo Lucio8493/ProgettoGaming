@@ -41,7 +41,7 @@ namespace Character
 
 
         protected GameObject prey; // la preda che il giocatore deve prendere
-        protected GameObject hunter; // la preda che il giocatore deve prendere
+        protected GameObject hunter; // il predatore da cui deve scappare
 
         protected float verticalMovement;
         protected float orizontalMovement;
@@ -85,7 +85,8 @@ namespace Character
         }
 
         /*@@M
-         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjcets, oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
+         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjects,
+         * oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
          */
         public GameObject Prey
         {
@@ -94,7 +95,8 @@ namespace Character
         }
 
         /*@@M
-         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjcets, oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
+         * Si prevede la sostituzione del singolo gameObject con una lista di gameObjcets,
+         * oppure con l'eliminazione totale del riferimento e un l'utilizzo del MatchStatus
          */
         public GameObject Hunter
         {
@@ -215,7 +217,7 @@ namespace Character
                 }
         }
 
-        //mi dice se il personaggio sta di fronte a qualcosa @@ aggiungere eventuale contrllo per il muro
+        //mi dice se il personaggio sta di fronte a qualcosa @@ aggiungere eventuale controllo per il muro
         protected void checkFacing()
         {
             RaycastHit hit;

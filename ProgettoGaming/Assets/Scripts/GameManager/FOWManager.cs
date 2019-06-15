@@ -15,8 +15,6 @@ namespace GameManagers
         //Metedo utilizzato per inizializzare l'ambiente
         public void GenerateFOW()
         {
-            //MazeGenerator m = GameObject.Find(Names.MAZE).GetComponent<MazeGenerator>();
-            //m.generate();
             fow = this.GetComponent<FogOfWarScript>();
             fow.Player = GameObject.Find(Names.MAIN_CHARACTER).GetComponent<Transform>();
             fow.Initialize();

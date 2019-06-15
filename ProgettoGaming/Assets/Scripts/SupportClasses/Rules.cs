@@ -20,7 +20,8 @@ public class Rules : Object
 
 
     /*@@M
-     * Questo metodo verra' eliminato dal momento che l'associazione iniziale verra' fatta e gestita all'interno del matchManager
+     * Questo metodo verra' eliminato dal momento che l'associazione iniziale verra'
+     * fatta e gestita all'interno del matchManager
      */
 
     // associo l'hunter alla preda
@@ -44,7 +45,8 @@ public class Rules : Object
 
     /*@@M
      * Questo metodo verra' mantenuto e funzionera' dal momento che si e' pensato di operare sui metodi di matchStatus
-     * mantenendo i parametri in ingresso e i valori di ritorno. A patto che venga aggiornato il characterStatus che preveda di gestire la lista di prey.
+     * mantenendo i parametri in ingresso e i valori di ritorno.
+     * A patto che venga aggiornato il characterStatus che preveda di gestire la lista di prey.
      * 
      */
     protected void AssociationsStatusUpdate()
